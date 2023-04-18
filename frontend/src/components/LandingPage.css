@@ -1,0 +1,176 @@
+@import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Flex:opsz,wght@8..144,100;8..144,200;8..144,300;8..144,400;8..144,500;8..144,600;8..144,700;8..144,800;8..144,900;8..144,1000&display=swap');
+
+* {
+    box-sizing: border-box;
+}
+
+html, body {
+    width: 100%;
+    height: auto;
+    margin: 0;
+    padding: 0;
+    line-height: 1.254;
+}
+
+.landing-page-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    width: 100vw;
+    background-image: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url('../img/BG.jpg');
+    background-size: 150vmax;
+    background-position: center;
+    background-attachment: fixed;
+    background-repeat: no-repeat;
+    position: absolute;
+}
+
+.landing-page-content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0px 8px 12px 3px rgba(0, 0, 0, 0.5); 
+    height: calc(70px + 55vh);
+    width: calc(12px + 55vw);
+    border-radius: 20px;
+    background-color: rgb(238, 238, 238);
+    position: absolute;
+}
+
+.landing-page-title {
+    width: 100%;
+    margin-bottom: calc(15px + 1.4vh);
+    text-align: center;
+}
+
+.landing-page-title h1 {
+    margin: 0;
+    padding: 0;
+    font-family: 'Quicksand', sans-serif;
+    font-weight: 700;
+    font-size: calc(20px + 6vw);
+}
+
+.landing-page-title h3 {
+    margin: 0;
+    padding: 0;
+    min-width: 15em;
+    font-family: 'Quicksand', sans-serif;
+    font-weight: 300;
+    font-size: calc(12px + 2.1vw);
+    text-align: center;
+}
+
+.landing-page-button {
+    width: 55%;
+    height: max-content;
+    display: flex;
+    justify-content: center;
+}
+
+.landing-page-button .started-btn {
+    display: flex;
+    align-self: center;
+    justify-content: center;
+    text-align: center;
+    color: white;
+    min-width: 300px;
+    max-width: 350px;
+    width: 90%;
+    border: none;
+    font-size: calc(13px + 1vmax);
+    font-weight: 700;
+    border-radius: 10px;
+    background: #7dbd07;
+    outline: none;
+    transition: all 0.3s ease;
+    padding: calc(8px + 0.5vw) calc(3px + 1.1vh);
+    cursor: pointer;
+    font-family: "Quicksand", sans-serif;
+    margin: 0 !important;
+}
+
+.landing-page-button .started-btn:hover{
+    transform: translateY(-2px);
+}
+
+.landing-page-button .started-btn:hover {
+    background: #7dbd07;
+}
+
+.landing-page-btn-label {
+    font-family: 'Quicksand', sans-serif;
+    font-size: calc(13px + 0.7vw);
+    font-weight: 400;
+}
+
+.landing-page-btn-label a {
+    font-family: 'Quicksand', sans-serif;
+    font-weight: 500;
+}
+
+.landing-page-btn-label a:hover {
+    font-weight: 700;
+}
+
+/* Making the page responsive */
+
+/* Tablet */
+@media (min-width: 741px) and (max-width: 1023px) {
+
+    .landing-page-content {
+        height: calc(70px + 45vh);
+        width: calc(12px + 60vw);
+    }
+
+    .landing-page-title h1 {
+        font-size: calc(20px + 5vw);
+    }
+
+    .landing-page-title h3 {
+        font-size: calc(12px + 1.9vw);
+    }
+
+    .landing-page-button .started-btn {
+        min-width: 250px;
+        max-width: 320px;
+        font-size: calc(13px + 1.2vmax);
+        padding: calc(8px + 0.3vw) calc(3px + 0.7vh);
+    }
+
+    .landing-page-btn-label {
+        font-size: calc(13px + 0.5vw);
+    }
+}
+
+/* Mobile */
+@media (max-width: 740px) {
+
+    .landing-page-content {
+        max-height: calc(70px + 80vh);
+        min-width: calc(12px + 78vw);
+    }
+
+    .landing-page-title h1 {
+        font-size: calc(20px + 7.9vw);
+    }
+
+    .landing-page-title h3 {
+        font-size: calc(12px + 1.8vw);
+    }
+
+    .landing-page-button .started-btn {
+        min-width: 200px;
+        max-width: 280px;
+        font-size: calc(13px + 0.8vmax);
+        padding: calc(8px + 0.3vw) calc(3px + 0.7vh);
+    }
+
+    .landing-page-btn-label {
+        font-size: calc(13px + 0.4vw);
+    }
+}
