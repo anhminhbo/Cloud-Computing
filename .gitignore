@@ -1,0 +1,8 @@
+# For infra
+infra/terraform/.terraform
+infra/terraform/plan
+infra/terraform/.terraform.lock.hcl
+infra/terraform/.terraform.tfstate.lock.info
+
+# Mac
+.DS_Store
