@@ -80,7 +80,7 @@ resource "null_resource" "configure_eks_admin_profile" {
 
 
 # Kubernetes config to use the eks-admin IAM role.
-resource "null_resource" "configure_local_k8s_to_use_eks_admin_role" {
+resource "null_resource" "update_kubeconfig_to_access_aws_eks_cluster" {
   provisioner "local-exec" {
     command = "aws eks update-kubeconfig --name ${module.eks.cluster_id} --region ${var.aws_region} --profile ${var.aws_profile}"
   }
