@@ -2,8 +2,10 @@ module "eks" {
   source  = "terraform-aws-modules/eks/aws"
   version = "18.29.0"
 
-  cluster_name    = "cloud-computing"
-  cluster_version = "1.23"
+  cluster_name = "cloud-computing"
+  # cluster_version = "1.23"
+  cluster_version = "1.26"
+
 
   cluster_endpoint_private_access = true
   cluster_endpoint_public_access  = true
@@ -19,7 +21,7 @@ module "eks" {
 
   eks_managed_node_groups = {
     general = {
-      desired_size = 1
+      desired_size = 2
       min_size     = 1
       max_size     = 2
 
@@ -76,15 +78,46 @@ module "eks" {
 
   # The last change that we need to make in our EKS cluster is to allow access from the EKS control plane to the webhook port of the AWS load balancer controller.
   node_security_group_additional_rules = {
+    # ingress_allow_access_from_control_plane = {
+    #   type                          = "ingress"
+    #   protocol                      = "tcp"
+    #   from_port                     = 9443
+    #   to_port                       = 9443
+    #   source_cluster_security_group = true
+    #   description                   = "Allow access from control plane to webhook port of AWS load balancer controller"
+    # }
+
+    # The last change that we need to make in our EKS cluster is to allow access from the EKS control plane to the webhook port of the nginx ingress controller.
     ingress_allow_access_from_control_plane = {
       type                          = "ingress"
       protocol                      = "tcp"
-      from_port                     = 9443
-      to_port                       = 9443
+      from_port                     = 8443
+      to_port                       = 8443
       source_cluster_security_group = true
-      description                   = "Allow access from control plane to webhook port of AWS load balancer controller"
+      description                   = "Allow access from control plane to webhook port of Nginx Ingress Controller"
     }
 
+
+    # Allow nodes-nodes communication
+    ingress_self_all = {
+      description = "Node to node all ports/protocols"
+      protocol    = "-1"
+      from_port   = 0
+      to_port     = 0
+      type        = "ingress"
+      self        = true
+    }
+
+    # Allow nodes to the internet
+    egress_all = {
+      description      = "Node all egress"
+      protocol         = "-1"
+      from_port        = 0
+      to_port          = 0
+      type             = "egress"
+      cidr_blocks      = ["0.0.0.0/0"]
+      ipv6_cidr_blocks = ["::/0"]
+    }
 
   }
 

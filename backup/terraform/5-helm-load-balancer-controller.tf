@@ -42,3 +42,20 @@ resource "helm_release" "aws_load_balancer_controller" {
     value = module.aws_load_balancer_controller_irsa_role.iam_role_arn
   }
 }
+
+module "nginx-controller" {
+  source = "terraform-iaac/nginx-controller/helm"
+
+  additional_set = [
+    {
+      name  = "controller.service.annotations.service\\.beta\\.kubernetes\\.io/aws-load-balancer-type"
+      value = "nlb"
+      type  = "string"
+    },
+    {
+      name  = "controller.service.annotations.service\\.beta\\.kubernetes\\.io/aws-load-balancer-cross-zone-load-balancing-enabled"
+      value = "true"
+      type  = "string"
+    }
+  ]
+}
