@@ -1,1 +1,0 @@
-window.__RUNTIME_CONFIG__ = {"NODE_ENV":"development","WDS_SOCKET_PORT":"0","BACKEND_URL":"http://localhost:8080","FRONTEND_URL":"http://localhost:3000","API_KEY":"AIzaSyAmltDENBZXKAf_pBzRbXZp9mISeRGl52M"};
