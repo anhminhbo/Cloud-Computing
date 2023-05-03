@@ -39,7 +39,7 @@
     }
     </style>
 
-    <title>Admin Dashboard</title>
+    <title>Teacher's Dashboard</title>
 
     <meta name="description" content="" />
 
@@ -129,7 +129,7 @@
           <ul class="menu-inner py-1">
             <!-- Dashboard -->
             <li class="menu-item active">
-              <a href="admin-dashboard.html" class="menu-link">
+              <a href="TeacherDashboard.html" class="menu-link">
                 <i class="menu-icon tf-icons bx bx-home-circle"></i>
                 <div data-i18n="Analytics">Dashboard</div>
               </a>
@@ -139,25 +139,23 @@
             <li class="menu-header small text-uppercase"><span class="menu-header-text">Components</span></li>
             <!-- Cards -->
             <li class="menu-item">
-              <a href="allCourse.html" class="menu-link">
+              <a href="CourseAtt.html" class="menu-link">
                 <i class="menu-icon tf-icons bx bx-collection"></i>
-                <div data-i18n="Basic">All Courses</div>
+                <div data-i18n="Basic">Your Teaching Courses</div>
+              </a>
+            </li>
+
+            <li class="menu-item">
+              <a href="admin-dashboard.html" class="menu-link">
+                <i class="menu-icon tf-icons bx bx-collection"></i>
+                <div data-i18n="Analytic">Admin(test)</div>
               </a>
             </li>
             <li class="menu-item">
-              <a href="allTeacher.html" class="menu-link">
-                <i class="menu-icon tf-icons bx bx-table"></i>
-                <div data-i18n="Tables">All Teachers</div>
+              <a href="AdminContact.html" class="menu-link">
+                <i class="menu-icon tf-icons bx bx-detail"></i>
+                <div data-i18n="Form Layouts">Contact with Admin</div>
               </a>
-            </li>
-            <li class="menu-item">
-              <a href="studentClass.html" class="menu-link">
-                <i class="menu-icon tf-icons bx bx-table"></i>
-                <div data-i18n="Basic">studentClass(Test)</div>
-              </a>
-            </li>
-            
-            
             <!-- User interface -->
            
             <!-- Misc -->
@@ -255,7 +253,11 @@
                     <div class="d-flex align-items-end row">
                       <div class="col-sm-7">
                         <div class="card-body">
-                          <h5 class="card-title text-primary">Good Morning, Admin</h5>
+                          <h5 class="card-title text-primary">Congratulation! 🎉</h5>
+                          <p class="mb-4">
+                            Your class attendance rate has increase by <span class="fw-bold">72%</span>  today.
+                          </p>
+
                         
                         </div>
                       </div>
@@ -350,7 +352,7 @@
                   <div class="card">
                     <div class="row row-bordered g-0">
                       <div class="col-md-8">
-                        <h5 class="card-header m-0 me-2 pb-3">Classes' Attendance</h5>
+                        <h5 class="card-header m-0 me-2 pb-3">Your Classes' Attendance</h5>
                         <div id="totalRevenueChart" class="px-2"></div>
                       </div>
                       <div class="col-md-4">

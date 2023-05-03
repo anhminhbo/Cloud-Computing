@@ -26,7 +26,7 @@
       content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0"
     />
 
-    <title>Contact with Teacher</title>
+    <title>Add a teacher in</title>
 
     <meta name="description" content="" />
 
@@ -111,11 +111,29 @@
 
           <ul class="menu-inner py-1">
             <!-- Dashboard -->
-           
+            <li class="menu-item">
+              <a href="admin-dashboard.html" class="menu-link">
+                <i class="menu-icon tf-icons bx bx-home-circle"></i>
+                <div data-i18n="Analytics">Dashboard</div>
+              </a>
+            </li>
 
-            <!-- Layouts -->
-            
-   
+            <!-- Components -->
+            <li class="menu-header small text-uppercase"><span class="menu-header-text">Components</span></li>
+            <!-- Cards -->
+            <li class="menu-item">
+              <a href="allCourse.html" class="menu-link">
+                <i class="menu-icon tf-icons bx bx-collection"></i>
+                <div data-i18n="Basic">All Courses</div>
+              </a>
+            </li>
+            <!-- User interface -->
+            <li class="menu-item active">
+              <a href="allTeacher.html" class="menu-link">
+                <i class="menu-icon tf-icons bx bx-table"></i>
+                <div data-i18n="Tables">All Teachers</div>
+              </a>
+            </li>
             <!-- Misc -->
     
           </ul>
@@ -213,39 +231,127 @@
             <!-- Content -->
 
             <div class="container-xxl flex-grow-1 container-p-y">
-              <h4 class="fw-bold py-3 mb-4"><span class="text-muted fw-light">Forms/</span> Contact Form</h4>
+              <h4 class="fw-bold py-3 mb-4"><span class="text-muted fw-light">Forms/</span> Add a teacher in</h4>
                 <div class="col-xl">
                   <div class="card mb-4">
                     <div class="card-header d-flex justify-content-between align-items-center">
-                      <h5 class="mb-0">Send a Request/Report a problem with Teacher</h5>
+                      <h5 class="mb-0">Teacher's information Form</h5>
                       <small class="text-muted float-end">To be update</small>
                     </div>
                     <div class="card-body">
-                      
+                      <form>
                         <div class="mb-3">
-                          <label class="form-label" for="basic-icon-default-message">Element 5</label>
+                          <label class="form-label" for="basic-icon-default-fullname">ID</label>
                           <div class="input-group input-group-merge">
-                            <span id="basic-icon-default-message2" class="input-group-text"
-                              ><i class="bx bx-comment"></i
+                            <span id="basic-icon-default-fullname2" class="input-group-text"
+                              ><i class="bx bx-user"></i
                             ></span>
-                            <textarea
+                            <input
+                              type="text"
+                              class="form-control"
+                              id="basic-icon-default-fullname"
+                              placeholder="T123"
+                             
+                            />
+                          </div>
+                        </div>
+                        <div class="mb-3">
+                          <label class="form-label" for="basic-icon-default-fullname">First Name</label>
+                          <div class="input-group input-group-merge">
+                            <span id="basic-icon-default-fullname2" class="input-group-text"
+                              ><i class="bx bx-user"></i
+                            ></span>
+                            <input
+                              type="text"
+                              class="form-control"
+                              id="basic-icon-default-fullname"
+                              placeholder="Phat"
+                             
+                            />
+                          </div>
+                        </div>
+                        <div class="mb-3">
+                          <label class="form-label" for="basic-icon-default-fullname">Last Name</label>
+                          <div class="input-group input-group-merge">
+                            <span id="basic-icon-default-fullname2" class="input-group-text"
+                              ><i class="bx bx-user"></i
+                            ></span>
+                            <input
+                              type="text"
+                              class="form-control"
+                              id="basic-icon-default-fullname"
+                              placeholder="Huynh"
+                             
+                            />
+                          </div>
+                        </div>
+                        <div class="mb-3">
+                          <label class="form-label" for="basic-icon-default-email">Email Address</label>
+                          <div class="input-group input-group-merge">
+                            <span class="input-group-text"><i class="bx bx-envelope"></i></span>
+                            <input
+                              type="text"
+                              id="basic-icon-default-email"
+                              class="form-control"
+                              placeholder="john.doe"
+                              aria-label="john.doe"
+                              aria-describedby="basic-icon-default-email2"
+                            />
+                            <span id="basic-icon-default-email2" class="input-group-text">@example.com</span>
+                          </div>
+                          <div class="form-text">You can use letters, numbers & periods</div>
+                        </div>
+                        <div class="mb-3">
+                          <label class="form-label" for="basic-icon-default-email">Password</label>
+                          <div class="input-group input-group-merge">
+                            <span class="input-group-text"><i class="bx bx-lock"></i></span>
+                            <input
+                              type="text"
                               id="basic-icon-default-message"
                               class="form-control"
-                              placeholder="State your problem here"
-                     
-                            ></textarea>
-                            
-                          </div> 
-                          <p><br>Upload a file to describe your situation (if necessary)</p>
-                           <div class="input-group">
-                            <input type="file" class="form-control" id="inputGroupFile02" />
-                            <label class="input-group-text" for="inputGroupFile02">Upload</label>
+                              placeholder="..."
+                              aria-label="john.doe"
+                         
+                            />
+                        
                           </div>
-    
-                          
+                         
                         </div>
                         
-                        <button type="submit" class="btn btn-primary">Submit</button>
+                        <div class="mb-3">
+                          <label class="form-label" for="basic-icon-default-phone"> Phone Number</label>
+                          <div class="input-group input-group-merge">
+                            <span id="basic-icon-default-phone2" class="input-group-text"
+                              ><i class="bx bx-phone"></i
+                            ></span>
+                            <input
+                              type="text"
+                              id="basic-icon-default-phone"
+                              class="form-control phone-mask"
+                              placeholder="658 799 8941"
+                              aria-label="658 799 8941"
+                              aria-describedby="basic-icon-default-phone2"
+                            />
+                          </div>
+                        </div>
+                        <div class="mb-3">
+                          <label for="exampleFormControlSelect2" class="form-label">Teaching Courses</label>
+                          <select
+                            multiple
+                            class="form-select"
+                            id="exampleFormControlSelect2"
+                            aria-label="Multiple select example"
+                          >
+                            <option selected>N/A</option>
+                            <option value="1">Course A </option>
+                            <option value="2">Course B</option>
+                            <option value="3">Course C</option>
+                          </select>
+                        </div>
+                        <div>
+                        
+                       
+                        <button type="submit" class="btn btn-primary">Add in</button>
                       </form>
                     </div>
                   </div>

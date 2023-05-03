@@ -26,7 +26,7 @@
       content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0"
     />
 
-    <title>Contact with Teacher</title>
+    <title>Add a student in</title>
 
     <meta name="description" content="" />
 
@@ -111,11 +111,24 @@
 
           <ul class="menu-inner py-1">
             <!-- Dashboard -->
-           
+            <li class="menu-item">
+              <a href="TeacherDashBoard.html" class="menu-link">
+                <i class="menu-icon tf-icons bx bx-home-circle"></i>
+                <div data-i18n="Analytics">Dashboard</div>
+              </a>
+            </li>
 
             <!-- Layouts -->
-            
-   
+           
+            <!-- Components -->
+            <li class="menu-header small text-uppercase"><span class="menu-header-text">Components</span></li>
+            <!-- Cards -->
+            <li class="menu-item">
+              <a href="CourseAtt.html" class="menu-link">
+                <i class="menu-icon tf-icons bx bx-collection"></i>
+                <div data-i18n="Basic">Your Teaching Courses</div>
+              </a>
+            </li>
             <!-- Misc -->
     
           </ul>
@@ -213,39 +226,110 @@
             <!-- Content -->
 
             <div class="container-xxl flex-grow-1 container-p-y">
-              <h4 class="fw-bold py-3 mb-4"><span class="text-muted fw-light">Forms/</span> Contact Form</h4>
+              <h4 class="fw-bold py-3 mb-4"><span class="text-muted fw-light">Forms/</span> Add student in class</h4>
                 <div class="col-xl">
                   <div class="card mb-4">
                     <div class="card-header d-flex justify-content-between align-items-center">
-                      <h5 class="mb-0">Send a Request/Report a problem with Teacher</h5>
+                      <h5 class="mb-0">Add a student in</h5>
                       <small class="text-muted float-end">To be update</small>
                     </div>
                     <div class="card-body">
-                      
+                      <form>
                         <div class="mb-3">
-                          <label class="form-label" for="basic-icon-default-message">Element 5</label>
+                          <label class="form-label" for="basic-icon-default-fullname">ID</label>
                           <div class="input-group input-group-merge">
-                            <span id="basic-icon-default-message2" class="input-group-text"
-                              ><i class="bx bx-comment"></i
+                            <span id="basic-icon-default-fullname2" class="input-group-text"
+                              ><i class="bx bx-user"></i
                             ></span>
-                            <textarea
+                            <input
+                              type="text"
+                              class="form-control"
+                              id="basic-icon-default-fullname"
+                              placeholder="S123"
+                             
+                            />
+                          </div>
+                        </div>
+                        <div class="mb-3">
+                          <label class="form-label" for="basic-icon-default-fullname">First Name</label>
+                          <div class="input-group input-group-merge">
+                            <span id="basic-icon-default-fullname2" class="input-group-text"
+                              ><i class="bx bx-user"></i
+                            ></span>
+                            <input
+                              type="text"
+                              class="form-control"
+                              id="basic-icon-default-fullname"
+                              placeholder="Phat"
+                             
+                            />
+                          </div>
+                        </div>
+                        <div class="mb-3">
+                          <label class="form-label" for="basic-icon-default-fullname">Last Name</label>
+                          <div class="input-group input-group-merge">
+                            <span id="basic-icon-default-fullname2" class="input-group-text"
+                              ><i class="bx bx-user"></i
+                            ></span>
+                            <input
+                              type="text"
+                              class="form-control"
+                              id="basic-icon-default-fullname"
+                              placeholder="Huynh"
+                             
+                            />
+                          </div>
+                        </div>
+                        <div class="mb-3">
+                          <label class="form-label" for="basic-icon-default-fullname">Guardian's Full Name</label>
+                          <div class="input-group input-group-merge">
+                            <span id="basic-icon-default-fullname2" class="input-group-text"
+                              ><i class="bx bx-user"></i
+                            ></span>
+                            <input
+                              type="text"
+                              class="form-control"
+                              id="basic-icon-default-fullname"
+                              placeholder="..."
+                             
+                            />
+                          </div>
+                        </div>
+                        <div class="mb-3">
+                          <label class="form-label" for="basic-icon-default-email">Password</label>
+                          <div class="input-group input-group-merge">
+                            <span class="input-group-text"><i class="bx bx-lock"></i></span>
+                            <input
+                              type="text"
                               id="basic-icon-default-message"
                               class="form-control"
-                              placeholder="State your problem here"
-                     
-                            ></textarea>
-                            
-                          </div> 
-                          <p><br>Upload a file to describe your situation (if necessary)</p>
-                           <div class="input-group">
-                            <input type="file" class="form-control" id="inputGroupFile02" />
-                            <label class="input-group-text" for="inputGroupFile02">Upload</label>
+                              placeholder="..."
+                              aria-label="john.doe"
+                         
+                            />
+                        
                           </div>
-    
-                          
+                         
                         </div>
                         
-                        <button type="submit" class="btn btn-primary">Submit</button>
+                        <div class="mb-3">
+                          <label class="form-label" for="basic-icon-default-phone">Guardian's Phone Number</label>
+                          <div class="input-group input-group-merge">
+                            <span id="basic-icon-default-phone2" class="input-group-text"
+                              ><i class="bx bx-phone"></i
+                            ></span>
+                            <input
+                              type="text"
+                              id="basic-icon-default-phone"
+                              class="form-control phone-mask"
+                              placeholder="658 799 8941"
+                              aria-label="658 799 8941"
+                              aria-describedby="basic-icon-default-phone2"
+                            />
+                          </div>
+                        </div>
+                       
+                        <button type="submit" class="btn btn-primary">Add a student in</button>
                       </form>
                     </div>
                   </div>

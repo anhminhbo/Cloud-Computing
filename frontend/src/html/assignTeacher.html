@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 
+<!-- beautify ignore:start -->
 <html
   lang="en"
   class="light-style layout-menu-fixed"
@@ -10,28 +11,39 @@
 >
   <head>
     <style>
-      .icon {
+       .icon {
       position: absolute;
       width: 105px;
+      height:auto;
       top: 5%;
       left: 5%;
-      transform: translate(-15%, -40%);
+      transform: translate(-15%, -45%);
       -ms-transform: translate(-50%, -50%);
       text-align: center;
     }
-    </style>
+
+    th{
+      text-align: center;
+    }
+    td{
+  text-align: center;
+  /* center checkbox horizontally */
+  vertical-align: middle;
+  /* center checkbox vertically */
+}
+      </style>
     <meta charset="utf-8" />
     <meta
       name="viewport"
       content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0"
     />
 
-    <title>Contact with Teacher</title>
+    <title> Assign the teacher to a course</title>
 
     <meta name="description" content="" />
 
     <!-- Favicon -->
-    <link rel="shortcut icon" href="../assets/img/favicon/rmit-university-logo-png-transparent.ico">
+    <link rel="icon" type="image/x-icon" href="../assets/img/favicon/favicon.ico" />
 
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -43,6 +55,7 @@
 
     <!-- Icons. Uncomment required icon fonts -->
     <link rel="stylesheet" href="../assets/vendor/fonts/boxicons.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
     <!-- Core CSS -->
     <link rel="stylesheet" href="../assets/vendor/css/core.css" class="template-customizer-core-css" />
@@ -70,7 +83,7 @@
 
         <aside id="layout-menu" class="layout-menu menu-vertical menu bg-menu-theme">
           <div class="app-brand demo">
-            <a href="index.html" class="app-brand-link">
+            <a class="app-brand-link">
               <span class="app-brand-logo demo">
                 <svg
                   width="25"
@@ -111,13 +124,30 @@
 
           <ul class="menu-inner py-1">
             <!-- Dashboard -->
-           
+            <li class="menu-item">
+              <a href="admin-dashboard.html" class="menu-link">
+                <i class="menu-icon tf-icons bx bx-home-circle"></i>
+                <div data-i18n="Analytics">Dashboard</div>
+              </a>
+            </li>
 
-            <!-- Layouts -->
+            <!-- Components -->
+            <li class="menu-header small text-uppercase"><span class="menu-header-text">Components</span></li>
+            <!-- Cards -->
+            <li class="menu-item active ">
+              <a href="allCourse.html" class="menu-link">
+                <i class="menu-icon tf-icons bx bx-collection"></i>
+                <div data-i18n="Basic">All Courses</div>
+              </a>
+            </li>
+            <!-- User interface -->
+            <li class="menu-item">
+              <a href="allTeacher.html" class="menu-link">
+                <i class="menu-icon tf-icons bx bx-table"></i>
+                <div data-i18n="Tables">All Teachers</div>
+              </a>
+            </li>
             
-   
-            <!-- Misc -->
-    
           </ul>
         </aside>
         <!-- / Menu -->
@@ -158,7 +188,6 @@
                     <span class="tf-icons bx bx-bell"></span>
                   </button>
                 </li>
- 
 
                 <!-- User -->
                 <li class="nav-item navbar-dropdown dropdown-user dropdown">
@@ -192,7 +221,7 @@
                         <span class="align-middle">My Profile</span>
                       </a>
                     </li>
-          
+              
                     <li>
                       <a class="dropdown-item" href="auth-login-basic.html">
                         <i class="bx bx-power-off me-2"></i>
@@ -213,54 +242,151 @@
             <!-- Content -->
 
             <div class="container-xxl flex-grow-1 container-p-y">
-              <h4 class="fw-bold py-3 mb-4"><span class="text-muted fw-light">Forms/</span> Contact Form</h4>
-                <div class="col-xl">
-                  <div class="card mb-4">
-                    <div class="card-header d-flex justify-content-between align-items-center">
-                      <h5 class="mb-0">Send a Request/Report a problem with Teacher</h5>
-                      <small class="text-muted float-end">To be update</small>
-                    </div>
-                    <div class="card-body">
-                      
-                        <div class="mb-3">
-                          <label class="form-label" for="basic-icon-default-message">Element 5</label>
-                          <div class="input-group input-group-merge">
-                            <span id="basic-icon-default-message2" class="input-group-text"
-                              ><i class="bx bx-comment"></i
-                            ></span>
-                            <textarea
-                              id="basic-icon-default-message"
-                              class="form-control"
-                              placeholder="State your problem here"
-                     
-                            ></textarea>
-                            
-                          </div> 
-                          <p><br>Upload a file to describe your situation (if necessary)</p>
-                           <div class="input-group">
-                            <input type="file" class="form-control" id="inputGroupFile02" />
-                            <label class="input-group-text" for="inputGroupFile02">Upload</label>
-                          </div>
-    
-                          
-                        </div>
-                        
-                        <button type="submit" class="btn btn-primary">Submit</button>
-                      </form>
-                    </div>
-                  </div>
-                </div>
+              
+              
+              <div class="mb-3 row">
+              
               </div>
-            </div>
+              <!-- Hoverable Table rows -->
+              <div class="card">
+                <h5 class="card-header">Assign a teacher to the course (Finance Managing-C1)</h5>
+                <div class="table-responsive text-nowrap">
+                  <table class="table table-hover">
+                    <thead>
+                      <tr>
+                        <th>Assign?</th>
+                        <th>Teacher's ID</th>
+                        <th>Teacher's First Name</th>
+                        <th>Teacher's Last Name</th>
+                      </tr>
+                    </thead>
+                    <tbody class="table-border-bottom-0">
+                      <tr>
+                        <td >  <div class="form-check">
+                          <input
+                            name="default-radio-1"
+                            class="form-check-input"
+                            type="radio"
+                            value=""
+                            id="defaultRadio2"
+                            checked
+                          /></td>
+                        <td>T123</td>
+                        <td>A</td>
+                        <td>B</td>
+                        
+                      </tr>
+                      <tr>
+                        <td><div class="form-check">
+                          <input
+                            name="default-radio-1"
+                            class="form-check-input"
+                            type="radio"
+                            value=""
+                            id="defaultRadio2"
+                            checked
+                          /> </td>
+                        <td>T456</td>
+                        <td>C</td>
+                        <td>D</td>
+                       
+                      </tr>
+                      <tr>
+                        <td>  <div class="form-check">
+                          <input
+                            name="default-radio-1"
+                            class="form-check-input"
+                            type="radio"
+                            value=""
+                            id="defaultRadio2"
+                            checked
+                          /></td>
+                        <td>T789</td>
+                        <td>F</td>
+                        <td>G</td>
+                        
+                      </tr>
+                      <tr>
+                        <td>  <div class="form-check">
+                          <input
+                            name="default-radio-1"
+                            class="form-check-input"
+                            type="radio"
+                            value=""
+                            id="defaultRadio2"
+                            checked
+                          /></td>
+                        <td>T111</td>
+                        <td>H</td>
+                        <td>I</td>
+                       
+                      </tr>
+                      <tr>
+                        <td >  <div class="form-check">
+                          <input
+                            name="default-radio-1"
+                            class="form-check-input"
+                            type="radio"
+                            value=""
+                            id="defaultRadio2"
+                            checked
+                          /></td>
+                        <td>T122</td>
+                        <td>G</td>
+                        <td>K</td>
+                       
+                      </tr>
+                    </tbody>
+                    
+                  </table>
+                  
+                </div>
+               
+              </div>
+              <!--/ Hoverable Table rows -->
+
+              <hr class="my-5" />
+              <nav aria-label="Page navigation">
+                <ul class="pagination justify-content-center">
+                  <li class="page-item prev">
+                    <a class="page-link" href="javascript:void(0);"
+                      ><i class="tf-icon bx bx-chevrons-left"></i
+                    ></a>
+                  </li>
+                  <li class="page-item">
+                    <a class="page-link" href="javascript:void(0);">1</a>
+                  </li>
+                  <li class="page-item">
+                    <a class="page-link" href="javascript:void(0);">2</a>
+                  </li>
+                  <li class="page-item active">
+                    <a class="page-link" href="javascript:void(0);">3</a>
+                  </li>
+                  <li class="page-item">
+                    <a class="page-link" href="javascript:void(0);">4</a>
+                  </li>
+                  <li class="page-item">
+                    <a class="page-link" href="javascript:void(0);">5</a>
+                  </li>
+                  <li class="page-item next">
+                    <a class="page-link" href="javascript:void(0);"
+                      ><i class="tf-icon bx bx-chevrons-right"></i
+                    ></a>
+                  </li>
+                </ul>
+               
+              </nav>
+              
             <!-- / Content -->
 
-
-            <!-- / Footer -->
+        
 
             <div class="content-backdrop fade"></div>
           </div>
+        </div>
           <!-- Content wrapper -->
         </div>
+     
         <!-- / Layout page -->
       </div>
 
@@ -268,6 +394,7 @@
       <div class="layout-overlay layout-menu-toggle"></div>
     </div>
     <!-- / Layout wrapper -->
+
 
 
     <!-- Core JS -->
@@ -287,7 +414,6 @@
 
     <!-- Page JS -->
 
-    <!-- Place this tag in your head or just before your close body tag. -->
-
+  
   </body>
 </html>
