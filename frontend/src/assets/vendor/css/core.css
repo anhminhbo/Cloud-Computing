@@ -3833,6 +3833,21 @@ textarea.form-control-lg {
 .navbar-dark .navbar-text a:focus {
   color: #fff;
 }
+.app-brand{
+  display: flex;
+  justify-content: center;
+}
+.icon {
+  width: 100px;
+  align-content: center;
+  /* position: absolute;
+  width: 105px;
+  top: 5%;
+  left: 5%;
+  transform: translate(-15%, -40%);
+  -ms-transform: translate(-50%, -50%);
+  text-align: center; */
+}
 
 .card {
   position: relative;
