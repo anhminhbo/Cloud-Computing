@@ -33,6 +33,12 @@ function updateCourse(req,res) {
     });
 }
 
+function getTotalStudent(req,res) {
+    var id = req.params.id;
+    Course.getTotalStudent(id, function (response) {
+        res.send({result: response});
+    });
+}
 
 module.exports = {
     getCourseById : getCourseById,
@@ -40,4 +46,5 @@ module.exports = {
     deleteCourse : deleteCourse,    
     getAllCourse : getAllCourse,
     updateCourse : updateCourse,
+    getTotalStudent : getTotalStudent,
 }

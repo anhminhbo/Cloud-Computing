@@ -1,12 +1,11 @@
 const mysql = require('mysql2');
 
 const con = mysql.createConnection({
-    // host = RDS endpoint
-    // host: """,
-    
-    // user: "",
-    // password: "",
-    // port: 3000
+    host: "localhost",
+    database: 'cloud',
+    user: "root",
+    password: "RaidenShogun070599:)",
+    port: 7575
 
     // Test With Local Database
 });

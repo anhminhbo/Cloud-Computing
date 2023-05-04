@@ -9,6 +9,6 @@ router.get('/:id', courseController.getCourseById);
 router.post('/add', courseController.addCourse);
 router.delete('/delete/:id', courseController.deleteCourse);
 router.put('/update/:id', courseController.updateCourse);
-
+router.get('/:id/count/student', courseController.getTotalStudent);
 
 module.exports = router;
