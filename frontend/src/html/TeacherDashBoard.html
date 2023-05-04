@@ -16,14 +16,20 @@
       content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0"
     />
     <style>
+    .app-brand{
+      display: flex;
+      justify-content: center;
+    }
     .icon {
-      position: absolute;
+      width: 100px;
+      align-content: center;
+      /* position: absolute;
       width: 105px;
       top: 5%;
       left: 5%;
       transform: translate(-15%, -40%);
       -ms-transform: translate(-50%, -50%);
-      text-align: center;
+      text-align: center; */
     }
     .bellIcon {
       position:absolute;
@@ -87,7 +93,7 @@
         <aside id="layout-menu" class="layout-menu menu-vertical menu bg-menu-theme">
           <div class="app-brand demo">
             <a href="TeacherDashboard.html" class="app-brand-link">
-              <span class="app-brand-logo demo">
+              <!-- <span class="app-brand-logo demo">
                 <svg
                   width="25"
                   viewBox="0 0 25 42"
@@ -115,7 +121,7 @@
                   </defs>
     
                 </svg>
-              </span>
+              </span> -->
               <img src="../assets/img/favicon/rmit-university-logo-png-transparent.ico" class="icon">
             </a>
 
@@ -136,7 +142,7 @@
             </li>
 
             <!-- Components -->
-            <li class="menu-header small text-uppercase"><span class="menu-header-text">Components</span></li>
+            <li class="menu-header small text-uppercase"><span class="menu-header-text">Attendance Manager</span></li>
             <!-- Cards -->
             <li class="menu-item">
               <a href="CourseAtt.html" class="menu-link">
@@ -158,7 +164,6 @@
               </a>
               </li>
             <!-- User interface -->
-           
             <!-- Misc -->
             
           </ul>
@@ -170,18 +175,11 @@
           <!-- Navbar -->
 
           <nav
-            class="layout-navbar container-xxl navbar navbar-expand-xl navbar-detached align-items-center bg-navbar-theme"
+            class="navbar navbar-expand-xl align-items-center"
             id="layout-navbar"
           >
-            <div class="layout-menu-toggle navbar-nav align-items-xl-center me-3 me-xl-0 d-xl-none">
-              <a class="nav-item nav-link px-0 me-xl-4" href="javascript:void(0)">
-                <i class="bx bx-menu bx-sm"></i>
-              </a>
-            </div>
-
-            <div class="navbar-nav-right d-flex align-items-center" id="navbar-collapse">
               <!-- Search -->
-              <div class="navbar-nav align-items-center">
+              <div class="navbar-nav align-items-center navbar layout-navbar navbar-detached bg-navbar-theme">
                 <div class="nav-item d-flex align-items-center">
                   <i class="bx bx-search fs-4 lh-0"></i>
                   <input
@@ -192,54 +190,51 @@
                 </div>
               </div>
               <!-- /Search -->
-
-              <ul class="navbar-nav flex-row align-items-center ms-auto">
-
-                <li class="nav-item lh-1 me-3">
-                  <button type="button" class="btn btn-icon btn-secondary">
-                    <span class="tf-icons bx bx-bell"></span>
-                  </button>
-                </li>
- 
-               
-                <!-- User -->
-                <li class="nav-item navbar-dropdown dropdown-user dropdown">
-                 
-                  <a class="nav-link dropdown-toggle hide-arrow" href="javascript:void(0);" data-bs-toggle="dropdown"> <!-- void(0) will lead to nowhere, fix later-->
-                    <div class="avatar avatar-online">
-                      <img src="../assets/img/avatars/test.png" alt class="w-px-40 h-auto rounded-circle" />
-                    </div>
-                  </a>
-                  <ul class="dropdown-menu dropdown-menu-end">
-                    <li>
-                      <a class="dropdown-item" href="#">
-                        <div class="d-flex">
-                          <div class="flex-shrink-0 me-3">
-                            <div class="avatar avatar-online">
-
-                              <img src="../assets/img/avatars/test.png" alt class="w-px-40 h-auto rounded-circle" />
+              <!-- Bell Notification -->
+                <ul class="navbar-nav flex-row align-items-center ms-auto">
+                  <li class="nav-item">
+                    <button type="button" class="btn btn-icon btn-secondary">
+                      <span class="tf-icons bx bx-bell"></span>
+                    </button>
+                  </li>
+                </ul>
+              <!-- End of Bell Notification -->
+              <!-- Profile -->
+              <div class="navbar-nav align-items-center navbar layout-navbar navbar-detached bg-navbar-theme nav-profile">
+                <div class="nav-item d-flex align-items-center">
+                  <li class="nav-item navbar-dropdown dropdown-user dropdown">
+                    <a class="nav-link dropdown-toggle hide-arrow" href="javascript:void(0);" data-bs-toggle="dropdown"> <!-- void(0) will lead to nowhere, fix later-->
+                          <div class="d-flex">
+                            <!-- Avatar -->
+                            <div class="flex-shrink-0 me-3">
+                              <div class="avatar avatar-online">
+                                <img src="../assets/img/avatars/test.png" alt class="w-px-40 h-auto rounded-circle" />
+                              </div>
                             </div>
+                            <!-- /Avatar -->
+                            <!-- User Name -->
+                            <div class="flex-grow-1">
+                              <span class="fw-semibold d-block">Phat Huynh</span>
+                              <small class="text-muted">@T123</small>
+                            </div>
+                            <!-- /User Name -->
+                            
                           </div>
-                          <div class="flex-grow-1">
-                           
-                            <span class="fw-semibold d-block">Phat Huynh</span>
-                            <small class="text-muted">@T123</small>
-                          </div>
-                        </div>
-                      </a>
-                    </li>
-                    <li>
-                      <a class="dropdown-item" href="auth-login-basic.html">
-                        <i class="bx bx-power-off me-2"></i>
-                        <span class="align-middle">Log Out</span>
-                      </a>
-                    </li>
-                  </ul>
-                </li>
-                <!--/ User -->
-              </ul>
-            </div>
+                        </a>
+                    <ul class="dropdown-menu dropdown-menu-end">
+                      <li>
+                        <a class="dropdown-item" href="auth-login-basic.html">
+                          <i class="bx bx-power-off me-2"></i>
+                          <span class="align-middle">Log Out</span>
+                        </a>
+                      </li>
+                    </ul>
+                  </li>
+                </div>
+              </div>
+              <!-- End of Profile -->
           </nav>
+          
 
           <!-- / Navbar -->
 
