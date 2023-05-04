@@ -4,7 +4,6 @@ const con = mysql.createConnection({
     host: "localhost",
     database: 'cloud',
     user: "root",
-    password: "RaidenShogun070599:)",
     port: 7575
 
     // Test With Local Database
