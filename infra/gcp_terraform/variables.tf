@@ -42,20 +42,20 @@ variable "whitelist-ips" {
   default     = ["0.0.0.0/32"]
 }
 
-//
-variable "service-account-id" {
-  description = "The ID of service account of GCP"
-  default     = "serviceaccount-id"
-}
+# //
+# variable "service-account-id" {
+#   description = "The ID of service account of GCP"
+#   default     = "serviceaccount-id"
+# }
 
-variable "minnode" {
-  description = "Minimum number of node pool"
-  default     = 2
-}
-variable "maxnode" {
-  description = "Maximum number of node pool"
-  default     = 2
-}
+# variable "minnode" {
+#   description = "Minimum number of node pool"
+#   default     = 2
+# }
+# variable "maxnode" {
+#   description = "Maximum number of node pool"
+#   default     = 2
+# }
 
 variable "disksize" {
   description = "Disk Size in GB"

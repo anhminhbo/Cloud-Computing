@@ -4,12 +4,16 @@ provider "aws" {
 }
 
 
-module "eks" {
-  source = "./eks"
+# module "eks" {
+#   source = "./eks"
 
-  // Pass provider variables to the child module
-  aws_region  = "us-east-1"
-  aws_profile = "admin-minh"
+#   // Pass provider variables to the child module
+#   aws_region  = "us-east-1"
+#   aws_profile = "admin-minh"
+# }
+
+module "ecr" {
+  source = "./ecr"
 }
 
 # provider "aws" {
