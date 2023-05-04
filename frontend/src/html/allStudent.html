@@ -523,11 +523,12 @@
                   
                 </div>
               </div>
+
               <!-- Hoverable Table rows -->
               <div class="card">
                 <h5 class="card-header">All Students</h5>
                 <div class="table-responsive text-nowrap">
-                  <table class="table table-hover">
+                  <table class="table table-hover" id="target-div">
                     <thead>
                       <tr>
                         <th>Student's ID</th>
@@ -718,6 +719,54 @@
 
     <!-- Page JS -->
 
-  
+    <!-- Load Student Information -->
+    <script>
+      fetch('http://localhost:3000/student/all', {
+        method : 'GET',
+        // body: JSON.stringify({
+        //     lname : "Love",
+        //     fname : "Teacher",
+        //     cid : 3,
+        // }),
+        // headers: {
+        //     'Content-type':'application/json; charset=UTF-8',
+        // },
+      })
+      .then(response => {
+          return response.json();
+      })
+      .then(data => {
+          data = data.result;
+          //console.log(data);
+          var target = document.getElementById('target-div')
+          data.forEach((json) => {
+              //console.log(json)
+              var element = `<tr>
+                <td>S${json.id}</td>
+                <td>${json.fname}</td>
+                <td>${json.lname}</td>
+                <td>
+                  <div class="dropdown">
+                    <button type="button" class="btn p-0 dropdown-toggle hide-arrow" data-bs-toggle="dropdown">
+                      <i class="bx bx-dots-vertical-rounded"></i>
+                    </button>
+                    <div class="dropdown-menu">
+                      <a class="dropdown-item" href="javascript:void(0);"
+                        ><i class="bx bx-edit-alt me-1"></i> Edit</a
+                      >
+                      <a class="dropdown-item" href="javascript:void(0);"
+                        ><i class="bx bx-trash me-1"></i> Remove student</a
+                      >
+                    </div>
+                  </div>
+                </td>
+              </tr>`;
+            target.innerHTML += element
+          })
+
+      })
+      .catch(error => console.log(error))
+      
+  </script>
   </body>
 </html>
