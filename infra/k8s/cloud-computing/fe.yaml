@@ -56,7 +56,7 @@ spec:
   tls:
     - hosts:
         - student-management.bug-fix-squad.com
-      secretName: cert-manager-private-key
+      secretName: cert-manager-cp-fe-private-key
   
   rules:
     - host: student-management.bug-fix-squad.com
