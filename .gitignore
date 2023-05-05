@@ -5,5 +5,5 @@
 **/.terraform.tfstate.lock.info
 
 # Mac
-.DS_Store
-node_modules
+**.DS_Store**
+**node_modules**

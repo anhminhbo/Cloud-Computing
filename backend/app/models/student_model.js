@@ -46,7 +46,12 @@ Student.updateStudent = function (id, data, result) {
     var lname = data.lname;
     var fname = data.fname;
     var cid = data.cid;
-    var query = `UPDATE student SET student.lname = '${lname}', student.fname = '${fname}', student.cid = ${cid} WHERE student.id = ${id};`;
+    if (cid == null) {
+        var query = `UPDATE student SET student.lname = '${lname}', student.fname = '${fname}' WHERE student.id = ${id};`;   
+    }
+    else {
+        var query = `UPDATE student SET student.lname = '${lname}', student.fname = '${fname}', student.cid = ${cid} WHERE student.id = ${id};`;
+    }
     db.query(query, (err,data) => {
         if (err) throw err;
         else result(data);

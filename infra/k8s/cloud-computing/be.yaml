@@ -15,7 +15,7 @@ spec:
         app: be
     spec:
       containers:
-        - image: anhminhbo/bits-backend:68
+        - image: public.ecr.aws/y4r3b5d9/cloud-computing/be:latest
           name: be
 
           envFrom:
@@ -57,14 +57,14 @@ spec:
 
   tls:
     - hosts:
-        - pumidoro-music.homes
+        - student-management.be.bug-fix-squad.com
       secretName: cert-manager-private-key
   
   rules:
-    - host: pumidoro-music.homes
+    - host: student-management.be.bug-fix-squad.com
       http:
         paths:
-          - path: /api
+          - path: /
             pathType: Prefix
             backend:
               service:

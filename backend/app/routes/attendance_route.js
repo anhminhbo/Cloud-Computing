@@ -1,4 +1,4 @@
- const express = require('express');
+const express = require('express');
 
 const attendanceController = require('../controller/attendance_controller');
 

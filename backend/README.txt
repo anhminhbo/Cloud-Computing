@@ -31,6 +31,7 @@ url/course/id : Get Method, get one course by course ID
 url/course/add: Post Method, add new course
 url/course/delete/id: Delete Method, delete a course by ID 
 url/course/update/id: Update a method base on ID
+url/course/:id/count/student: Count student of one course belong to one teacher
 
 ***Student Route***:
 Expected JSON format:

@@ -2,45 +2,45 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: fe-pumi
-  namespace: pumi-prod
+  name: fe
+  namespace: cloud-computing-prod
 spec:
   selector:
     matchLabels:
-      app: fe-pumi
+      app: fe
   replicas: 1
   template:
     metadata:
       labels:
-        app: fe-pumi
+        app: fe
     spec:
       containers:
-        - image: anhminhbo/bits-frontend:108
-          name: fe-pumi
+        - image: public.ecr.aws/y4r3b5d9/cloud-computing/fe:latest
+          name: fe
           envFrom:
           - configMapRef:
-              name: fe-pumi-secret
+              name: fe-secret
           ports:
-            - containerPort: 80
+            - containerPort: 3000
 ---
 apiVersion: v1
 kind: Service
 metadata:
-  name: fe-pumi
-  namespace: pumi-prod
+  name: fe
+  namespace: cloud-computing-prod
 spec:
   ports:
-    - port: 80
+    - port: 3000
       protocol: TCP
   type: ClusterIP
   selector:
-    app: fe-pumi
+    app: fe
 ---
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
-  name: fe-pumi
-  namespace: pumi-prod
+  name: fe
+  namespace: cloud-computing-prod
   annotations:
     cert-manager.io/cluster-issuer: "cert-manager-global"
     # nginx.ingress.kubernetes.io/configuration-snippet: |
@@ -55,18 +55,18 @@ spec:
 
   tls:
     - hosts:
-        - pumidoro-music.homes
+        - student-management.bug-fix-squad.com
       secretName: cert-manager-private-key
   
   rules:
-    - host: pumidoro-music.homes
+    - host: student-management.bug-fix-squad.com
       http:
         paths:
           - path: /
             pathType: Prefix
             backend:
               service:
-                name: fe-pumi
+                name: fe
                 port:
-                  number: 80
+                  number: 3000
           
