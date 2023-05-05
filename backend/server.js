@@ -2,7 +2,7 @@ const express = require('express')
 
 const app = express();
 
-const port = process.env.PORT || 3000;
+const port = process.env.MYSQL_PORT || 3306;
 
 // On normal, body json is not in json type, need a middleware
 const body_parser = require('body-parser');
