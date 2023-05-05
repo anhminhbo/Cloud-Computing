@@ -26,7 +26,7 @@
       content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0"
     />
 
-    <title>Edit Teacher's Info</title>
+    <title>Add a student in</title>
 
     <meta name="description" content="" />
 
@@ -70,7 +70,7 @@
 
         <aside id="layout-menu" class="layout-menu menu-vertical menu bg-menu-theme">
           <div class="app-brand demo">
-            <a href="admin-dashboard.html" class="app-brand-link">
+            <a href="index.html" class="app-brand-link">
               <span class="app-brand-logo demo">
                 <svg
                   width="25"
@@ -110,9 +110,8 @@
           <div class="menu-inner-shadow"></div>
 
           <ul class="menu-inner py-1">
-            <!-- Dashboard -->
             <li class="menu-item">
-              <a href="admin-dashboard.html" class="menu-link">
+              <a href="TeacherDashboard.html" class="menu-link">
                 <i class="menu-icon tf-icons bx bx-home-circle"></i>
                 <div data-i18n="Analytics">Dashboard</div>
               </a>
@@ -121,26 +120,18 @@
             <!-- Components -->
             <li class="menu-header small text-uppercase"><span class="menu-header-text">Components</span></li>
             <!-- Cards -->
-            <li class="menu-item">
-              <a href="allCourse.html" class="menu-link">
-                <i class="menu-icon tf-icons bx bx-collection"></i>
-                <div data-i18n="Basic">All Courses</div>
-              </a>
-            </li>
-            <!-- User interface -->
             <li class="menu-item active">
-              <a href="allTeacher.html" class="menu-link">
-                <i class="menu-icon tf-icons bx bx-table"></i>
-                <div data-i18n="Tables">All Teachers</div>
+              <a href="CourseAtt.html" class="menu-link">
+                <i class="menu-icon tf-icons bx bx-collection"></i>
+                <div data-i18n="Basic">Your Teaching Courses</div>
               </a>
             </li>
-            <!-- Misc -->
             <li class="menu-item">
-              <a href="allStudent.html" class="menu-link">
-                <i class="menu-icon tf-icons bx bx-table"></i>
-                <div data-i18n="Tables">All Students</div>
+              <a href="AdminContact.html" class="menu-link">
+                <i class="menu-icon tf-icons bx bx-detail"></i>
+                <div data-i18n="Form Layouts">Contact with Admin</div>
               </a>
-            </li>
+              </li>
           </ul>
         </aside>
         <!-- / Menu -->
@@ -236,18 +227,17 @@
             <!-- Content -->
 
             <div class="container-xxl flex-grow-1 container-p-y">
-              <h4 class="fw-bold py-3 mb-4"><span class="text-muted fw-light">Forms/</span> Teacher's Info</h4>
+              <h4 class="fw-bold py-3 mb-4"><span class="text-muted fw-light">Forms/</span> Add student in class</h4>
                 <div class="col-xl">
                   <div class="card mb-4">
                     <div class="card-header d-flex justify-content-between align-items-center">
-                      <h5 class="mb-0">Teacher's information Form</h5>
+                      <h5 class="mb-0">Add a student in</h5>
                       <small class="text-muted float-end">To be update</small>
                     </div>
                     <div class="card-body">
                       <form>
-                      
                         <div class="mb-3">
-                          <label class="form-label" for="basic-icon-default-fullname">First Name</label>
+                          <label class="form-label" for="basic-icon-default-fullname">ID</label>
                           <div class="input-group input-group-merge">
                             <span id="basic-icon-default-fullname2" class="input-group-text"
                               ><i class="bx bx-user"></i
@@ -256,30 +246,16 @@
                               type="text"
                               class="form-control"
                               id="basic-icon-default-fullname"
-                              placeholder="Phat"
-                             
-                            />
-                          </div>
-                        </div>
-                        <div class="mb-3">
-                          <label class="form-label" for="basic-icon-default-fullname">Last Name</label>
-                          <div class="input-group input-group-merge">
-                            <span id="basic-icon-default-fullname2" class="input-group-text"
-                              ><i class="bx bx-user"></i
-                            ></span>
-                            <input
-                              type="text"
-                              class="form-control"
-                              id="basic-icon-default-fullname"
-                              placeholder="Huynh"
+                              placeholder="S123"
                              
                             />
                           </div>
                         </div>
                       
+                        
+                     
                        
-                       
-                        <button type="submit" class="btn btn-primary">Save Changes</button>
+                        <button type="submit" class="btn btn-primary">Add in</button>
                       </form>
                     </div>
                   </div>
