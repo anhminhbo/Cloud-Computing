@@ -7,12 +7,20 @@ module "rds" {
   version = "5.6.0"
 
 
-  identifier = "postgres-cloud-computing"
-  # All available versions: https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/CHAP_PostgreSQL.html#PostgreSQL.Concepts
-  engine               = "postgres"
-  engine_version       = "14"
-  family               = "postgres14" # DB parameter group
-  major_engine_version = "14"         # DB option group
+  # identifier = "postgres-cloud-computing"
+  # # All available versions: https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/CHAP_PostgreSQL.html#PostgreSQL.Concepts
+  # engine               = "postgres"
+  # engine_version       = "14"
+  # family               = "postgres14" # DB parameter group
+  # major_engine_version = "14"         # DB option group
+  # instance_class       = "db.t3.micro"
+
+  identifier = "mysql-cloud-computing"
+  # All available versions: https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/CHAP_MySQL.html#MySQL.Concepts
+  engine               = "mysql"
+  engine_version       = "8.0.26"
+  family               = "mysql8.0" # DB parameter group
+  major_engine_version = "8.0"      # DB option group
   instance_class       = "db.t3.micro"
 
   allocated_storage     = 20
@@ -22,9 +30,11 @@ module "rds" {
   # "Error creating DB Instance: InvalidParameterValue: MasterUsername
   # user cannot be used as it is a reserved word used by the engine"
   db_name  = "production"
-  username = "pgadmin"
+  username = "mysqladmin"
   password = var.password
-  port     = 5432
+  # port     = 5432
+  port     = 3306
+
 
   multi_az               = false
   vpc_security_group_ids = [module.security_group.security_group_id]

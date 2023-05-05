@@ -12,10 +12,12 @@
 #   description = "VPC ID"
 # }
 
-# variable "password" {
-#   description = "RDS Postgre password"
-#   default     = "postgres"
-# }
+variable "password" {
+  # description = "RDS Postgre password"
+  # default     = "postgres"
+  description = "RDS Mysql password"
+  default     = "mysqlpwd"
+}
 
 variable "eks_nat_gateway_eip" {
   description = "Public IP attached to the NAT gateway of the EKS cluster to allow inbound for RDS"
