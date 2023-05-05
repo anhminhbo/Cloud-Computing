@@ -4,12 +4,16 @@ provider "aws" {
 }
 
 
-module "eks" {
-  source = "./eks"
+# module "eks" {
+#   source = "./eks"
 
-  // Pass provider variables to the child module
-  aws_region  = "us-east-1"
-  aws_profile = "admin-minh"
+#   // Pass provider variables to the child module
+#   aws_region  = "us-east-1"
+#   aws_profile = "admin-minh"
+# }
+
+module "ecr" {
+  source = "./ecr"
 }
 
 # provider "aws" {
@@ -18,15 +22,17 @@ module "eks" {
 #   profile = "phat-rds-cloud-computing"
 # }
 
-# # From different account
-# module "rds" {
-#   source               = "./rds"
-#   cluster_worker_sg_id = module.eks.cluster_worker_sg_id
-#   eks_nat_gateway_eip  = module.eks.nat_gateway_eip
-#   vpc_public_subnets   = module.eks.vpc_public_subnets
-#   vpc_id               = module.eks.vpc_id
+# From different account
+module "rds" {
+  source = "./rds"
+  # cluster_worker_sg_id = module.eks.cluster_worker_sg_id
+  # vpc_public_subnets   = module.eks.vpc_public_subnets
+  # vpc_id               = module.eks.vpc_id
+  # eks_nat_gateway_eip = module.eks.nat_gateway_eip
+   eks_nat_gateway_eip = "34.65.182.106"
 
-#   providers = {
-#     aws = aws.rds
-#   }
-# }
+
+  # providers = {
+  #   aws = aws.rds
+  # }
+}

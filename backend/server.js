@@ -4,6 +4,9 @@ const app = express();
 
 const port = process.env.MYSQL_PORT || 3306;
 
+const cors = require('cors');
+app.use(cors());
+
 // On normal, body json is not in json type, need a middleware
 const body_parser = require('body-parser');
 app.use(body_parser.urlencoded({extended:false}));

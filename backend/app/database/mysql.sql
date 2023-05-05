@@ -1,4 +1,4 @@
-USE cloud;
+USE production;
 DROP TABLE IF EXISTS attendance; 
 DROP TABLE IF EXISTS student;
 DROP TABLE IF EXISTS teacher;  
@@ -50,6 +50,11 @@ INSERT INTO course (cname, sid, tid) VALUES ('Psychology', 3,3);
 INSERT INTO student (lname,fname,cid) VALUES ('Biolody', 'Student',1);
 INSERT INTO student (lname,fname,cid) VALUES ('Physics', 'Student',2);
 INSERT INTO student (lname,fname,cid) VALUES ('Psychology', 'Student',3);
+INSERT INTO student (lname,fname,cid) VALUES  ('John','Paul', 1);
+
+INSERT INTO student (lname,fname,cid) VALUES  ('Hally','Perry', 1);
+
+INSERT INTO student (lname,fname,cid) VALUES  ('John','Cena', 3);
 
 -- Teacher Insertion 
 INSERT INTO teacher (lname,fname,cid) VALUES ('Biolody', 'Teacher',1);

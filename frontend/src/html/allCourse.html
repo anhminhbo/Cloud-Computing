@@ -122,17 +122,28 @@
             <!-- Components -->
             <li class="menu-header small text-uppercase"><span class="menu-header-text">Components</span></li>
             <!-- Cards -->
-            <li class="menu-item active ">
+            <li class="menu-item active">
               <a href="allCourse.html" class="menu-link">
                 <i class="menu-icon tf-icons bx bx-collection"></i>
                 <div data-i18n="Basic">All Courses</div>
               </a>
             </li>
-            <!-- User interface -->
             <li class="menu-item">
               <a href="allTeacher.html" class="menu-link">
                 <i class="menu-icon tf-icons bx bx-table"></i>
                 <div data-i18n="Tables">All Teachers</div>
+              </a>
+            </li>
+            <li class="menu-item">
+              <a href="allStudent.html" class="menu-link">
+                <i class="menu-icon tf-icons bx bx-table"></i>
+                <div data-i18n="Tables">All Students</div>
+              </a>
+            </li>
+            <li class="menu-item">
+              <a href="studentClass.html" class="menu-link">
+                <i class="menu-icon tf-icons bx bx-table"></i>
+                <div data-i18n="Basic">studentClass(Test)</div>
               </a>
             </li>
            
@@ -217,15 +228,27 @@
           </nav>
 
           <!-- / Navbar -->
-
           <!-- Content wrapper -->
           <div class="content-wrapper">
             <!-- Content -->
 
             <div class="container-xxl flex-grow-1 container-p-y">
-              <h4 class="fw-bold py-3 mb-4"><span class="text-muted fw-light"> /</span> Courses</h4>
+              <h4 class="fw-bold py-3 mb-4"><span class="text-muted fw-light"> /</span> Courses  
 
-              <div class="row mb-5">
+                <div class="pagination justify-content-center">
+                 <button  onclick = "document.location='addCourse.html'"type="button"  class="btn btn-danger">Add a course in  </button>
+                  </div>
+              </h4>
+            
+
+            
+              
+               
+      
+           
+              
+
+              <div class="row mb-5" id="target-div">
                 <div class="col-md-6 col-lg-4 mb-3">
                   <div class="card h-80">
                     <div class="card-body">
@@ -238,7 +261,7 @@
                       <p class="card-text"> Teacher: F</p>
                       <div class = "card text-end mb-3">   
                       
-                        <button onclick = "document.location='form-layouts-vertical.html'" type="button" class="btn btn-outline-dark">Assign/Reassign a teacher to this course</button>
+                        <button onclick = "document.location='assignTeacher.html'" type="button" class="btn btn-outline-dark">Assign/Reassign a teacher to this course</button>
                         
                        
                     
@@ -260,7 +283,7 @@
                       <p class="card-text"> Number of Student: 30</p>
                       <p class="card-text"> Teacher: A</p>
                       <div class = "card text-end mb-3">   
-                        <button onclick = "document.location='form-layouts-vertical.html'" type="button" class="btn btn-outline-dark" >Assign/Reassign a teacher to this course</button>
+                        <button  onclick = "document.location='assignTeacher.html'" type="button" class="btn btn-outline-dark" >Assign/Reassign a teacher to this course</button>
                          </div>
                        </div>
                     </div>
@@ -276,7 +299,7 @@
                       <p class="card-text"> Teacher: B</p>
 
                       <div class = "card text-end mb-3">   
-                        <button onclick = "document.location='form-layouts-vertical.html'" type="button" class="btn btn-outline-dark">Assign/Reassign a teacher to this course</button>
+                        <button  onclick = "document.location='assignTeacher.html'"type="button" class="btn btn-outline-dark">Assign/Reassign a teacher to this course</button>
                         </div>
                      </div>
                   </div>
@@ -293,7 +316,7 @@
                       <p class="card-text">Number of Student: 10</p>
                       <p class="card-text"> Teacher: C</p>
                       <div class = "card text-end mb-3">   
-                        <button onclick = "document.location='form-layouts-vertical.html'" type="button" class="btn btn-outline-dark">Assign/Reassign a teacher to this course</button>
+                        <button  onclick = "document.location='assignTeacher.html'" type="button" class="btn btn-outline-dark">Assign/Reassign a teacher to this course</button>
                       
                       </div>
                     </div>
@@ -308,7 +331,7 @@
                       <p class="card-text">Number of Student: 10</p>
                       <p class="card-text"> Teacher: D</p>
                       <div class = "card text-end mb-3">   
-                        <button onclick = "document.location='form-layouts-vertical.html'" type="button" class="btn btn-outline-dark">Assign/Reassign a teacher to this course</button>
+                        <button  onclick = "document.location='assignTeacher.html'" type="button" class="btn btn-outline-dark">Assign/Reassign a teacher to this course</button>
                       
                       </div>
                     </div>
@@ -389,6 +412,69 @@
     <!-- Page JS -->
 
     <!-- Place this tag in your head or just before your close body tag. -->
+    <!-- Load Student Information -->
 
+    <script>
+      fetch('http://localhost:3000/course/all', {
+        method : 'GET',
+      })
+      .then(response => {
+          return response.json();
+      })
+      .then(data => {
+          data = data.result;
+          //console.log(data);
+          var target = document.getElementById('target-div');
+          data.forEach((json) => {
+              console.log(json);
+              var totalStudent = 0;
+              var teacherName = '';
+              console.log("ID:" + json.id);
+
+              fetch(`http://localhost:3000/course/${json.id}/count/student`)
+              .then(res => {
+                  return res.json();
+              })
+              .then(course => {
+                  course = course.result[0];
+                  totalStudent = course.totalStudent;
+              })
+              .catch(error => console.log(error))
+
+              fetch(`http://localhost:3000/teacher/${json.tid}`)
+              .then(res => {
+                  return res.json();
+              })
+              .then(teacher => {
+                  teacher = teacher.result[0];
+                  teacherName = teacher.fname + ' ' + teacher.lname;
+                  var element = `                
+                    <div class="col-md-6 col-lg-4 mb-3">
+                      <div class="card h-80">
+                        <div class="card-body">
+                          <span class="badge bg-primary">Economic</span>
+                          <span class="badge bg-info">Finance</span>
+      
+                          <h5 class="card-title">${json.cname}</h5>
+                        
+                          <p class="card-text"> Number of Student: ${totalStudent}</p>
+                          <p class="card-text"> Teacher: ${teacherName}</p>
+                          <div class = "card text-end mb-3">   
+                            <button onclick = "document.location='assignTeacher.html'" type="button" class="btn btn-outline-dark">Assign/Reassign a teacher to this course</button>
+                          </div>
+                          </div>
+                      </div>
+                    </div>`;
+                  target.innerHTML += element
+              })
+              .catch(error => console.log(error))
+
+
+          })
+
+      })
+      .catch(error => console.log(error))
+      
+  </script>
   </body>
 </html>

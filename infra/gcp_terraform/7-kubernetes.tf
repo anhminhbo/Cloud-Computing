@@ -64,7 +64,7 @@ resource "google_container_cluster" "primary" {
 
 resource "null_resource" "configure_gke_context" {
   provisioner "local-exec" {
-    command = "gcloud container clusters get-credentials ${var.name} --region ${var.location}"
+    command = "gcloud --project ${var.project} container clusters get-credentials ${var.name} --region ${var.location}"
   }
   depends_on = [
     google_container_cluster.primary

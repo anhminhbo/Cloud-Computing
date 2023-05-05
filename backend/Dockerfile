@@ -29,6 +29,8 @@ WORKDIR /app
 COPY --from=deps-installer /app/node_modules ./node_modules
 
 # Bundle app source
-COPY . .
+COPY ./app ./app
 
-CMD [ "npm","run", "start" ]
+COPY server.js .
+
+CMD [ "node","server.js" ]
