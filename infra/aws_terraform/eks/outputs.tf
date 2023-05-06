@@ -33,3 +33,8 @@ output "nat_gateway_eip" {
   description = "Public IP attached to the NAT gateway of the EKS cluster to allow inbound for RDS"
   value       = module.vpc.nat_public_ips
 }
+
+output "load_balancer_dns_hostname" {
+  description = "DNS hostname address of the load balancer"
+  value       = data.kubernetes_service.nginx_ingress_controller.status.0.load_balancer.0.ingress.0.hostname
+}

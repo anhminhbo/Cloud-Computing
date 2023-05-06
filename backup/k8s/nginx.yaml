@@ -39,13 +39,23 @@ metadata:
   name: echoserver
   namespace: default
   annotations:
-    alb.ingress.kubernetes.io/target-type: ip
-    alb.ingress.kubernetes.io/scheme: internet-facing
-    alb.ingress.kubernetes.io/group.name: common-ingress-group
+    cert-manager.io/cluster-issuer: "cert-manager-global"
+    # nginx.ingress.kubernetes.io/configuration-snippet: |
+    #   proxy_set_header X-Real-IP $remote_addr;
+    #   proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+    #   proxy_set_header X-Forwarded-Proto $scheme; # Adding this for secure https forward to backend
+    #   proxy_set_header Host $http_host;
+
 spec:
-  ingressClassName: alb
+  ingressClassName: nginx
+
+  tls:
+    - hosts:
+        - test-fe.bug-fix-squad.com
+      secretName: cert-manager-private-key
+  
   rules:
-    - host: echo.bug-fix-squad.com
+    - host: test-fe.bug-fix-squad.com
       http:
         paths:
           - path: /
