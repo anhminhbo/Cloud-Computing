@@ -15,7 +15,7 @@ spec:
         app: fe
     spec:
       containers:
-        - image: public.ecr.aws/y4r3b5d9/cloud-computing/fe:v0.0.1
+        - image: public.ecr.aws/y4r3b5d9/cloud-computing/fe:v0.0.2
           name: fe
           envFrom:
           - configMapRef:
