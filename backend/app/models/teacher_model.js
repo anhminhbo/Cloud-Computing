@@ -47,7 +47,7 @@ Teacher.updateTeacher = function (id, data, result) {
     var lname = data.lname;
     var fname = data.fname;
     var cid = data.cid;
-    var query = `UPDATE teacher SET teacher.lname = '${lname}', teacher.fname = '${fname}', teacher.cid = ${cid} WHERE teacher.id = ${id};`;
+    var query = `UPDATE teacher SET teacher.lname = '${lname}', teacher.fname = '${fname}' WHERE teacher.id = ${id};`;
     db.query(query, (err,data) => {
         if (err) throw err;
         else result(data);
