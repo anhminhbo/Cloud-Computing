@@ -5,8 +5,8 @@ const con = mysql.createConnection({
   host: process.env.MYSQL_HOST || 'localhost',
   database: process.env.MYSQL_DATABASE || 'cloud',
   user: process.env.MYSQL_USER || 'root',
-  password: process.env.MYSQL_PASSWORD ,
-  port: process.env.MYSQL_PORT ,
+  password: process.env.MYSQL_PASSWORD,
+  port: process.env.MYSQL_PORT || 7575,
 
   // Test With Local Database
 });
