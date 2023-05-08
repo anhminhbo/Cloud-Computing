@@ -1,115 +1,113 @@
 const db = require('../database/connection');
 
-const Course = function(course) {
-    this.id = course.id;
-    this.name = course.name;
-    this.sid = course.sid;
-    this.tid = course.tid;
+const TeacherCourse = function(teacher_course) {
+    this.id = teacher_course.id;
+    this.tid = teacher_course.tid;
+    this.cid = teacher_course.cid;
 }
 
-Course.getAllCourse = async function (result) {
+TeacherCourse.getTeacherCourseById = async function (id, result) {
     await db.getConnection((err, connection) => {
         if (err) {
             throw err;
         }
         connection.release();
     });
-    var query = 'SELECT * FROM course ORDER BY course.id ASC';
+    var query = `SELECT * FROM teacher_course AS tc WHERE tc.id = ${id}`;
     db.query(query, (err, data) => {
         if (err) throw err;
         else result(data);
     });
 }
 
-Course.getCourseById = async function (id, result) {
+
+TeacherCourse.getAllTeacherCourse = async function (result) {
     await db.getConnection((err, connection) => {
         if (err) {
             throw err;
         }
         connection.release();
     });
-    var query = `SELECT * FROM course WHERE course.id = ${id}`;
+    var query = 'SELECT * FROM teacher_course AS tc ORDER BY tc.id ASC';
     db.query(query, (err, data) => {
         if (err) throw err;
         else result(data);
     });
 }
 
-Course.addCourse = async function (data, result) {
+TeacherCourse.getTeacherByCourseId = async function (id, result) {
     await db.getConnection((err, connection) => {
         if (err) {
             throw err;
         }
         connection.release();
     });
-    var cname = data.cname;
-    var query = `INSERT INTO course (cname) VALUES ('${cname}');`;
+    var query = `SELECT * FROM teacher_course AS tc WHERE tc.cid = ${id}`;
     db.query(query, (err, data) => {
         if (err) throw err;
         else result(data);
     });
 }
 
-Course.deleteCourse = async function (id, result) {
+TeacherCourse.getCourseByTeacherId = async function (id, result) {
     await db.getConnection((err, connection) => {
         if (err) {
             throw err;
         }
         connection.release();
     });
-    var query = `DELETE FROM course WHERE course.id = ${id}`;
-    db.query(query, (err,data) => {
+    var query = `SELECT * FROM teacher_course AS tc WHERE tc.tid = ${id}`;
+    db.query(query, (err, data) => {
         if (err) throw err;
         else result(data);
     });
 }
 
-Course.updateCourse = async function (id, data, result) {
+TeacherCourse.addTeacherCourse = async function (data, result) {
     await db.getConnection((err, connection) => {
         if (err) {
             throw err;
         }
         connection.release();
     });
-    var cname = data.cname;
-    var query = `UPDATE course SET course.cname = '${cname}' WHERE course.id = ${id};`;
-    db.query(query, (err,data) => {
+    var tid = data.tid;
+    var cid = data.cid;
+    var query = `INSERT INTO teacher_course (tid,cid) VALUES ('${tid}','${cid}');`;
+    db.query(query, (err, data) => {
         if (err) throw err;
         else result(data);
     });
 }
 
-Course.updateCourse = async function (id, data, result) {
+TeacherCourse.deleteTeacherCourse = async function (id, result) {
     await db.getConnection((err, connection) => {
         if (err) {
             throw err;
         }
         connection.release();
     });
-    var cname = data.cname;
-    var query = `UPDATE course SET course.cname = '${cname}' WHERE course.id = ${id};`;
+    var query = `DELETE FROM teacher_course AS tc WHERE tc.id = ${id}`;
     db.query(query, (err,data) => {
         if (err) throw err;
         else result(data);
     });
 }
 
-Course.getTotalStudent = async function (id, result) {
+TeacherCourse.updateTeacherCourse = async function (data, result) {
     await db.getConnection((err, connection) => {
         if (err) {
             throw err;
         }
         connection.release();
     });
-    var query = `
-    SELECT COUNT(sc.sid) AS totalStudent 
-    FROM student_course as sc, course
-    WHERE sc.cid = course.id AND course.id = ${id};
-    `;
+    var id = data.id
+    var tid = data.tid;
+    var cid = data.cid;
+    var query = `UPDATE teacher_course SET teacher_course.tid = '${tid}', teacher_course.cid = '${cid}' WHERE teacher_course.id = ${id};`;
     db.query(query, (err,data) => {
         if (err) throw err;
         else result(data);
     });
 }
 
-module.exports = Course;
+module.exports = TeacherCourse;

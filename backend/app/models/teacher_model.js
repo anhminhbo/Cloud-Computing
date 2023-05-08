@@ -7,15 +7,28 @@ const Teacher = function(teacher) {
     this.cid = teacher.cid;
 }
 
-Teacher.getAllTeacher = function (result) {
-    var query = 'SELECT * FROM teacher';
+Teacher.getAllTeacher = async function (result) {
+    await db.getConnection((err, connection) => {
+        if (err) {
+            throw err;
+        }
+        connection.release();
+    });
+    var query = 'SELECT * FROM teacher ORDER BY teacher.id ASC';
     db.query(query, (err, data) => {
         if (err) throw err;
         else result(data);
     });
+
 }
 
-Teacher.getTeacherById = function (id, result) {
+Teacher.getTeacherById = async function (id, result) {
+    await db.getConnection((err, connection) => {
+        if (err) {
+            throw err;
+        }
+        connection.release();
+    });
     var query = `SELECT * FROM teacher WHERE teacher.id = ${id}`;
     db.query(query, (err, data) => {
         if (err) throw err;
@@ -23,19 +36,29 @@ Teacher.getTeacherById = function (id, result) {
     });
 }
 
-Teacher.addTeacher = function (data, result) {
+Teacher.addTeacher = async function (data, result) {
+    await db.getConnection((err, connection) => {
+        if (err) {
+            throw err;
+        }
+        connection.release();
+    });
     var lname = data.lname;
     var fname = data.fname;
-    var cid = data.cid;
-    var query = `INSERT INTO teacher (fname,lname,cid) VALUES ('${lname}','${fname}',${cid});`;
+    var query = `INSERT INTO teacher (fname,lname) VALUES ('${lname}','${fname}');`;
     db.query(query, (err, data) => {
         if (err) throw err;
         else result(data);
-
     });
 }
 
-Teacher.deleteTeacher = function (id, result) {
+Teacher.deleteTeacher = async function (id, result) {
+    await db.getConnection((err, connection) => {
+        if (err) {
+            throw err;
+        }
+        connection.release();
+    });
     var query = `DELETE FROM teacher WHERE teacher.id = ${id}`;
     db.query(query, (err,data) => {
         if (err) throw err;
@@ -43,10 +66,15 @@ Teacher.deleteTeacher = function (id, result) {
     });
 }
 
-Teacher.updateTeacher = function (id, data, result) {
+Teacher.updateTeacher = async function (id, data, result) {
+    await db.getConnection((err, connection) => {
+        if (err) {
+            throw err;
+        }
+        connection.release();
+    });
     var lname = data.lname;
     var fname = data.fname;
-    var cid = data.cid;
     var query = `UPDATE teacher SET teacher.lname = '${lname}', teacher.fname = '${fname}' WHERE teacher.id = ${id};`;
     db.query(query, (err,data) => {
         if (err) throw err;

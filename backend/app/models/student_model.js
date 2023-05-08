@@ -7,15 +7,27 @@ const Student = function(student) {
     this.cid = student.cid;
 }
 
-Student.getAllStudent = function (result) {
-    var query = 'SELECT * FROM student';
+Student.getAllStudent = async function (result) {
+    await db.getConnection((err, connection) => {
+        if (err) {
+            throw err;
+        }
+        connection.release();
+    });
+    var query = 'SELECT * FROM student ORDER BY student.id ASC';
     db.query(query, (err, data) => {
         if (err) throw err;
         else result(data);
     });
 }
 
-Student.getStudentById = function (id, result) {
+Student.getStudentById = async function (id, result) {
+    await db.getConnection((err, connection) => {
+        if (err) {
+            throw err;
+        }
+        connection.release();
+    });
     var query = `SELECT * FROM student WHERE student.id = ${id}`;
     db.query(query, (err, data) => {
         if (err) throw err;
@@ -23,18 +35,29 @@ Student.getStudentById = function (id, result) {
     });
 }
 
-Student.addStudent = function (data, result) {
+Student.addStudent = async function (data, result) {
+    await db.getConnection((err, connection) => {
+        if (err) {
+            throw err;
+        }
+        connection.release();
+    });
     var lname = data.lname;
     var fname = data.fname;
-    var cid = data.cid;
-    var query = `INSERT INTO student (fname,lname,cid) VALUES ('${lname}','${fname}',${cid});`;
+    var query = `INSERT INTO student (fname,lname) VALUES ('${lname}','${fname}');`;
     db.query(query, (err, data) => {
         if (err) throw err;
         else result(data);
     });
 }
 
-Student.deleteStudent = function (id, result) {
+Student.deleteStudent = async function (id, result) {
+    await db.getConnection((err, connection) => {
+        if (err) {
+            throw err;
+        }
+        connection.release();
+    });
     var query = `DELETE FROM student WHERE student.id = ${id}`;
     db.query(query, (err,data) => {
         if (err) throw err;
@@ -42,16 +65,16 @@ Student.deleteStudent = function (id, result) {
     });
 }
 
-Student.updateStudent = function (id, data, result) {
+Student.updateStudent = async function (id, data, result) {
+    await db.getConnection((err, connection) => {
+        if (err) {
+            throw err;
+        }
+        connection.release();
+    });
     var lname = data.lname;
     var fname = data.fname;
-    var cid = data.cid;
-    if (cid == null) {
-        var query = `UPDATE student SET student.lname = '${lname}', student.fname = '${fname}' WHERE student.id = ${id};`;   
-    }
-    else {
-        var query = `UPDATE student SET student.lname = '${lname}', student.fname = '${fname}', student.cid = ${cid} WHERE student.id = ${id};`;
-    }
+    var query = `UPDATE student SET student.lname = '${lname}', student.fname = '${fname}' WHERE student.id = ${id};`;   
     db.query(query, (err,data) => {
         if (err) throw err;
         else result(data);

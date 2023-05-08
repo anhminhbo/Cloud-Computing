@@ -16,5 +16,9 @@
   "main": "tutorial.js",
   "author": "",
   "license": "ISC",
-  "description": ""
+  "description": "",
+  "scripts":
+    { 
+        "start": "nodemon server.js"
+    }
 }

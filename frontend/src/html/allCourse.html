@@ -415,7 +415,7 @@
     <!-- Load Student Information -->
 
     <script>
-      fetch('http://localhost:3000/course/all', {
+      fetch('https://student-management.be.bug-fix-squad.com/course/all', {
         method : 'GET',
       })
       .then(response => {
@@ -425,13 +425,14 @@
           data = data.result;
           //console.log(data);
           var target = document.getElementById('target-div');
+          target.innerHTML = '';
           data.forEach((json) => {
               console.log(json);
               var totalStudent = 0;
               var teacherName = '';
               console.log("ID:" + json.id);
 
-              fetch(`http://localhost:3000/course/${json.id}/count/student`)
+              fetch(`https://student-management.be.bug-fix-squad.com/course/${json.id}/count/student`)
               .then(res => {
                   return res.json();
               })
@@ -441,7 +442,7 @@
               })
               .catch(error => console.log(error))
 
-              fetch(`http://localhost:3000/teacher/${json.tid}`)
+              fetch(`https://student-management.be.bug-fix-squad.com/teacher/${json.tid}`)
               .then(res => {
                   return res.json();
               })

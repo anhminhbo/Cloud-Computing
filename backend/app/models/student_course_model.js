@@ -1,115 +1,112 @@
 const db = require('../database/connection');
 
-const Course = function(course) {
-    this.id = course.id;
-    this.name = course.name;
-    this.sid = course.sid;
-    this.tid = course.tid;
+const StudentCourse = function(student_course) {
+    this.id = student_course.id;
+    this.sid = student_course.sid
+    this.cid = student_course.cid;
 }
 
-Course.getAllCourse = async function (result) {
+StudentCourse.getStudentCourseById = async function (id, result) {
     await db.getConnection((err, connection) => {
         if (err) {
             throw err;
         }
         connection.release();
     });
-    var query = 'SELECT * FROM course ORDER BY course.id ASC';
+    var query = `SELECT * FROM student_course AS sc WHERE sc.id = ${id}`;
     db.query(query, (err, data) => {
         if (err) throw err;
         else result(data);
     });
 }
 
-Course.getCourseById = async function (id, result) {
+StudentCourse.getAllStudentCourse = async function (result) {
     await db.getConnection((err, connection) => {
         if (err) {
             throw err;
         }
         connection.release();
     });
-    var query = `SELECT * FROM course WHERE course.id = ${id}`;
+    var query = 'SELECT * FROM student_course AS sc ORDER BY sc.id ASC';
     db.query(query, (err, data) => {
         if (err) throw err;
         else result(data);
     });
 }
 
-Course.addCourse = async function (data, result) {
+StudentCourse.getStudentByCourseId = async function (id, result) {
     await db.getConnection((err, connection) => {
         if (err) {
             throw err;
         }
         connection.release();
     });
-    var cname = data.cname;
-    var query = `INSERT INTO course (cname) VALUES ('${cname}');`;
+    var query = `SELECT * FROM student_course AS sc WHERE sc.cid = ${id}`;
     db.query(query, (err, data) => {
         if (err) throw err;
         else result(data);
     });
 }
 
-Course.deleteCourse = async function (id, result) {
+StudentCourse.getCourseByStudentId = async function (id, result) {
     await db.getConnection((err, connection) => {
         if (err) {
             throw err;
         }
         connection.release();
     });
-    var query = `DELETE FROM course WHERE course.id = ${id}`;
-    db.query(query, (err,data) => {
+    var query = `SELECT * FROM student_course AS sc WHERE sc.sid = ${id}`;
+    db.query(query, (err, data) => {
         if (err) throw err;
         else result(data);
     });
 }
 
-Course.updateCourse = async function (id, data, result) {
+StudentCourse.addStudentCourse = async function (data, result) {
     await db.getConnection((err, connection) => {
         if (err) {
             throw err;
         }
         connection.release();
     });
-    var cname = data.cname;
-    var query = `UPDATE course SET course.cname = '${cname}' WHERE course.id = ${id};`;
-    db.query(query, (err,data) => {
+    var sid = data.sid;
+    var cid = data.cid;
+    var query = `INSERT INTO student_course (sid,cid) VALUES ('${sid}','${cid}');`;
+    db.query(query, (err, data) => {
         if (err) throw err;
         else result(data);
     });
 }
 
-Course.updateCourse = async function (id, data, result) {
+StudentCourse.deleteStudentCourse = async function (id, result) {
     await db.getConnection((err, connection) => {
         if (err) {
             throw err;
         }
         connection.release();
     });
-    var cname = data.cname;
-    var query = `UPDATE course SET course.cname = '${cname}' WHERE course.id = ${id};`;
+    var query = `DELETE FROM student_course AS sc WHERE sc.id = ${id}`;
     db.query(query, (err,data) => {
         if (err) throw err;
         else result(data);
     });
 }
 
-Course.getTotalStudent = async function (id, result) {
+StudentCourse.updateStudentCourse = async function (data, result) {
     await db.getConnection((err, connection) => {
         if (err) {
             throw err;
         }
         connection.release();
     });
-    var query = `
-    SELECT COUNT(sc.sid) AS totalStudent 
-    FROM student_course as sc, course
-    WHERE sc.cid = course.id AND course.id = ${id};
-    `;
+    var id = data.id
+    var sid = data.sid;
+    var cid = data.cid;
+    var query = `UPDATE student_course SET student_course.sid = '${sid}', student_course.cid = '${cid}' WHERE student_course.id = ${id};`;
     db.query(query, (err,data) => {
         if (err) throw err;
         else result(data);
     });
 }
 
-module.exports = Course;
+module.exports = StudentCourse;
