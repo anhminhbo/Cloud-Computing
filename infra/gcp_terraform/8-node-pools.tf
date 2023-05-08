@@ -27,6 +27,15 @@ resource "google_project_iam_binding" "sa_binding_log" {
   ]
 }
 
+resource "google_project_iam_binding" "grant_gke_permission" {
+  project = var.project
+  role    = "roles/container.clusterViewer"
+
+  members = [
+    "serviceAccount:${google_service_account.kubernetes.email}"
+  ]
+}
+
 # https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/container_node_pool
 resource "google_container_node_pool" "general" {
   name       = "general"

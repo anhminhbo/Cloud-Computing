@@ -7,10 +7,16 @@ FE_ECR_REPO_NAME="cloud-computing/fe"
 
 AWS_REGION="us-east-1"
 
+### Local
+# # Retrieve the latest tags of the repository
+# BE_LATEST_TAG=$(aws ecr-public describe-images --repository-name $BE_ECR_REPO_NAME --region $AWS_REGION --profile $PROFILE  --query "sort_by(imageDetails,& imagePushedAt)[-1].imageTags[0]" --output text)
+# FE_LATEST_TAG=$(aws ecr-public describe-images --repository-name $FE_ECR_REPO_NAME --region $AWS_REGION --profile $PROFILE  --query "sort_by(imageDetails,& imagePushedAt)[-1].imageTags[0]" --output text)
 
+### Github action
 # Retrieve the latest tags of the repository
-BE_LATEST_TAG=$(aws ecr-public describe-images --repository-name $BE_ECR_REPO_NAME --region $AWS_REGION --profile $PROFILE  --query "sort_by(imageDetails,& imagePushedAt)[-1].imageTags[0]" --output text)
-FE_LATEST_TAG=$(aws ecr-public describe-images --repository-name $FE_ECR_REPO_NAME --region $AWS_REGION --profile $PROFILE  --query "sort_by(imageDetails,& imagePushedAt)[-1].imageTags[0]" --output text)
+BE_LATEST_TAG=$(aws ecr-public describe-images --repository-name $BE_ECR_REPO_NAME --profile $PROFILE  --query "sort_by(imageDetails,& imagePushedAt)[-1].imageTags[0]" --output text)
+FE_LATEST_TAG=$(aws ecr-public describe-images --repository-name $FE_ECR_REPO_NAME --profile $PROFILE  --query "sort_by(imageDetails,& imagePushedAt)[-1].imageTags[0]" --output text)
+
 
 # Deploy
 bash -x deploy_fe.sh $FE_LATEST_TAG &
