@@ -12,6 +12,7 @@ Teacher.getAllTeacher = function (result) {
     db.query(query, (err, data) => {
         if (err) throw err;
         else result(data);
+        db.end();
     });
 }
 
@@ -20,6 +21,7 @@ Teacher.getTeacherById = function (id, result) {
     db.query(query, (err, data) => {
         if (err) throw err;
         else result(data);
+        db.end();
     });
 }
 
@@ -31,7 +33,7 @@ Teacher.addTeacher = function (data, result) {
     db.query(query, (err, data) => {
         if (err) throw err;
         else result(data);
-
+        db.end();
     });
 }
 
@@ -40,6 +42,7 @@ Teacher.deleteTeacher = function (id, result) {
     db.query(query, (err,data) => {
         if (err) throw err;
         else result(data);
+        db.end();
     });
 }
 
@@ -51,6 +54,7 @@ Teacher.updateTeacher = function (id, data, result) {
     db.query(query, (err,data) => {
         if (err) throw err;
         else result(data);
+        db.end();
     });
 }
 

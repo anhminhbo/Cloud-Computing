@@ -16,6 +16,7 @@ Attendance.addAttendance = function (data, result) {
     db.query(query, (err, response) => {
         if (err) throw err;
         else result(response);
+        db.end();
     });
 }
 
@@ -24,6 +25,7 @@ Attendance.getStudentAttendanceById = function (id, result) {
     db.query(query, (err, response) => {
         if (err) throw err;
         else result(response);
+        db.end();
     });
 }
 
@@ -33,6 +35,7 @@ Attendance.getAttendanceByDate = function (data, result) {
     db.query(query, (err, response) => {
         if (err) throw err;
         else result(response);
+        db.end();
     });
 }
 
@@ -43,6 +46,7 @@ Attendance.getAttendanceByMonth = function (data, result) {
     db.query(query, (err, response) => {
         if (err) throw err;
         else result(response);
+        db.end();
     });
 }
 
@@ -54,6 +58,7 @@ Attendance.getStudentAttendanceByDate = function (data, result) {
     db.query(query, (err, response) => {
         if (err) throw err;
         else result(response);
+        db.end();
     });
 }
 
@@ -67,6 +72,7 @@ Attendance.getStudentAttendanceByWeek = function (data, result) {
     db.query(query, (err, response) => {
         if (err) throw err;
         else result(response);
+        db.end();
     });
 }
 
@@ -77,6 +83,7 @@ Attendance.getStudentAttendanceByMonth = function (data, result) {
     db.query(query, (err, response) => {
         if (err) throw err;
         else result(response);
+        db.end();
     });
 }
 

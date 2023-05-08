@@ -12,6 +12,7 @@ Course.getAllCourse = function (result) {
     db.query(query, (err, data) => {
         if (err) throw err;
         else result(data);
+        db.end();
     });
 }
 
@@ -20,6 +21,7 @@ Course.getCourseById = function (id, result) {
     db.query(query, (err, data) => {
         if (err) throw err;
         else result(data);
+        db.end();
     });
 }
 
@@ -31,6 +33,7 @@ Course.addCourse = function (data, result) {
     db.query(query, (err, data) => {
         if (err) throw err;
         else result(data);
+        db.end();
     });
 }
 
@@ -39,6 +42,7 @@ Course.deleteCourse = function (id, result) {
     db.query(query, (err,data) => {
         if (err) throw err;
         else result(data);
+        db.end();
     });
 }
 
@@ -50,6 +54,7 @@ Course.updateCourse = function (id, data, result) {
     db.query(query, (err,data) => {
         if (err) throw err;
         else result(data);
+        db.end();
     });
 }
 
@@ -61,6 +66,7 @@ Course.updateCourse = function (id, data, result) {
     db.query(query, (err,data) => {
         if (err) throw err;
         else result(data);
+        db.end();
     });
 }
 
@@ -72,6 +78,7 @@ Course.getTotalStudent = function (id, result) {
     db.query(query, (err,data) => {
         if (err) throw err;
         else result(data);
+        db.end();
     });
 }
 

@@ -12,6 +12,7 @@ Student.getAllStudent = function (result) {
     db.query(query, (err, data) => {
         if (err) throw err;
         else result(data);
+        db.end();
     });
 }
 
@@ -20,6 +21,7 @@ Student.getStudentById = function (id, result) {
     db.query(query, (err, data) => {
         if (err) throw err;
         else result(data);
+        db.end();
     });
 }
 
@@ -31,6 +33,7 @@ Student.addStudent = function (data, result) {
     db.query(query, (err, data) => {
         if (err) throw err;
         else result(data);
+        db.end();
     });
 }
 
@@ -39,6 +42,7 @@ Student.deleteStudent = function (id, result) {
     db.query(query, (err,data) => {
         if (err) throw err;
         else result(data);
+        db.end();
     });
 }
 
@@ -55,6 +59,7 @@ Student.updateStudent = function (id, data, result) {
     db.query(query, (err,data) => {
         if (err) throw err;
         else result(data);
+        db.end();
     });
 }
 
