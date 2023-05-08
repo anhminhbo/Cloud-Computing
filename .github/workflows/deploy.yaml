@@ -5,8 +5,9 @@ on:
     branches:
       - release
 
+concurrency: build-deploy-kubernetes
 jobs:
-  build-deploy:
+  build-deploy-kubernetes:
     name: Build and deploy application to Kubernetes
     runs-on: ubuntu-latest
     steps:
