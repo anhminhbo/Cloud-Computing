@@ -7,25 +7,40 @@ const Teacher = function(teacher) {
     this.cid = teacher.cid;
 }
 
-Teacher.getAllTeacher = function (result) {
+Teacher.getAllTeacher = async function (result) {
+    await db.getConnection((err, db) => {
+        if (err) {
+            throw err;
+        }
+    });
     var query = 'SELECT * FROM teacher';
     db.query(query, (err, data) => {
         if (err) throw err;
         else result(data);
-        db.end();
     });
+    db.release();
 }
 
-Teacher.getTeacherById = function (id, result) {
+Teacher.getTeacherById = async function (id, result) {
+    await db.getConnection((err, db) => {
+        if (err) {
+            throw err;
+        }
+    });
     var query = `SELECT * FROM teacher WHERE teacher.id = ${id}`;
     db.query(query, (err, data) => {
         if (err) throw err;
         else result(data);
-        db.end();
     });
+    db.release();
 }
 
-Teacher.addTeacher = function (data, result) {
+Teacher.addTeacher = async function (data, result) {
+    await db.getConnection((err, db) => {
+        if (err) {
+            throw err;
+        }
+    });
     var lname = data.lname;
     var fname = data.fname;
     var cid = data.cid;
@@ -33,20 +48,30 @@ Teacher.addTeacher = function (data, result) {
     db.query(query, (err, data) => {
         if (err) throw err;
         else result(data);
-        db.end();
     });
+    db.release();
 }
 
-Teacher.deleteTeacher = function (id, result) {
+Teacher.deleteTeacher = async function (id, result) {
+    await db.getConnection((err, db) => {
+        if (err) {
+            throw err;
+        }
+    });
     var query = `DELETE FROM teacher WHERE teacher.id = ${id}`;
     db.query(query, (err,data) => {
         if (err) throw err;
         else result(data);
-        db.end();
     });
+    db.release();
 }
 
-Teacher.updateTeacher = function (id, data, result) {
+Teacher.updateTeacher = async function (id, data, result) {
+    await db.getConnection((err, db) => {
+        if (err) {
+            throw err;
+        }
+    });
     var lname = data.lname;
     var fname = data.fname;
     var cid = data.cid;
@@ -54,8 +79,8 @@ Teacher.updateTeacher = function (id, data, result) {
     db.query(query, (err,data) => {
         if (err) throw err;
         else result(data);
-        db.end();
     });
+    db.release();
 }
 
 module.exports = Teacher;

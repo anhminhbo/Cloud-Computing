@@ -7,7 +7,12 @@ const Attendance = function(attendance) {
     this.present = attendance.present;
 }
 
-Attendance.addAttendance = function (data, result) {
+Attendance.addAttendance = async function (data, result) {
+    await db.getConnection((err, db) => {
+        if (err) {
+            throw err;
+        }
+    });
     var date = data.date;
     var sid = data.sid;
     var tid = data.tid;
@@ -16,53 +21,78 @@ Attendance.addAttendance = function (data, result) {
     db.query(query, (err, response) => {
         if (err) throw err;
         else result(response);
-        db.end();
     });
+    db.release();
 }
 
-Attendance.getStudentAttendanceById = function (id, result) {
+Attendance.getStudentAttendanceById = async function (id, result) {
+    await db.getConnection((err, db) => {
+        if (err) {
+            throw err;
+        }
+    });
     var query = `SELECT * FROM attendance WHERE attendance.sid = ${id};`;
     db.query(query, (err, response) => {
         if (err) throw err;
         else result(response);
-        db.end();
     });
+    db.release();
 }
 
-Attendance.getAttendanceByDate = function (data, result) {
+Attendance.getAttendanceByDate = async function (data, result) {
+    await db.getConnection((err, db) => {
+        if (err) {
+            throw err;
+        }
+    });
     var date = data.date;
     var query = `SELECT * FROM attendance WHERE attendance.days = '${date}';`;
     db.query(query, (err, response) => {
         if (err) throw err;
         else result(response);
-        db.end();
     });
+    db.release();
 }
 
 
-Attendance.getAttendanceByMonth = function (data, result) {
+Attendance.getAttendanceByMonth = async function (data, result) {
+    await db.getConnection((err, db) => {
+        if (err) {
+            throw err;
+        }
+    });
     var month = data.month;
     var query = `SELECT * FROM attendance WHERE MONTH(attendance.days) = '${month};'`;
     db.query(query, (err, response) => {
         if (err) throw err;
         else result(response);
-        db.end();
     });
+    db.release();
 }
 
 
-Attendance.getStudentAttendanceByDate = function (data, result) {
+Attendance.getStudentAttendanceByDate = async function (data, result) {
+    await db.getConnection((err, db) => {
+        if (err) {
+            throw err;
+        }
+    });
     var sid = data.sid;
     var date = data.date;
     var query = `SELECT * FROM attendance, student WHERE student.id = ${sid} and attendance.days = '${date}';`;
     db.query(query, (err, response) => {
         if (err) throw err;
         else result(response);
-        db.end();
     });
+    db.release();
 }
 
-Attendance.getStudentAttendanceByWeek = function (data, result) {
+Attendance.getStudentAttendanceByWeek = async function (data, result) {
+    await db.getConnection((err, db) => {
+        if (err) {
+            throw err;
+        }
+    });
     var date = data.date;
     var sid = data.sid;
     var query = `SELECT * FROM attendance,student WHERE student.id = ${sid} AND attendance.days >= CURDATE() - INTERVAL DAYOFWEEK(CURDATE()) - 1 DAY AND attendance.days <= CURDATE() - INTERVAL DAYOFWEEK(CURDATE()) - 7 DAY;`;
@@ -72,19 +102,24 @@ Attendance.getStudentAttendanceByWeek = function (data, result) {
     db.query(query, (err, response) => {
         if (err) throw err;
         else result(response);
-        db.end();
     });
+    db.release();
 }
 
-Attendance.getStudentAttendanceByMonth = function (data, result) {
+Attendance.getStudentAttendanceByMonth = async function (data, result) {
+    await db.getConnection((err, db) => {
+        if (err) {
+            throw err;
+        }
+    });
     var date = data.date;
     var sid = data.sid;
     var query = `SELECT * FROM attendance, student where student.id = ${sid} AND MONTH(attendance.days) = MONTH(${date});`;
     db.query(query, (err, response) => {
         if (err) throw err;
         else result(response);
-        db.end();
     });
+    db.release();
 }
 
 module.exports = Attendance;

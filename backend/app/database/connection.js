@@ -1,6 +1,6 @@
 const mysql = require("mysql2");
 
-const con = mysql.createConnection({
+const con = mysql.createPool({
   // host = RDS endpoint
   host: process.env.MYSQL_HOST || 'localhost',
   database: process.env.MYSQL_DATABASE || 'cloud',
@@ -11,9 +11,8 @@ const con = mysql.createConnection({
   // Test With Local Database
 });
 
-con.connect(function (err) {
+con.getConnection(function (err) {
   if (err) throw err;
-
   console.log("Connected to database");
 });
 

@@ -7,25 +7,40 @@ const Student = function(student) {
     this.cid = student.cid;
 }
 
-Student.getAllStudent = function (result) {
+Student.getAllStudent = async function (result) {
+    await db.getConnection((err, db) => {
+        if (err) {
+            throw err;
+        }
+    });
     var query = 'SELECT * FROM student';
     db.query(query, (err, data) => {
         if (err) throw err;
         else result(data);
-        db.end();
     });
+    db.release();
 }
 
-Student.getStudentById = function (id, result) {
+Student.getStudentById = async function (id, result) {
+    await db.getConnection((err, db) => {
+        if (err) {
+            throw err;
+        }
+    });
     var query = `SELECT * FROM student WHERE student.id = ${id}`;
     db.query(query, (err, data) => {
         if (err) throw err;
         else result(data);
-        db.end();
     });
+    db.release();
 }
 
-Student.addStudent = function (data, result) {
+Student.addStudent = async function (data, result) {
+    await db.getConnection((err, db) => {
+        if (err) {
+            throw err;
+        }
+    });
     var lname = data.lname;
     var fname = data.fname;
     var cid = data.cid;
@@ -33,20 +48,30 @@ Student.addStudent = function (data, result) {
     db.query(query, (err, data) => {
         if (err) throw err;
         else result(data);
-        db.end();
     });
+    db.release();
 }
 
-Student.deleteStudent = function (id, result) {
+Student.deleteStudent = async function (id, result) {
+    await db.getConnection((err, db) => {
+        if (err) {
+            throw err;
+        }
+    });
     var query = `DELETE FROM student WHERE student.id = ${id}`;
     db.query(query, (err,data) => {
         if (err) throw err;
         else result(data);
-        db.end();
     });
+    db.release();
 }
 
 Student.updateStudent = function (id, data, result) {
+    db.getConnection((err, db) => {
+        if (err) {
+            throw err;
+        }
+    });
     var lname = data.lname;
     var fname = data.fname;
     var cid = data.cid;
@@ -59,8 +84,8 @@ Student.updateStudent = function (id, data, result) {
     db.query(query, (err,data) => {
         if (err) throw err;
         else result(data);
-        db.end();
     });
+    db.release();
 }
 
 module.exports = Student;
