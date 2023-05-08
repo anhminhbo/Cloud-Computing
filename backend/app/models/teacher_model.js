@@ -8,38 +8,39 @@ const Teacher = function(teacher) {
 }
 
 Teacher.getAllTeacher = async function (result) {
-    await db.getConnection((err, db) => {
+    await db.getConnection((err, connection) => {
         if (err) {
             throw err;
         }
+        connection.release();
     });
     var query = 'SELECT * FROM teacher';
     db.query(query, (err, data) => {
         if (err) throw err;
         else result(data);
     });
-    db.release();
 }
 
 Teacher.getTeacherById = async function (id, result) {
-    await db.getConnection((err, db) => {
+    await db.getConnection((err, connection) => {
         if (err) {
             throw err;
         }
+        connection.release();
     });
     var query = `SELECT * FROM teacher WHERE teacher.id = ${id}`;
     db.query(query, (err, data) => {
         if (err) throw err;
         else result(data);
     });
-    db.release();
 }
 
 Teacher.addTeacher = async function (data, result) {
-    await db.getConnection((err, db) => {
+    await db.getConnection((err, connection) => {
         if (err) {
             throw err;
         }
+        connection.release();
     });
     var lname = data.lname;
     var fname = data.fname;
@@ -49,28 +50,28 @@ Teacher.addTeacher = async function (data, result) {
         if (err) throw err;
         else result(data);
     });
-    db.release();
 }
 
 Teacher.deleteTeacher = async function (id, result) {
-    await db.getConnection((err, db) => {
+    await db.getConnection((err, connection) => {
         if (err) {
             throw err;
         }
+        connection.release();
     });
     var query = `DELETE FROM teacher WHERE teacher.id = ${id}`;
     db.query(query, (err,data) => {
         if (err) throw err;
         else result(data);
     });
-    db.release();
 }
 
 Teacher.updateTeacher = async function (id, data, result) {
-    await db.getConnection((err, db) => {
+    await db.getConnection((err, connection) => {
         if (err) {
             throw err;
         }
+        connection.release();
     });
     var lname = data.lname;
     var fname = data.fname;
@@ -80,7 +81,6 @@ Teacher.updateTeacher = async function (id, data, result) {
         if (err) throw err;
         else result(data);
     });
-    db.release();
 }
 
 module.exports = Teacher;

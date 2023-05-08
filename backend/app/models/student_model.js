@@ -8,38 +8,39 @@ const Student = function(student) {
 }
 
 Student.getAllStudent = async function (result) {
-    await db.getConnection((err, db) => {
+    await db.getConnection((err, connection) => {
         if (err) {
             throw err;
         }
+        connection.release();
     });
     var query = 'SELECT * FROM student';
     db.query(query, (err, data) => {
         if (err) throw err;
         else result(data);
     });
-    db.release();
 }
 
 Student.getStudentById = async function (id, result) {
-    await db.getConnection((err, db) => {
+    await db.getConnection((err, connection) => {
         if (err) {
             throw err;
         }
+        connection.release();
     });
     var query = `SELECT * FROM student WHERE student.id = ${id}`;
     db.query(query, (err, data) => {
         if (err) throw err;
         else result(data);
     });
-    db.release();
 }
 
 Student.addStudent = async function (data, result) {
-    await db.getConnection((err, db) => {
+    await db.getConnection((err, connection) => {
         if (err) {
             throw err;
         }
+        connection.release();
     });
     var lname = data.lname;
     var fname = data.fname;
@@ -49,28 +50,28 @@ Student.addStudent = async function (data, result) {
         if (err) throw err;
         else result(data);
     });
-    db.release();
 }
 
 Student.deleteStudent = async function (id, result) {
-    await db.getConnection((err, db) => {
+    await db.getConnection((err, connection) => {
         if (err) {
             throw err;
         }
+        connection.release();
     });
     var query = `DELETE FROM student WHERE student.id = ${id}`;
     db.query(query, (err,data) => {
         if (err) throw err;
         else result(data);
     });
-    db.release();
 }
 
-Student.updateStudent = function (id, data, result) {
-    db.getConnection((err, db) => {
+Student.updateStudent = async function (id, data, result) {
+    await db.getConnection((err, connection) => {
         if (err) {
             throw err;
         }
+        connection.release();
     });
     var lname = data.lname;
     var fname = data.fname;
@@ -85,7 +86,6 @@ Student.updateStudent = function (id, data, result) {
         if (err) throw err;
         else result(data);
     });
-    db.release();
 }
 
 module.exports = Student;

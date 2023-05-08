@@ -7,8 +7,9 @@ Step 3: run "npm install nodejs --save"      Note: --save is optional
 Step 4: run "npm install express --save"
 Step 5: run "npm i --save body-parser" or run "npm install body-parser --save"
 Step 6: run "npm install mysql@latest"
+Step 7: run "npm install nodemon - g"
 Step 7: Navigate to "server.js" directory  
-Step 8: Run "node server.js"
+Step 8: Run "npm run start" or "node server.js", first version is preferred
 
 There you go, the server is ready and waiting for requests
 

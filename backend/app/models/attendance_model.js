@@ -8,10 +8,11 @@ const Attendance = function(attendance) {
 }
 
 Attendance.addAttendance = async function (data, result) {
-    await db.getConnection((err, db) => {
+    await db.getConnection((err, connection) => {
         if (err) {
             throw err;
         }
+        connection.release();
     });
     var date = data.date;
     var sid = data.sid;
@@ -22,28 +23,28 @@ Attendance.addAttendance = async function (data, result) {
         if (err) throw err;
         else result(response);
     });
-    db.release();
 }
 
 Attendance.getStudentAttendanceById = async function (id, result) {
-    await db.getConnection((err, db) => {
+    await db.getConnection((err, connection) => {
         if (err) {
             throw err;
         }
+        connection.release();
     });
     var query = `SELECT * FROM attendance WHERE attendance.sid = ${id};`;
     db.query(query, (err, response) => {
         if (err) throw err;
         else result(response);
     });
-    db.release();
 }
 
 Attendance.getAttendanceByDate = async function (data, result) {
-    await db.getConnection((err, db) => {
+    await db.getConnection((err, connection) => {
         if (err) {
             throw err;
         }
+        connection.release();
     });
     var date = data.date;
     var query = `SELECT * FROM attendance WHERE attendance.days = '${date}';`;
@@ -51,15 +52,15 @@ Attendance.getAttendanceByDate = async function (data, result) {
         if (err) throw err;
         else result(response);
     });
-    db.release();
 }
 
 
 Attendance.getAttendanceByMonth = async function (data, result) {
-    await db.getConnection((err, db) => {
+    await db.getConnection((err, connection) => {
         if (err) {
             throw err;
         }
+        connection.release();
     });
     var month = data.month;
     var query = `SELECT * FROM attendance WHERE MONTH(attendance.days) = '${month};'`;
@@ -67,15 +68,15 @@ Attendance.getAttendanceByMonth = async function (data, result) {
         if (err) throw err;
         else result(response);
     });
-    db.release();
 }
 
 
 Attendance.getStudentAttendanceByDate = async function (data, result) {
-    await db.getConnection((err, db) => {
+    await db.getConnection((err, connection) => {
         if (err) {
             throw err;
         }
+        connection.release();
     });
     var sid = data.sid;
     var date = data.date;
@@ -84,14 +85,14 @@ Attendance.getStudentAttendanceByDate = async function (data, result) {
         if (err) throw err;
         else result(response);
     });
-    db.release();
 }
 
 Attendance.getStudentAttendanceByWeek = async function (data, result) {
-    await db.getConnection((err, db) => {
+    await db.getConnection((err, connection) => {
         if (err) {
             throw err;
         }
+        connection.release();
     });
     var date = data.date;
     var sid = data.sid;
@@ -103,14 +104,14 @@ Attendance.getStudentAttendanceByWeek = async function (data, result) {
         if (err) throw err;
         else result(response);
     });
-    db.release();
 }
 
 Attendance.getStudentAttendanceByMonth = async function (data, result) {
-    await db.getConnection((err, db) => {
+    await db.getConnection((err, connection) => {
         if (err) {
             throw err;
         }
+        connection.release();
     });
     var date = data.date;
     var sid = data.sid;
@@ -119,7 +120,6 @@ Attendance.getStudentAttendanceByMonth = async function (data, result) {
         if (err) throw err;
         else result(response);
     });
-    db.release();
 }
 
 module.exports = Attendance;

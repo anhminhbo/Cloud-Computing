@@ -8,38 +8,39 @@ const Course = function(course) {
 }
 
 Course.getAllCourse = async function (result) {
-    await db.getConnection((err, db) => {
+    await db.getConnection((err, connection) => {
         if (err) {
             throw err;
         }
+        connection.release();
     });
     var query = 'SELECT * FROM course';
     db.query(query, (err, data) => {
         if (err) throw err;
         else result(data);
     });
-    db.release();
 }
 
 Course.getCourseById = async function (id, result) {
-    await db.getConnection((err, db) => {
+    await db.getConnection((err, connection) => {
         if (err) {
             throw err;
         }
+        connection.release();
     });
     var query = `SELECT * FROM course WHERE course.id = ${id}`;
     db.query(query, (err, data) => {
         if (err) throw err;
         else result(data);
     });
-    db.release();
 }
 
 Course.addCourse = async function (data, result) {
-    await db.getConnection((err, db) => {
+    await db.getConnection((err, connection) => {
         if (err) {
             throw err;
         }
+        connection.release();
     });
     var cname = data.cname;
     var sid = data.sid;
@@ -49,28 +50,28 @@ Course.addCourse = async function (data, result) {
         if (err) throw err;
         else result(data);
     });
-    db.release();
 }
 
 Course.deleteCourse = async function (id, result) {
-    await db.getConnection((err, db) => {
+    await db.getConnection((err, connection) => {
         if (err) {
             throw err;
         }
+        connection.release();
     });
     var query = `DELETE FROM course WHERE course.id = ${id}`;
     db.query(query, (err,data) => {
         if (err) throw err;
         else result(data);
     });
-    db.release();
 }
 
 Course.updateCourse = async function (id, data, result) {
-    await db.getConnection((err, db) => {
+    await db.getConnection((err, connection) => {
         if (err) {
             throw err;
         }
+        connection.release();
     });
     var cname = data.cname;
     var sid = data.sid;
@@ -80,14 +81,14 @@ Course.updateCourse = async function (id, data, result) {
         if (err) throw err;
         else result(data);
     });
-    db.release();
 }
 
 Course.updateCourse = async function (id, data, result) {
-    await db.getConnection((err, db) => {
+    await db.getConnection((err, connection) => {
         if (err) {
             throw err;
         }
+        connection.release();
     });
     var cname = data.cname;
     var sid = data.sid;
@@ -97,14 +98,14 @@ Course.updateCourse = async function (id, data, result) {
         if (err) throw err;
         else result(data);
     });
-    db.release();
 }
 
 Course.getTotalStudent = async function (id, result) {
-    await db.getConnection((err, db) => {
+    await db.getConnection((err, connection) => {
         if (err) {
             throw err;
         }
+        connection.release();
     });
     var query = `
     SELECT COUNT(student.id) AS totalStudent FROM course, student , teacher WHERE course.id = student.cid 
@@ -114,7 +115,6 @@ Course.getTotalStudent = async function (id, result) {
         if (err) throw err;
         else result(data);
     });
-    db.release();
 }
 
 module.exports = Course;
