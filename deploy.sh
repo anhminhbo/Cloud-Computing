@@ -26,6 +26,7 @@ bash -x deploy_be.sh $BE_LATEST_TAG &
 # bash deploy_fe.sh $FE_LATEST_TAG &
 # bash deploy_be.sh $BE_LATEST_TAG &
 
+# Wait for all background processes to finish before continuing
 wait
 
 echo "Deploy completed."
