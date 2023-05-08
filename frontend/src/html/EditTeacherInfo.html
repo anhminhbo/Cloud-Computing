@@ -323,5 +323,29 @@
 
     <!-- Place this tag in your head or just before your close body tag. -->
 
+    <script>
+      var target = document.getElementById('student-form');
+      target.addEventListener("submit", (event) => {
+          event.preventDefault();
+          var id = document.getElementById('id').value;
+          var lastName = document.getElementById('lname').value;
+          var firstName = document.getElementById('fname').value;
+          console.log(lastName + ' ' + firstName + ' ' + id);
+          fetch(`https://student-management.be.bug-fix-squad.com/student/update/${id}`, {
+              method: "PUT",
+              body: JSON.stringify({
+                 lname : lastName,
+                 fname : firstName,
+              }),
+              headers: {
+                'Content-type':'application/json; charset=UTF-8',
+              },
+          })
+          .then(response => {
+              console.log(response.json())
+          })
+          .catch(err => console.log(err))
+        });
+  </script>
   </body>
 </html>

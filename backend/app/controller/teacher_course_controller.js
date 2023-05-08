@@ -1,7 +1,8 @@
 var TeacherCourse = require('../models/teacher_course_model');
 
 function getTeacherCourseById(req, res) {
-    TeacherCourse.getTeacherCourseById(req.params.id, function (data) {
+    var id = req.params.id;
+    TeacherCourse.getTeacherCourseById(id, function (data) {
         res.send({result : data});
     });
 }
