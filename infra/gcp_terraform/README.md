@@ -15,3 +15,9 @@ gcloud init
 ```
 cloud auth application-default login
 ```
+
+- To output service account key
+
+```
+terraform output kubernetes-service-account-secret-key
+```

@@ -4,6 +4,11 @@ resource "google_service_account" "kubernetes" {
   display_name = "kubernetes-admin"
 }
 
+resource "google_service_account_key" "my_key" {
+  service_account_id = google_service_account.kubernetes.email
+  private_key_type   = "TYPE_PKCS12_FILE"
+}
+
 ### Binding Service Account with IAM
 resource "google_project_iam_binding" "sa_binding_monitor" {
   project = var.project
