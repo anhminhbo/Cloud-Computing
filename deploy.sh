@@ -22,5 +22,5 @@ FE_LATEST_TAG=$(aws ecr-public describe-images --repository-name $FE_ECR_REPO_NA
 bash -x deploy_fe.sh $FE_LATEST_TAG &
 bash -x deploy_be.sh $BE_LATEST_TAG
 
-
+wait
 echo "Deploy completed."
