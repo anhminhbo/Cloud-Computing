@@ -223,7 +223,7 @@
           <div class="content-wrapper">
             <!-- Content -->
 
-            <div class="container-xxl flex-grow-1 container-p-y">
+            <div class="container-xxl flex-grow-1 container-p-y" id="target-div">
               <h4 class="fw-bold py-3 mb-4"><span class="text-muted fw-light"> /</span> Courses</h4>
 
               <div class="row mb-5">
@@ -386,5 +386,72 @@
 
     <!-- Place this tag in your head or just before your close body tag. -->
 
+    <script>
+      fetch('https://student-management.be.bug-fix-squad.com/teacher_course/teacher/2', {
+        method: 'GET',
+      })
+      .then(response => {
+        return response.json();
+      })
+      .then(data => {
+          data = data.result;
+          var target = document.getElementById('target-div');
+          target.innerHTML = '';
+          var totalStudent = 0;
+          data.forEach((json) => {
+            var totalStudent = 0;
+            var teacherName = '';
+            var courseName = '';
+            console.log(json);
+            
+              fetch(`https://student-management.be.bug-fix-squad.com/course/${json.cid}`)
+              .then(res => {
+                return res.json();
+              })
+              .then(course => {
+                course = course.result[0];
+                courseName = course.cname;
+                console.log(courseName);
+                fetch(`https://student-management.be.bug-fix-squad.com/teacher/${json.tid}`)
+                .then(res => {
+                  return res.json();
+                })
+                .then(teacher => {
+                    teacher = teacher.result[0];
+                    teacherName = teacher.fname + ' ' + teacher.lname;
+                    console.log(teacherName);
+                    fetch(`https://student-management.be.bug-fix-squad.com/course/${json.cid}/count/student`)
+                    .then(res => {
+                      return res.json();
+                    })
+                    .then(course => {
+                      course = course.result[0];
+                      totalStudent = course.totalStudent;
+                      var element = `
+                      <div class="row mb-5">
+                        <div class="col-md-6 col-lg-4 mb-3">
+                          <div class="card h-80">
+                            <div class="card-body">
+                              <span class="badge bg-primary">Economic</span>
+                              <span class="badge bg-info">Finance</span>
+                              <h5 class="card-title">${courseName}</h5>
+                              <p class="card-text"> Number of Student: ${totalStudent}</p>
+                              <div class = "card text-end mb-3">   
+                                  <button onclick = "document.location='Attendance.html'" type="button" class="btn btn-outline-dark">Check Attendance</button> 
+                              </div>
+                              </div>
+                          </div>
+                        </div>`;
+                      target.innerHTML += element
+                    })
+                    .catch(error => console.log(error))
+                })
+                .catch(error => console.log(error))
+              })
+              .catch(error => console.log(error))
+        })
+      })
+      .catch(error => console.log(error))
+    </script>
   </body>
 </html>

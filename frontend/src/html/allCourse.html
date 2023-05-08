@@ -422,51 +422,45 @@
                 course = course.result[0];
                 courseName = course.cname;
                 console.log(courseName);
-              })
-              .catch(error => console.log(error))
-
-              
-              fetch(`https://student-management.be.bug-fix-squad.com/teacher/${json.tid}`)
-              .then(res => {
-                return res.json();
-              })
-              .then(teacher => {
-                  teacher = teacher.result[0];
-                  teacherName = teacher.fname + ' ' + teacher.lname;
-              })
-              .catch(error => console.log(error))
-
-
-              fetch(`https://student-management.be.bug-fix-squad.com/course/${json.cid}/count/student`)
+                fetch(`https://student-management.be.bug-fix-squad.com/teacher/${json.tid}`)
                 .then(res => {
                   return res.json();
                 })
-                .then(course => {
-                  course = course.result[0];
-                  totalStudent = course.totalStudent;
-                  var element = `                
-                      <div class="col-md-6 col-lg-4 mb-3">
-                        <div class="card h-80">
-                          <div class="card-body">
-                            <span class="badge bg-primary">Economic</span>
-                            <span class="badge bg-info">Finance</span>
-        
-                            <h5 class="card-title">${courseName}</h5>
-                          
-                            <p class="card-text"> Number of Student: ${totalStudent}</p>
-                            <p class="card-text"> Teacher: ${teacherName}</p>
-                            <div class = "card text-end mb-3">   
-                              <button onclick = "document.location='assignTeacher.html'" type="button" class="btn btn-outline-dark">Assign/Reassign a teacher to this course</button>
-                            </div>
-                            </div>
-                        </div>
-                      </div>`;
-                  target.innerHTML += element
+                .then(teacher => {
+                    teacher = teacher.result[0];
+                    teacherName = teacher.fname + ' ' + teacher.lname;
+                    fetch(`https://student-management.be.bug-fix-squad.com/course/${json.cid}/count/student`)
+                      .then(res => {
+                        return res.json();
+                      })
+                      .then(course => {
+                        course = course.result[0];
+                        totalStudent = course.totalStudent;
+                        var element = `                
+                            <div class="col-md-6 col-lg-4 mb-3">
+                              <div class="card h-80">
+                                <div class="card-body">
+                                  <span class="badge bg-primary">Economic</span>
+                                  <span class="badge bg-info">Finance</span>
+              
+                                  <h5 class="card-title">${courseName}</h5>
+                                
+                                  <p class="card-text"> Number of Student: ${totalStudent}</p>
+                                  <p class="card-text"> Teacher: ${teacherName}</p>
+                                  <div class = "card text-end mb-3">   
+                                    <button onclick = "document.location='assignTeacher.html'" type="button" class="btn btn-outline-dark">Assign/Reassign a teacher to this course</button>
+                                  </div>
+                                  </div>
+                              </div>
+                            </div>`;
+                        target.innerHTML += element
+                      })
+                      .catch(error => console.log(error))
                 })
                 .catch(error => console.log(error))
-
+              })
+              .catch(error => console.log(error))
         })
-
       })
       .catch(error => console.log(error))
 

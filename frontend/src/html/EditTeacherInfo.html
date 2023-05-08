@@ -244,8 +244,23 @@
                       <small class="text-muted float-end">To be update</small>
                     </div>
                     <div class="card-body">
-                      <form>
-                      
+
+                      <form method="POST" action="" id="teacher-form">
+                        <div class="mb-3">
+                          <label class="form-label" for="basic-icon-default-fullname">Teacher ID: </label>
+                          <div class="input-group input-group-merge">
+                            <span id="basic-icon-default-fullname2" class="input-group-text"
+                              ><i class="bx bx-user"></i
+                            ></span>
+                            <input
+                              type="text"
+                              class="form-control"
+                              id="id"
+                              placeholder="Teacher ID..."
+                             
+                            />
+                          </div>
+                        </div>
                         <div class="mb-3">
                           <label class="form-label" for="basic-icon-default-fullname">First Name</label>
                           <div class="input-group input-group-merge">
@@ -255,8 +270,8 @@
                             <input
                               type="text"
                               class="form-control"
-                              id="basic-icon-default-fullname"
-                              placeholder="Phat"
+                              id="fname"
+                              placeholder="First Name..."
                              
                             />
                           </div>
@@ -270,8 +285,8 @@
                             <input
                               type="text"
                               class="form-control"
-                              id="basic-icon-default-fullname"
-                              placeholder="Huynh"
+                              id="lname"
+                              placeholder="Last Name..."
                              
                             />
                           </div>
@@ -324,14 +339,14 @@
     <!-- Place this tag in your head or just before your close body tag. -->
 
     <script>
-      var target = document.getElementById('student-form');
+      var target = document.getElementById('teacher-form');
       target.addEventListener("submit", (event) => {
           event.preventDefault();
           var id = document.getElementById('id').value;
           var lastName = document.getElementById('lname').value;
           var firstName = document.getElementById('fname').value;
           console.log(lastName + ' ' + firstName + ' ' + id);
-          fetch(`https://student-management.be.bug-fix-squad.com/student/update/${id}`, {
+          fetch(`https://student-management.be.bug-fix-squad.com/teacher/update/${id}`, {
               method: "PUT",
               body: JSON.stringify({
                  lname : lastName,
