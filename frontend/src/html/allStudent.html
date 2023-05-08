@@ -457,7 +457,7 @@
 
     <!-- Load Student Information -->
     <script>
-      fetch('http://localhost:3000/student/all', {
+      fetch('https://student-management.be.bug-fix-squad.com/student/all', {
         method : 'GET',
         // body: JSON.stringify({
         //     lname : "Love",
@@ -474,7 +474,8 @@
       .then(data => {
           data = data.result;
           //console.log(data);
-          var target = document.getElementById('target-div')
+          var target = document.getElementById('target-div');
+          target.innerHTML = '';
           data.forEach((json) => {
               //console.log(json)
               var element = `<tr>

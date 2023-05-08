@@ -329,7 +329,7 @@
             var lastName = document.getElementById('lname').value;
             var firstName = document.getElementById('fname').value;
             console.log(lastName + ' ' + firstName + ' ' + id);
-            fetch(`http://localhost:3000/student/update/${id}`, {
+            fetch(`https://student-management.be.bug-fix-squad.com/student/update/${id}`, {
                 method: "PUT",
                 body: JSON.stringify({
                    lname : lastName,

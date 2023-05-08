@@ -462,7 +462,7 @@
           var target = document.getElementById('target-div');
           target.innerHTML = '';
           var date = document.getElementById('date-input').value;
-          fetch(`http://localhost:3000/attendance/all/date`, {
+          fetch(`https://student-management.be.bug-fix-squad.com/attendance/all/date`, {
               method : "POST",
               body: JSON.stringify({
                   "date": `${date}`,
@@ -476,7 +476,7 @@
               data = data.result[0];
               var sid = data.sid;
               var present = (data.present == 1) ? 'checked' : ''
-              fetch(`http://localhost:3000/student/${sid}`, {
+              fetch(`https://student-management.be.bug-fix-squad.com/student/${sid}`, {
                   method: "GET"
               })
               .then(res => res.json())
