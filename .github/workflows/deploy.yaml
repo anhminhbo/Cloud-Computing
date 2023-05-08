@@ -7,7 +7,7 @@ on:
 
 jobs:
   build-deploy:
-    name: Build and deploy application to EKS
+    name: Build and deploy application to Kubernetes
     runs-on: ubuntu-latest
     steps:
       - name: Check out the repo
