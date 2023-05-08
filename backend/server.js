@@ -28,6 +28,16 @@ app.use('/course', course_router);
 const attendance_router = require('./app/routes/attendance_route');
 app.use('/attendance', attendance_router);
 
+
+// Teacher Course Router
+const teacher_course_router = require('./app/routes/teacher_course_route');
+app.use('/teacher_course', teacher_course_router);
+
+// Student Course Router
+const student_course_router = require('./app/routes/student_course_route');
+app.use('/student_course', student_course_router);
+
+
 app.listen(port, () => {
     console.log('App is listening on port: ' + port);
 });
