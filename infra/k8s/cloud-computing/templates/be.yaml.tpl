@@ -15,7 +15,7 @@ spec:
         app: be
     spec:
       containers:
-        - image: public.ecr.aws/y4r3b5d9/cloud-computing/be:v0.0.3
+        - image: public.ecr.aws/y4r3b5d9/cloud-computing/be:[[BE_TAG]]
           name: be
 
           envFrom:
