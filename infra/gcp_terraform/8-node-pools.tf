@@ -29,7 +29,7 @@ resource "google_project_iam_binding" "sa_binding_log" {
 
 resource "google_project_iam_binding" "grant_gke_permission" {
   project = var.project
-  role    = "roles/container.clusterViewer"
+  role    = "roles/container.admin"
 
   members = [
     "serviceAccount:${google_service_account.kubernetes.email}"
