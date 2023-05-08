@@ -14,7 +14,7 @@ Course.getAllCourse = async function (result) {
         }
         connection.release();
     });
-    var query = 'SELECT * FROM course';
+    var query = 'SELECT * FROM course ORDER BY course.id ASC';
     db.query(query, (err, data) => {
         if (err) throw err;
         else result(data);
@@ -43,9 +43,7 @@ Course.addCourse = async function (data, result) {
         connection.release();
     });
     var cname = data.cname;
-    var sid = data.sid;
-    var tid = data.tid;
-    var query = `INSERT INTO course (cname,sid,tid) VALUES ('${cname}','${sid}',${tid});`;
+    var query = `INSERT INTO course (cname) VALUES ('${cname}');`;
     db.query(query, (err, data) => {
         if (err) throw err;
         else result(data);
@@ -74,9 +72,7 @@ Course.updateCourse = async function (id, data, result) {
         connection.release();
     });
     var cname = data.cname;
-    var sid = data.sid;
-    var tid = data.tid;
-    var query = `UPDATE course SET course.cname = '${cname}', course.sid = '${sid}', course.tid = ${tid} WHERE course.id = ${id};`;
+    var query = `UPDATE course SET course.cname = '${cname}' WHERE course.id = ${id};`;
     db.query(query, (err,data) => {
         if (err) throw err;
         else result(data);
@@ -91,9 +87,7 @@ Course.updateCourse = async function (id, data, result) {
         connection.release();
     });
     var cname = data.cname;
-    var sid = data.sid;
-    var tid = data.tid;
-    var query = `UPDATE course SET course.cname = '${cname}', course.sid = '${sid}', course.tid = ${tid} WHERE course.id = ${id};`;
+    var query = `UPDATE course SET course.cname = '${cname}' WHERE course.id = ${id};`;
     db.query(query, (err,data) => {
         if (err) throw err;
         else result(data);
@@ -108,8 +102,9 @@ Course.getTotalStudent = async function (id, result) {
         connection.release();
     });
     var query = `
-    SELECT COUNT(student.id) AS totalStudent FROM course, student , teacher WHERE course.id = student.cid 
-    AND teacher.id = course.tid AND course.id = ${id};
+    SELECT COUNT(sc.sid) AS totalStudent 
+    FROM student_course as sc, course
+    WHERE sc.cid = course.id AND course.id = ${id};
     `;
     db.query(query, (err,data) => {
         if (err) throw err;

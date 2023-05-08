@@ -14,11 +14,12 @@ Teacher.getAllTeacher = async function (result) {
         }
         connection.release();
     });
-    var query = 'SELECT * FROM teacher';
+    var query = 'SELECT * FROM teacher ORDER BY teacher.id ASC';
     db.query(query, (err, data) => {
         if (err) throw err;
         else result(data);
     });
+
 }
 
 Teacher.getTeacherById = async function (id, result) {
@@ -44,8 +45,7 @@ Teacher.addTeacher = async function (data, result) {
     });
     var lname = data.lname;
     var fname = data.fname;
-    var cid = data.cid;
-    var query = `INSERT INTO teacher (fname,lname,cid) VALUES ('${lname}','${fname}',${cid});`;
+    var query = `INSERT INTO teacher (fname,lname) VALUES ('${lname}','${fname}');`;
     db.query(query, (err, data) => {
         if (err) throw err;
         else result(data);
@@ -75,7 +75,6 @@ Teacher.updateTeacher = async function (id, data, result) {
     });
     var lname = data.lname;
     var fname = data.fname;
-    var cid = data.cid;
     var query = `UPDATE teacher SET teacher.lname = '${lname}', teacher.fname = '${fname}' WHERE teacher.id = ${id};`;
     db.query(query, (err,data) => {
         if (err) throw err;

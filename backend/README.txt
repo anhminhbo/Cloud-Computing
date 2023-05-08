@@ -8,12 +8,10 @@ Step 4: run "npm install express --save"
 Step 5: run "npm i --save body-parser" or run "npm install body-parser --save"
 Step 6: run "npm install mysql@latest"
 Step 7: run "npm install nodemon - g"
-Step 7: Navigate to "server.js" directory  
+Step 7: Navigate to "backend" directory  
 Step 8: Run "npm run start" or "node server.js", first version is preferred
 
 There you go, the server is ready and waiting for requests
-
-
 Routing path:
 
 Main url starts with :/, specifically https:/..../url/

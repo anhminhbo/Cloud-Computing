@@ -14,7 +14,7 @@ Student.getAllStudent = async function (result) {
         }
         connection.release();
     });
-    var query = 'SELECT * FROM student';
+    var query = 'SELECT * FROM student ORDER BY student.id ASC';
     db.query(query, (err, data) => {
         if (err) throw err;
         else result(data);
@@ -44,8 +44,7 @@ Student.addStudent = async function (data, result) {
     });
     var lname = data.lname;
     var fname = data.fname;
-    var cid = data.cid;
-    var query = `INSERT INTO student (fname,lname,cid) VALUES ('${lname}','${fname}',${cid});`;
+    var query = `INSERT INTO student (fname,lname) VALUES ('${lname}','${fname}');`;
     db.query(query, (err, data) => {
         if (err) throw err;
         else result(data);
@@ -75,13 +74,7 @@ Student.updateStudent = async function (id, data, result) {
     });
     var lname = data.lname;
     var fname = data.fname;
-    var cid = data.cid;
-    if (cid == null) {
-        var query = `UPDATE student SET student.lname = '${lname}', student.fname = '${fname}' WHERE student.id = ${id};`;   
-    }
-    else {
-        var query = `UPDATE student SET student.lname = '${lname}', student.fname = '${fname}', student.cid = ${cid} WHERE student.id = ${id};`;
-    }
+    var query = `UPDATE student SET student.lname = '${lname}', student.fname = '${fname}' WHERE student.id = ${id};`;   
     db.query(query, (err,data) => {
         if (err) throw err;
         else result(data);
