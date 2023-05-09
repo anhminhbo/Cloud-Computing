@@ -244,7 +244,7 @@
               <div class="mb-3 row" >
                 <label for="html5-date-input" class="col-md-2 col-form-label">Date</label>
                 <div class="col-md-10">
-                  <input class="form-control" type="date" value="" id="date-input" onchange="getDate();" />
+                  <input class="form-control" type="date" id="date-input" onload="getCurrentDate()" onchange="getDate()" />
                 </div>
               </div>
               <!-- Hoverable Table rows -->
