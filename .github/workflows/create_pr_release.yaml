@@ -53,6 +53,7 @@ jobs:
         if: "!steps.check.outputs.skip"
         uses: peter-evans/create-pull-request@v5
         with:
+          token: ${{ secrets.PAT }}
           commit-message: Create pr to release
           title: 'Auto PR to release'
           body: >
