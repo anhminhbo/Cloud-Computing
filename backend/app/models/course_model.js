@@ -10,13 +10,13 @@ const Course = function(course) {
 Course.getAllCourse = async function (result) {
     await db.getConnection((err, connection) => {
         if (err) {
-            throw err;
+            console.log(err);
         }
         connection.release();
     });
     var query = 'SELECT * FROM course ORDER BY course.id ASC';
     db.query(query, (err, data) => {
-        if (err) throw err;
+        if (err) console.log(err);
         else result(data);
     });
 }
@@ -24,13 +24,13 @@ Course.getAllCourse = async function (result) {
 Course.getCourseById = async function (id, result) {
     await db.getConnection((err, connection) => {
         if (err) {
-            throw err;
+            console.log(err);
         }
         connection.release();
     });
     var query = `SELECT * FROM course WHERE course.id = ${id}`;
     db.query(query, (err, data) => {
-        if (err) throw err;
+        if (err) console.log(err);
         else result(data);
     });
 }
@@ -38,14 +38,14 @@ Course.getCourseById = async function (id, result) {
 Course.addCourse = async function (data, result) {
     await db.getConnection((err, connection) => {
         if (err) {
-            throw err;
+            console.log(err);
         }
         connection.release();
     });
     var cname = data.cname;
     var query = `INSERT INTO course (cname) VALUES ('${cname}');`;
     db.query(query, (err, data) => {
-        if (err) throw err;
+        if (err) console.log(err);
         else result(data);
     });
 }
@@ -53,13 +53,13 @@ Course.addCourse = async function (data, result) {
 Course.deleteCourse = async function (id, result) {
     await db.getConnection((err, connection) => {
         if (err) {
-            throw err;
+            console.log(err);
         }
         connection.release();
     });
     var query = `DELETE FROM course WHERE course.id = ${id}`;
     db.query(query, (err,data) => {
-        if (err) throw err;
+        if (err) console.log(err);
         else result(data);
     });
 }
@@ -67,14 +67,14 @@ Course.deleteCourse = async function (id, result) {
 Course.updateCourse = async function (id, data, result) {
     await db.getConnection((err, connection) => {
         if (err) {
-            throw err;
+            console.log(err);
         }
         connection.release();
     });
     var cname = data.cname;
     var query = `UPDATE course SET course.cname = '${cname}' WHERE course.id = ${id};`;
     db.query(query, (err,data) => {
-        if (err) throw err;
+        if (err) console.log(err);
         else result(data);
     });
 }
@@ -82,14 +82,14 @@ Course.updateCourse = async function (id, data, result) {
 Course.updateCourse = async function (id, data, result) {
     await db.getConnection((err, connection) => {
         if (err) {
-            throw err;
+            console.log(err);
         }
         connection.release();
     });
     var cname = data.cname;
     var query = `UPDATE course SET course.cname = '${cname}' WHERE course.id = ${id};`;
     db.query(query, (err,data) => {
-        if (err) throw err;
+        if (err) console.log(err);
         else result(data);
     });
 }
@@ -97,7 +97,7 @@ Course.updateCourse = async function (id, data, result) {
 Course.getTotalStudent = async function (id, result) {
     await db.getConnection((err, connection) => {
         if (err) {
-            throw err;
+            console.log(err);
         }
         connection.release();
     });
@@ -107,7 +107,7 @@ Course.getTotalStudent = async function (id, result) {
     WHERE sc.cid = course.id AND course.id = ${id};
     `;
     db.query(query, (err,data) => {
-        if (err) throw err;
+        if (err) console.log(err);
         else result(data);
     });
 }

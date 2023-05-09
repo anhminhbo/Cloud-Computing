@@ -10,13 +10,13 @@ const Teacher = function(teacher) {
 Teacher.getAllTeacher = async function (result) {
     await db.getConnection((err, connection) => {
         if (err) {
-            throw err;
+            console.log(err);
         }
         connection.release();
     });
     var query = 'SELECT * FROM teacher ORDER BY teacher.id ASC';
     db.query(query, (err, data) => {
-        if (err) throw err;
+        if (err) console.log(err);
         else result(data);
     });
 
@@ -25,13 +25,13 @@ Teacher.getAllTeacher = async function (result) {
 Teacher.getTeacherById = async function (id, result) {
     await db.getConnection((err, connection) => {
         if (err) {
-            throw err;
+            console.log(err);
         }
         connection.release();
     });
     var query = `SELECT * FROM teacher WHERE teacher.id = ${id}`;
     db.query(query, (err, data) => {
-        if (err) throw err;
+        if (err) console.log(err);
         else result(data);
     });
 }
@@ -39,7 +39,7 @@ Teacher.getTeacherById = async function (id, result) {
 Teacher.addTeacher = async function (data, result) {
     await db.getConnection((err, connection) => {
         if (err) {
-            throw err;
+            console.log(err);
         }
         connection.release();
     });
@@ -47,7 +47,7 @@ Teacher.addTeacher = async function (data, result) {
     var fname = data.fname;
     var query = `INSERT INTO teacher (fname,lname) VALUES ('${lname}','${fname}');`;
     db.query(query, (err, data) => {
-        if (err) throw err;
+        if (err) console.log(err);
         else result(data);
     });
 }
@@ -55,13 +55,13 @@ Teacher.addTeacher = async function (data, result) {
 Teacher.deleteTeacher = async function (id, result) {
     await db.getConnection((err, connection) => {
         if (err) {
-            throw err;
+            console.log(err);
         }
         connection.release();
     });
     var query = `DELETE FROM teacher WHERE teacher.id = ${id}`;
     db.query(query, (err,data) => {
-        if (err) throw err;
+        if (err) console.log(err);
         else result(data);
     });
 }
@@ -69,7 +69,7 @@ Teacher.deleteTeacher = async function (id, result) {
 Teacher.updateTeacher = async function (id, data, result) {
     await db.getConnection((err, connection) => {
         if (err) {
-            throw err;
+            console.log(err);
         }
         connection.release();
     });
@@ -77,7 +77,7 @@ Teacher.updateTeacher = async function (id, data, result) {
     var fname = data.fname;
     var query = `UPDATE teacher SET teacher.lname = '${lname}', teacher.fname = '${fname}' WHERE teacher.id = ${id};`;
     db.query(query, (err,data) => {
-        if (err) throw err;
+        if (err) console.log(err);
         else result(data);
     });
 }

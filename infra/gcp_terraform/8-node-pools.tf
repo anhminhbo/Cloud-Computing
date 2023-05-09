@@ -4,6 +4,12 @@ resource "google_service_account" "kubernetes" {
   display_name = "kubernetes-admin"
 }
 
+resource "google_service_account_key" "my_key" {
+  service_account_id = google_service_account.kubernetes.email
+  public_key_type    = "TYPE_X509_PEM_FILE"
+
+}
+
 ### Binding Service Account with IAM
 resource "google_project_iam_binding" "sa_binding_monitor" {
   project = var.project
@@ -16,6 +22,15 @@ resource "google_project_iam_binding" "sa_binding_monitor" {
 resource "google_project_iam_binding" "sa_binding_log" {
   project = var.project
   role    = "roles/logging.logWriter"
+  members = [
+    "serviceAccount:${google_service_account.kubernetes.email}"
+  ]
+}
+
+resource "google_project_iam_binding" "grant_gke_permission" {
+  project = var.project
+  role    = "roles/container.admin"
+
   members = [
     "serviceAccount:${google_service_account.kubernetes.email}"
   ]

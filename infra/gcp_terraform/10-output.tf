@@ -14,3 +14,8 @@ output "kubernetes-nat-public-ip" {
 output "kubernetes-service-account-email" {
   value = google_service_account.kubernetes.email
 }
+
+output "kubernetes-service-account-secret-key" {
+  value     = google_service_account_key.my_key.private_key
+  sensitive = true
+}

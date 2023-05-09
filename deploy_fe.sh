@@ -26,3 +26,5 @@ cat $TEMPLATE_DIR/fe.yaml.tpl | \
     > $DEPLOY_DIR/fe.yaml
 
 kubectl apply -f $DEPLOY_DIR/fe.yaml
+
+cd $ROOT_DIR

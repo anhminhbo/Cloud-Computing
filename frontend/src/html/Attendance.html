@@ -350,6 +350,34 @@
     <!-- Page JS -->
 
     <script>
+      function getCurrentDate() {
+          let date = new Date();
+          let year = date.getFullYear();
+          let month = '';
+          let day = '';
+
+          if (date.getDate() + 1 < 10) {
+              day = '0' + date.getDate();
+          }
+          else {
+              day = date.getDate();
+          }
+
+          if (date.getMonth() + 1 < 10) {
+              month = '0' + (date.getMonth() + 1);
+          }
+          else {
+              month = (date.getMonth() + 1);
+          }
+
+          let today = year + '-' + month + '-' + day;
+          let target = document.getElementById('date-input');
+          target.value = today;
+          console.log(target.value);
+      }
+      getCurrentDate();
+
+      
       function getDate() {
           var target = document.getElementById('target-div');
           target.innerHTML = '';
@@ -366,7 +394,11 @@
           .then(response => response.json())
           .then(data => {
               data = data.result[0];
+              console.log(data);
               var sid = data.sid;
+              if (data.sid == undefined) {
+                  return;
+              }
               var present = (data.present == 1) ? 'checked' : ''
               fetch(`https://student-management.be.bug-fix-squad.com/student/${sid}`, {
                   method: "GET"
