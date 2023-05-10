@@ -133,7 +133,7 @@ Attendance.getTeacherCourseStudentAttendanceByDate = async function (data, resul
     var tid = data.tid;
     var cid = data.cid;
     var query = `    
-    SELECT COUNT(attendance.present) AS totalPresent
+    SELECT COUNT(attendance.present) AS totalPresentStudent
     FROM attendance, teacher_course AS tc, student_course AS sc
     WHERE attendance.days = ${date} AND attendance.present = 1 AND sc.id = attendance.sid AND attendance.tid = tc.id AND sc.cid = tc.cid 
     AND tc.id = ${tid} AND tc.cid = ${cid};
