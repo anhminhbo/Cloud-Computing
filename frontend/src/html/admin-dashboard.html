@@ -203,9 +203,25 @@
               <ul class="navbar-nav flex-row align-items-center ms-auto">
 
                 <li class="nav-item lh-1 me-3">
-                  <button type="button" class="btn btn-icon btn-secondary">
-                    <span class="tf-icons bx bx-bell"></span>
-                  </button>
+                 
+                  <div class="dropdown">
+                    <button
+                    class="btn btn-icon btn-secondary tf-icons bx bx-bell"
+                      type="button"
+                      id="cardOpt3"
+                      data-bs-toggle="dropdown"
+                      aria-haspopup="true"
+                      aria-expanded="false"
+                    >
+                     
+                    </button>
+                    <div class="dropdown-menu dropdown-menu-end" aria-labelledby="cardOpt3">
+                      <a class="dropdown-item" href="admin-dashboard.html">Hello, have you check your dashboard today?</a>
+              
+                    </div>
+                  </div>
+                  <span class=""></span>
+                </button>
                 </li>
  
                
@@ -352,10 +368,10 @@
                     </div>
                   </div>
                 </div>
-                <div class="col-12 col-lg-8 order-2 order-md-3 order-lg-2 mb-4">
+                <div class="col-12 col-lg-8 ">
                   <div class="card">
-                    <div class="row row-bordered g-0">
-                      <div class="col-md-8">
+                    <div class="">
+                      <div class="">
                         <h5 class="card-header">Display the courses, number of students and their teacher</h5>
                 <div class="table-responsive text-nowrap">
                   <table class="table " >
@@ -395,107 +411,7 @@
                   </table>
                 </div>
               </div>
-              <div class="col-md-4">
-                <div class="card-body">
-                  <div class="text-center">
-                    <div class="dropdown">
-                      <button
-                        class="btn btn-sm btn-outline-primary dropdown-toggle"
-                        type="button"
-                        id="growthReportId"
-                        data-bs-toggle="dropdown"
-                        aria-haspopup="true"
-                        aria-expanded="false"
-                      >
-                        April
-                      </button>
-                      <div class="dropdown-menu dropdown-menu-end" aria-labelledby="growthReportId">
-                        <a class="dropdown-item" href="javascript:void(0);">May</a>
-                        <a class="dropdown-item" href="javascript:void(0);">June</a>
-                      </div>
-                    </div>
-                    
-                    <div class="d-flex">
-                      <h7 class="card-header m-0 me-2 pb-3 fw-semibold" >ID: ii</h7>
-                      <h7 class="card-header m-0 me-2 pb-3 fw-semibold">Name: ai</h7>
-                    </div>
-                  </div>
-                </div>
-                       
-                        <div class="d-flex px-xxl-4 px-lg-2 p-4 gap-xxl-3 gap-lg-1 gap-3 justify-content-between">
-                          
-                          <div class="d-flex">
-                            
-                            <h5 class="card-header m-0 me-2 pb-3">Display the teacher who has the most absent student (no matter the course) each week</h5>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <!--/ Total Revenue -->
-                <div class="col-12 col-md-8 col-lg-4 order-3 order-md-2">
-                  <div class="row">
-                    <div class="col-6 mb-4">
-                      <div class="card">
-                        <div class="card-body">
-                          <div class="card-title d-flex align-items-start justify-content-between">
-                            <div class="avatar flex-shrink-0">
-                              <img src="../assets/img/icons/unicons/paypal.png" alt="Credit Card" class="rounded" />
-                            </div>
-                            <div class="dropdown">
-                              <button
-                                class="btn p-0"
-                                type="button"
-                                id="cardOpt4"
-                                data-bs-toggle="dropdown"
-                                aria-haspopup="true"
-                                aria-expanded="false"
-                              >
-                                <i class="bx bx-dots-vertical-rounded"></i>
-                              </button>
-                              <div class="dropdown-menu dropdown-menu-end" aria-labelledby="cardOpt4">
-                                <a class="dropdown-item" href="javascript:void(0);">View More</a>
-                                <a class="dropdown-item" href="javascript:void(0);">Delete</a>
-                              </div>
-                            </div>
-                          </div>
-                          <span class="d-block mb-1">Display Teacher who has the least amount of classes</span>
-                          <h3 class="card-title text-nowrap mb-2">Mr. B</h3>
-                          <small class="text fw-semibold">0 classes</small>
-                        </div>
-                      </div>
-                    </div>
-                    <div class="col-6 mb-4">
-                      <div class="card">
-                        <div class="card-body">
-                          <div class="card-title d-flex align-items-start justify-content-between">
-                            <div class="avatar flex-shrink-0">
-                              <img src="../assets/img/icons/unicons/cc-primary.png" alt="Credit Card" class="rounded" />
-                            </div>
-                            <div class="dropdown">
-                              <button
-                                class="btn p-0"
-                                type="button"
-                                id="cardOpt1"
-                                data-bs-toggle="dropdown"
-                                aria-haspopup="true"
-                                aria-expanded="false"
-                              >
-                                <i class="bx bx-dots-vertical-rounded"></i>
-                              </button>
-                              <div class="dropdown-menu" aria-labelledby="cardOpt1">
-                                <a class="dropdown-item" href="javascript:void(0);">View More</a>
-                                <a class="dropdown-item" href="javascript:void(0);">Delete</a>
-                              </div>
-                            </div>
-                          </div>
-                          <span class="fw-semibold d-block mb-1">Display course with the highest amount of students</span>
-                          <h3 class="card-title mb-2">Course G</h3>
-                          <small class="text fw-semibold">40 students</small>
-                        </div>
-                      </div>
-                    </div>
+              
                 
                    </div>
             <!-- / Content -->
