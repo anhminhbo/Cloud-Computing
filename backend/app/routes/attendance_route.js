@@ -12,6 +12,7 @@ router.post('/student/:id/month', attendanceController.getStudentAttendanceByMon
 router.post('/all/date', attendanceController.getAttendanceByDate);
 router.post('/all/month', attendanceController.getAttendanceByMonth);
 router.post('/teacher_course/present', attendanceController.getTeacherCourseStudentAttendanceByDate);
+router.post('/teacher_course/absent', attendanceController.getTeacherCourseStudentAbsentByDate);
 
 
 module.exports = router;

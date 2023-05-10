@@ -135,7 +135,8 @@ Attendance.getTeacherCourseStudentAttendanceByDate = async function (data, resul
     var query = `    
     SELECT COUNT(attendance.present) AS totalPresentStudent
     FROM attendance, teacher_course AS tc, student_course AS sc
-    WHERE attendance.days = ${date} AND attendance.present = 1 AND sc.id = attendance.sid AND attendance.tid = tc.id AND sc.cid = tc.cid 
+    WHERE attendance.days = "${date}" AND attendance.present = 1 AND sc.id = attendance.sid 
+    AND attendance.tid = tc.id AND sc.cid = tc.cid 
     AND tc.id = ${tid} AND tc.cid = ${cid};
     `;
     console.log(query);
@@ -152,13 +153,21 @@ Attendance.getTeacherCourseStudentAbsentByDate = async function (data, result) {
         }
         connection.release();
     });
-    // var date = data.date;
-    // var sid = data.sid;
-    // var query = `SELECT * FROM attendance, student where student.id = ${sid} AND MONTH(attendance.days) = MONTH(${date});`;
-    // db.query(query, (err, response) => {
-    //     if (err) console.log(err);
-    //     else result(response);
-    // });
+    var date = data.date;
+    var tid = data.tid;
+    var cid = data.cid;
+    var query = `    
+    SELECT COUNT(attendance.present) AS totalPresentStudent
+    FROM attendance, teacher_course AS tc, student_course AS sc
+    WHERE attendance.days = "${date}" AND attendance.present = 0 AND sc.id = attendance.sid 
+    AND attendance.tid = tc.id AND sc.cid = tc.cid 
+    AND tc.id = ${tid} AND tc.cid = ${cid};
+    `;
+    console.log(query);
+    db.query(query, (err, response) => {
+        if (err) console.log(err);
+        else result(response);
+    });
 }
 
 module.exports = Attendance;
