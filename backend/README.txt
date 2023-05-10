@@ -21,8 +21,6 @@ where url stands before all routers
 Expected JSON format:
 {
     "cname": not null unique
-    "sid": nullable,
-    "tid": nullable
 }
 
 url/course/all: Get Method, get all courses
@@ -37,7 +35,6 @@ Expected JSON format:
 {
     "lname": not null,
     "fname": not null,
-    "cid": nullable,
 }
 
 url/student/all: Get Method, get all students
@@ -52,7 +49,6 @@ Expected JSON format:
 {
     "lname": not null,
     "fname": not null,
-    "cid": nullable,
 }
 
 url/teacher/all: Get Method, get all teachers
@@ -86,3 +82,40 @@ url/attendance/student/id/week : POST Method, get all attendances by student ID 
 url/attendance/student/id/month : POST Method, get all attendances by student ID in a specific month
 url/attendance/all/date : POST Method, get all attendances in a specific date
 url/attendance/all/month : POST Method, get all attendances in a specific month
+
+
+***Teacher Course Route***:
+Expected JSON format:
+
+~ POST Method For adding ~
+{
+    "tid" : NOT NULLABLE,
+    "cid" : NOT NULLABLE,
+}
+
+
+url/teacher_course/all: GET Method that returns all teacher course
+url/teacher_course/id: GET Method that returns teacher course with specific id 
+url/teacher_course/course/id: GET Method that returns teacher course with specific cid
+url/teacher_course/teacher/id: GET Method that returns teacher course with specific tid 
+url/teacher_course/add: POST Method that returns an added teacher course with JSON format
+url/teacher_course/teacher/delete: DELETE Method that deletes specific teacher course with specific id cascaded
+url/teacher_course/teacher/update: GET Method that updates teacher course with specific id 
+
+***Student Course Route***:
+Expected JSON format:
+
+~ POST Method For adding ~
+{
+    "sid" : NOT NULLABLE,
+    "cid" : NOT NULLABLE,
+}
+
+
+url/student_course/all: GET Method that returns all student course
+url/student_course/id: GET Method that returns student course with specific id 
+url/student_course/course/id: GET Method that returns student course with specific cid
+url/student_course/student/id: GET Method that returns student course with specific tid 
+url/student_course/add: POST Method that returns an added student course with JSON format
+url/student_course/student/delete: DELETE Method that deletes specific student course with specific id cascaded
+url/student_course/student/update: GET Method that updates student course with specific id 
