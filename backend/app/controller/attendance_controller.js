@@ -49,6 +49,19 @@ function getStudentAttendanceById(req,res) {
         res.send({result: response});
     });
 }
+
+function getTeacherCourseStudentAttendanceByDate(req,res) {
+    Attendance.getTeacherCourseStudentAttendanceByDate(req.body, function(response) {
+        res.send({result: response});
+    });
+}
+
+function getTeacherCourseStudentAbsentByDate(req,res) {
+    Attendance.getTeacherCourseStudentAbsentByDate(req.body, function(response) {
+        res.send({result: response});
+    });
+}
+
 module.exports = {
     addAttendance : addAttendance, 
     getAttendanceByDate : getAttendanceByDate,
@@ -57,4 +70,6 @@ module.exports = {
     getStudentAttendanceByWeek : getStudentAttendanceByWeek,
     getStudentAttendanceByMonth : getStudentAttendanceByMonth,
     getStudentAttendanceById : getStudentAttendanceById,
+    getTeacherCourseStudentAttendanceByDate : getTeacherCourseStudentAttendanceByDate,
+    getTeacherCourseStudentAbsentByDate : getTeacherCourseStudentAbsentByDate
 }

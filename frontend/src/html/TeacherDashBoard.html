@@ -306,8 +306,10 @@
                               </div>
                             </div>
                           </div>
-                          <span class="fw-semibold d-block mb-1">Display the attendance rate of a random course</span>
-                          <h3 class="card-title mb-2">20/25</h3>
+                          <div id="attendance-rate">
+                              <span class="fw-semibold d-block mb-1">Random Course</span>
+                              <h3 class="card-title mb-2">20/25</h3>
+                          </div>
                          
                         </div>
                       </div>
@@ -340,8 +342,10 @@
                               </div>
                             </div>
                           </div>
-                          <span>Display the absent rate of a random course</span>
-                          <h3 class="card-title text-nowrap mb-1">7/13</h3>
+                          <div id="absent-rate">
+                            <span>Random Course</span>
+                            <h3 class="card-title text-nowrap mb-1">7/13</h3>
+                          </div>
                          
                         </div>
                       </div>
@@ -512,6 +516,102 @@
     <script src="../assets/js/dashboards-analytics.js"></script>
 
     <!-- Place this tag in your head or just before your close body tag. -->
+
+    <!-- First query that lists attendance rate of a random course -->
+    <script>
+        //Get today
+        let date = new Date();
+        let year = date.getFullYear();
+        let month = '';
+        let day = '';
+
+        if (date.getDate() + 1 < 10) {
+            day = '0' + date.getDate();
+        }
+        else {
+            day = date.getDate();
+        }
+
+        if (date.getMonth() + 1 < 10) {
+            month = '0' + (date.getMonth() + 1);
+        }
+        else {
+            month = (date.getMonth() + 1);
+        }
+
+        var today = year + '-' + month + '-' + day;
+        var teacherID = localStorage.getItem('teacherID') || 1; 
+        var presentRate = document.getElementById('attendance-rate');
+        var absentRate = document.getElementById('absent-rate');
+        fetch(`https://student-management.be.bug-fix-squad.com/teacher_course/teacher/${teacherID}`, {
+            method : "GET"
+        })
+        .then(response => response.json()) 
+        .then(data => {
+            data = data.result;
+            var random = Math.floor(Math.random() * data.length);
+            var date = "2023-04-01" || today;
+            var courseName = '';
+            data = data[random]; //Choose a random course
+
+            fetch(`https://student-management.be.bug-fix-squad.com/course/${data.cid}`)
+            .then(res => res.json())
+            .then(data => {
+                data = data.result[0];
+                courseName = data.cname;
+                fetch(`https://student-management.be.bug-fix-squad.com/attendance/teacher_course/present`, {
+                    method: "POST",
+                    body: JSON.stringify({
+                       date : `${date}`, //Or today
+                       tid : teacherID,
+                       cid : 1
+                    }),
+                    headers: {
+                      'Content-type':'application/json; charset=UTF-8',
+                    }
+                })
+                .then(res => res.json())
+                .then(json => {
+                  json = json.result[0];
+                  var totalPresentStudent = json.totalPresentStudent;
+                  console.log("Present : " + totalPresentStudent);
+                  fetch(`https://student-management.be.bug-fix-squad.com/attendance/teacher_course/absent`, {
+                      method: "POST",
+                      body: JSON.stringify({
+                        date : `${date}`,
+                        tid : teacherID,
+                        cid : 1
+                      }),
+                      headers: {
+                        'Content-type':'application/json; charset=UTF-8',
+                      }
+                      })
+                      .then(res => res.json())
+                      .then(json => {
+                        json = json.result[0];
+                        var totalAbsentStudent = json.totalAbsentStudent;
+                        var totalStudent = totalPresentStudent + totalAbsentStudent;
+                        var presentElement = `
+                            <span class="fw-semibold d-block mb-1">${courseName}</span>
+                            <h3 class="card-title mb-2">${totalPresentStudent}/${totalStudent}</h3>
+                        `;
+                        presentRate.innerHTML = '';
+                        presentRate.innerHTML += presentElement;
+                        var absentElement = `
+                          <span>${courseName}</span>
+                          <h3 class="card-title text-nowrap mb-1">${totalAbsentStudent}/${totalStudent}</h3>
+                        `;
+                        absentRate.innerHTML = '';
+                        absentRate.innerHTML += absentElement;
+                      })
+                })
+                .catch(err => console.log(err))
+            })
+            .catch(err => console.log(err))
+            
+        })
+        .catch(error => console.log(error))
+    </script>
 
   </body>
 </html>
