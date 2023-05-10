@@ -57,7 +57,7 @@ function getTeacherCourseStudentAttendanceByDate(req,res) {
 }
 
 function getTeacherCourseStudentAbsentByDate(req,res) {
-    Attendance.getTeacherCourseStudentAttendanceByDate(req.body, function(response) {
+    Attendance.getTeacherCourseStudentAbsentByDate(req.body, function(response) {
         res.send({result: response});
     });
 }
