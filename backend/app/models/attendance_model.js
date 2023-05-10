@@ -138,6 +138,7 @@ Attendance.getTeacherCourseStudentAttendanceByDate = async function (data, resul
     WHERE attendance.days = ${date} AND attendance.present = 1 AND sc.id = attendance.sid AND attendance.tid = tc.id AND sc.cid = tc.cid 
     AND tc.id = ${tid} AND tc.cid = ${cid};
     `;
+    console.log(query);
     db.query(query, (err, response) => {
         if (err) console.log(err);
         else result(response);

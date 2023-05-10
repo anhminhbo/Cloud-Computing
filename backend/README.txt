@@ -70,9 +70,13 @@ Expected JSON format:
 }
 
 ~ Other POST Methods~
+url/attendance/student/id/date | url/attendance/student/id/week 
 {
     "date": 'yyyy-mm-dd',
-    "month": 'mm'
+}
+url/attendance/student/id/month 
+{
+    month: "int"
 }
 
 url/attendance/add: POST Method, add new attendance
@@ -83,6 +87,13 @@ url/attendance/student/id/month : POST Method, get all attendances by student ID
 url/attendance/all/date : POST Method, get all attendances in a specific date
 url/attendance/all/month : POST Method, get all attendances in a specific month
 
+url/attendance/teacher_course/present: POST method, get all student attendances of a course of a teacher
+Expected JSON format:
+{
+    date: "",
+    tid: "",
+    cid: ""
+}
 
 ***Teacher Course Route***:
 Expected JSON format:
