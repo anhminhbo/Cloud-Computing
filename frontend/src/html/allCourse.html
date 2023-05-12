@@ -124,15 +124,22 @@
                 </div>
               </div>
               <!-- /Search -->
-              <!-- Bell Notification -->
-                <ul class="navbar-nav flex-row align-items-center ms-auto">
-                  <li class="nav-item">
-                    <button type="button" class="btn btn-icon btn-secondary">
-                      <span class="tf-icons bx bx-bell"></span>
-                    </button>
-                  </li>
-                </ul>
-              <!-- End of Bell Notification -->
+              <ul class="navbar-nav flex-row align-items-center ms-auto">
+                <li class="nav-item">
+                  <button  class="btn btn-icon btn-secondary"
+                  type="button"
+                  data-bs-toggle="tooltip"
+                  data-bs-offset="0,4"
+                  data-bs-placement="bottom"
+                  data-bs-html="true"
+                  title="<span>Hello, have you check today's dashboard?</span>"
+                  onClick="window.location.href='admin-dashboard.html';">  
+                
+                 
+                    <span class="tf-icons bx bx-bell"></span>
+                  </button>
+                </li>
+              </ul>
               <!-- Profile -->
               <div class="navbar-nav align-items-center navbar layout-navbar navbar-detached bg-navbar-theme nav-profile">
                 <div class="nav-item d-flex align-items-center">
