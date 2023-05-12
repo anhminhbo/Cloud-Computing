@@ -3909,6 +3909,8 @@ textarea.form-control-lg {
 }
 
 .card-header {
+  display: flex;
+  justify-content: space-between;
   padding: 1.5rem 1.5rem;
   margin-bottom: 0;
   background-color: transparent;
