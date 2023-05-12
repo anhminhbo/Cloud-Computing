@@ -344,7 +344,7 @@
                       <div class="">
                         <h5 class="card-header">Display the attendance rate of each course (of the respective teacher) in the span of 3 days</h5>
                 <div class="table-responsive text-nowrap">
-                  <table class="table">
+                  <table class="table" id="target-table">
                     <thead>
                       <tr class="text-nowrap">
                         <th>Course/Date</th>
@@ -469,9 +469,126 @@
         }
 
         var today = year + '-' + month + '-' + day;
+        var yesterday = year + '-' + month + '-' + ('0' + date.getDate() - 1);
+        var dayBeforeYesterday = year + '-' + month + '-' + ('0' + date.getDate() - 2);
         var teacherID = localStorage.getItem('teacherID') || 1; 
         var presentRate = document.getElementById('attendance-rate');
         var absentRate = document.getElementById('absent-rate');
+        var targetTable = document.getElementById('target-table');
+        targetTable.innerHTML = '';
+
+        //targetTable
+        fetch(`https://student-management.be.bug-fix-squad.com/teacher_course/teacher/${teacherID}`)
+        .then(response => response.json())
+        .then(data => {
+            data = data.result;
+            var tableHead = `                    
+            <thead>
+              <tr class="text-nowrap">
+                <th>Course/Date</th>
+                <th>${dayBeforeYesterday}</th>
+                <th>${yesterday}</th>
+                <th>${today}</th>
+              </tr>
+            </thead>
+            <tbody>
+            `;
+            targetTable.innerHTML += tableHead;
+            data.forEach(course => {
+              //Day Before Yesterday Query
+              fetch(`https://student-management.be.bug-fix-squad.com/course/${course.cid}`)
+              .then(res => res.json())
+              .then(json => {
+                    json = json.result[0];
+                    var courseID = json.id;
+                    var courseName = json.cname;
+                    fetch(`https://student-management.be.bug-fix-squad.com/attendance/teacher_course/present`, {
+                      method: "POST",
+                      body: JSON.stringify({
+                         date : `${dayBeforeYesterday}`, //Or today
+                         tid : teacherID,
+                         cid : courseID
+                      }),
+                      headers: {
+                        'Content-type':'application/json; charset=UTF-8',
+                      }
+                    })
+                    .then(res => res.json())
+                    .then(json => {
+                      json = json.result[0];
+                      var totalPresentStudent = json.totalPresentStudent;
+                      fetch(`https://student-management.be.bug-fix-squad.com/attendance/teacher_course/absent`, {
+                          method: "POST",
+                          body: JSON.stringify({
+                            date : `${dayBeforeYesterday}`,
+                            tid : teacherID,
+                            cid : courseID
+                          }),
+                          headers: {
+                            'Content-type':'application/json; charset=UTF-8',
+                          }
+                          })
+                          .then(res => res.json())
+                          .then(json => {
+                            json = json.result[0];
+                            var totalAbsentStudent = json.totalAbsentStudent;
+                            var totalStudent = totalPresentStudent + totalAbsentStudent;
+                            var dayBeforeYesterdayPresent = totalPresentStudent + '/' + totalStudent;
+                            fetch(`https://student-management.be.bug-fix-squad.com/attendance/teacher_course/present`, {
+                              method: "POST",
+                              body: JSON.stringify({
+                                  date : `${yesterday}`, //Or today
+                                  tid : teacherID,
+                                  cid : courseID
+                              }),
+                              headers: {
+                                'Content-type':'application/json; charset=UTF-8',
+                              }
+                            })
+                            .then(res => res.json())
+                            .then(json => {
+                              json = json.result[0];
+                              var yesterdayPresent = json.totalPresentStudent + '/' + totalStudent;
+                              fetch(`https://student-management.be.bug-fix-squad.com/attendance/teacher_course/present`, {
+                                method: "POST",
+                                body: JSON.stringify({
+                                    date : `${today}`, //Or today
+                                    tid : teacherID,
+                                    cid : courseID
+                                }),
+                                headers: {
+                                  'Content-type':'application/json; charset=UTF-8',
+                                }
+                              })
+                              .then(res => res.json())
+                              .then(json => {
+                                json = json.result[0];
+                                var todayPresent = json.totalPresentStudent + '/' + totalStudent;
+                                var element = `
+                                <tr>
+                                  <th scope="row">${courseName}</th>
+                                  <td>${dayBeforeYesterdayPresent}</td>
+                                  <td>${yesterdayPresent}</td>
+                                  <td>${todayPresent}</td>
+                                </tr>
+                                `;
+                                targetTable.innerHTML += element;
+                              })
+                              .catch(err => console.log(err))
+                            })
+                            .catch(err => console.log(err))
+                          })
+                      })
+                    .catch(err => console.log(err))
+                })
+              //Day Before Yesterday Query
+
+            })
+            targetTable.innerHTML += '</tbody>';
+        })
+        .catch(err => console.log(err))
+
+        // presentRate and absentRate
         fetch(`https://student-management.be.bug-fix-squad.com/teacher_course/teacher/${teacherID}`, {
             method : "GET"
         })
@@ -503,7 +620,6 @@
                 .then(json => {
                   json = json.result[0];
                   var totalPresentStudent = json.totalPresentStudent;
-                  console.log("Present : " + totalPresentStudent);
                   fetch(`https://student-management.be.bug-fix-squad.com/attendance/teacher_course/absent`, {
                       method: "POST",
                       body: JSON.stringify({
