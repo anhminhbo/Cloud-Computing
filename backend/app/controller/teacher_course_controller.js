@@ -46,6 +46,13 @@ function updateTeacherCourse(req,res) {
     });
 }
 
+function getTotalStudent(req,res) {
+    var teacherID = req.params.tid;
+    var courseID = req.params.cid;
+    TeacherCourse.getTotalStudent(teacherID, courseID, function(response) {
+        res.send({result: response});
+    });
+}
 
 module.exports = {
     getAllTeacherCourse : getAllTeacherCourse,
@@ -55,4 +62,5 @@ module.exports = {
     updateTeacherCourse : updateTeacherCourse,
     getCourseByTeacherId : getCourseByTeacherId,
     getTeacherCourseById : getTeacherCourseById,
+    getTotalStudent : getTotalStudent,
 }

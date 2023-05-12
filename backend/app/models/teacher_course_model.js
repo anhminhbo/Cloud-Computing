@@ -110,4 +110,21 @@ TeacherCourse.updateTeacherCourse = async function (data, result) {
     });
 }
 
+TeacherCourse.getTotalStudent = async function (tid, cid, result) {
+    await db.getConnection((err, connection) => {
+        if (err) {
+            console.log(err);
+        }
+        connection.release();
+    });
+    var query = `
+    SELECT COUNT(sc.sid) AS totalStudent
+    FROM teacher_course AS tc, student_course as sc
+    WHERE tc.cid = sc.cid AND tc.tid = ${tid} AND tc.cid = ${cid};`;
+    db.query(query, (err,data) => {
+        if (err) console.log(err);
+        else result(data);
+    });
+}
+
 module.exports = TeacherCourse;

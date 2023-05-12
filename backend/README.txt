@@ -112,6 +112,7 @@ url/teacher_course/teacher/id: GET Method that returns teacher course with speci
 url/teacher_course/add: POST Method that returns an added teacher course with JSON format
 url/teacher_course/teacher/delete: DELETE Method that deletes specific teacher course with specific id cascaded
 url/teacher_course/teacher/update: GET Method that updates teacher course with specific id 
+url/teacher_course/teacher/:id/course/:id/count: GET method that returns total number of students that has same course taught by the teacher
 
 ***Student Course Route***:
 Expected JSON format:
