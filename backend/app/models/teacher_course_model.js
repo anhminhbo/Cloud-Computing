@@ -127,4 +127,25 @@ TeacherCourse.getTotalStudent = async function (tid, cid, result) {
     });
 }
 
+TeacherCourse.getTeacherWithMostClass = async function (result) {
+    await db.getConnection((err, connection) => {
+        if (err) {
+            console.log(err);
+        }
+        connection.release();
+    });
+    var query = `
+    SELECT teacher.fname, teacher.lname, COUNT(tc.cid) as totalClasses
+    FROM teacher_course AS tc, teacher
+    WHERE tc.tid = teacher.id
+    GROUP BY tc.tid
+    ORDER BY COUNT(tc.cid) DESC
+    LIMIT 1;
+    `;
+    db.query(query, (err,data) => {
+        if (err) console.log(err);
+        else result(data);
+    });
+}
+
 module.exports = TeacherCourse;

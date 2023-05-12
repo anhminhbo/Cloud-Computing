@@ -54,6 +54,12 @@ function getTotalStudent(req,res) {
     });
 }
 
+function getTeacherWithMostClass(req,res) {
+    TeacherCourse.getTeacherWithMostClass(function(response) {
+        res.send({result: response});
+    });
+}
+
 module.exports = {
     getAllTeacherCourse : getAllTeacherCourse,
     getTeacherByCourseId : getTeacherByCourseId, 
@@ -63,4 +69,5 @@ module.exports = {
     getCourseByTeacherId : getCourseByTeacherId,
     getTeacherCourseById : getTeacherCourseById,
     getTotalStudent : getTotalStudent,
+    getTeacherWithMostClass: getTeacherWithMostClass,
 }
