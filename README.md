@@ -15,3 +15,5 @@ Notes:
 ```
 cd infra  && bash -x destroy_infra.sh
 ```
+
+Kubernetes production example by @BugFixWanderer

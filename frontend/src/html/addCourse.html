@@ -180,9 +180,24 @@
               <ul class="navbar-nav flex-row align-items-center ms-auto">
                 <!-- Place this tag where you want the button to render. -->
                 <li class="nav-item lh-1 me-3">
-                  <button type="button" class="btn btn-icon btn-secondary">
-                    <span class="tf-icons bx bx-bell"></span>
-                  </button>
+                  <div class="dropdown">
+                    <button
+                    class="btn btn-icon btn-secondary tf-icons bx bx-bell"
+                      type="button"
+                      id="cardOpt3"
+                      data-bs-toggle="dropdown"
+                      aria-haspopup="true"
+                      aria-expanded="false"
+                    >
+                     
+                    </button>
+                    <div class="dropdown-menu dropdown-menu-end" aria-labelledby="cardOpt3">
+                      <a class="dropdown-item" href="admin-dashboard.html">Hello, have you check your dashboard today?</a>
+              
+                    </div>
+                  </div>
+                  <span class=""></span>
+                </button>
                 </li>
  
 
@@ -247,22 +262,7 @@
                       <small class="text-muted float-end">To be update</small>
                     </div>
                     <div class="card-body">
-                      <form>
-                        <div class="mb-3">
-                          <label class="form-label" for="basic-icon-default-fullname">ID</label>
-                          <div class="input-group input-group-merge">
-                            <span id="basic-icon-default-fullname2" class="input-group-text"
-                              ><i class="bx bx-user"></i
-                            ></span>
-                            <input
-                              type="text"
-                              class="form-control"
-                              id="basic-icon-default-fullname"
-                              placeholder="C123"
-                             
-                            />
-                          </div>
-                        </div>
+                      <form action="" method="POST" onsubmit="" id="add-course-form">
                         <div class="mb-3">
                           <label class="form-label" for="basic-icon-default-fullname">Course Name</label>
                           <div class="input-group input-group-merge">
@@ -272,8 +272,8 @@
                             <input
                               type="text"
                               class="form-control"
-                              id="basic-icon-default-fullname"
-                              placeholder="History"
+                              id="cname"
+                              placeholder="Course Name..."
                              
                             />
                           </div>
@@ -328,5 +328,27 @@
 
     <!-- Place this tag in your head or just before your close body tag. -->
 
+    <!-- Add Course -->
+    <script>
+      var target = document.getElementById('add-course-form');
+      target.addEventListener("submit", (event) => {
+          event.preventDefault();
+          var courseName = document.getElementById('cname').value;
+          fetch(`https://student-management.be.bug-fix-squad.com/student/add`, {
+              method: "POST",
+              body: JSON.stringify({
+                  cname: courseName
+              }),
+              headers: {
+                'Content-type':'application/json; charset=UTF-8',
+              },
+          })
+          .then(response => {
+              console.log(response.json());
+              window.location.href = 'allCourse.html';
+          })
+          .catch(err => console.log(err))
+        });
+    </script>
   </body>
 </html>
