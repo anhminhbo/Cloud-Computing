@@ -6,6 +6,28 @@ const TeacherCourse = function(teacher_course) {
     this.cid = teacher_course.cid;
 }
 
+TeacherCourse.getTeacherWithMostClass = async function (result) {
+    await db.getConnection((err, connection) => {
+        if (err) {
+            console.log(err);
+        }
+        connection.release();
+    });
+    console.log("Called This")
+    var query = `
+    SELECT teacher.fname, teacher.lname, COUNT(tc.cid) as totalClasses
+    FROM teacher_course AS tc, teacher
+    WHERE tc.tid = teacher.id
+    GROUP BY tc.tid
+    ORDER BY COUNT(tc.cid) DESC
+    LIMIT 1;
+    `;
+    db.query(query, (err,data) => {
+        if (err) console.log(err);
+        else result(data);
+    });
+}
+
 TeacherCourse.getTeacherCourseById = async function (id, result) {
     await db.getConnection((err, connection) => {
         if (err) {
@@ -13,6 +35,7 @@ TeacherCourse.getTeacherCourseById = async function (id, result) {
         }
         connection.release();
     });
+    console.log("Called Another")
     var query = `SELECT * FROM teacher_course WHERE teacher_course.id = ${id}`;
     db.query(query, (err, data) => {
         if (err) console.log(err);
@@ -127,25 +150,5 @@ TeacherCourse.getTotalStudent = async function (tid, cid, result) {
     });
 }
 
-TeacherCourse.getTeacherWithMostClass = async function (result) {
-    await db.getConnection((err, connection) => {
-        if (err) {
-            console.log(err);
-        }
-        connection.release();
-    });
-    var query = `
-    SELECT teacher.fname, teacher.lname, COUNT(tc.cid) as totalClasses
-    FROM teacher_course AS tc, teacher
-    WHERE tc.tid = teacher.id
-    GROUP BY tc.tid
-    ORDER BY COUNT(tc.cid) DESC
-    LIMIT 1;
-    `;
-    db.query(query, (err,data) => {
-        if (err) console.log(err);
-        else result(data);
-    });
-}
 
 module.exports = TeacherCourse;
