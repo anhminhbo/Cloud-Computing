@@ -85,6 +85,28 @@ hr {
   opacity: 1;
 }
 
+       .icon {
+      position: absolute;
+      width: 105px;
+      height:auto;
+      top: 5%;
+      left: 5%;
+      transform: translate(-15%, -45%);
+      -ms-transform: translate(-50%, -50%);
+      text-align: center;
+    }
+
+    th{
+      text-align: center;
+    }
+    td{
+  text-align: center;
+  /* center checkbox horizontally */
+  vertical-align: middle;
+  /* center checkbox vertically */
+}
+    
+
 hr:not([size]) {
   height: 1px;
 }

@@ -1,8 +1,7 @@
 # Install dependencies only when needed - Dependencies installation stage
-FROM node:16-alpine 
+FROM node:16-alpine as frontend
 
 WORKDIR /app
-COPY ./src .
 
 # Creator
 LABEL author="Minh Nguyen"

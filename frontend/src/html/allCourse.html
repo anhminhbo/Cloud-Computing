@@ -264,12 +264,19 @@
           var target = document.getElementById('target-div');
           target.innerHTML = '';
           var totalStudent = 0;
+          var courses = [];
+          var index = [];
+                var count =0;
+                
           data.forEach((json) => {
             var totalStudent = 0;
             var teacherName = '';
             var courseName = '';
             console.log(json);
+            courses.push({cid:json.cid});
             
+
+           
               fetch(`https://student-management.be.bug-fix-squad.com/course/${json.cid}`)
               .then(res => {
                 return res.json();
@@ -277,6 +284,7 @@
               .then(course => {
                 course = course.result[0];
                 courseName = course.cname;
+               
                 console.log(courseName);
                 fetch(`https://student-management.be.bug-fix-squad.com/teacher/${json.tid}`)
                 .then(res => {
@@ -291,7 +299,10 @@
                       })
                       .then(course => {
                         course = course.result[0];
+                       
                         totalStudent = course.totalStudent;
+                       
+                        
                         var element = `                
                             <div class="col-md-6 col-lg-4 mb-3">
                               <div class="card h-80">
@@ -302,20 +313,27 @@
                                 
                                   <p class="card-text"> Number of Student: ${totalStudent}</p>
                                   <p class="card-text"> Teacher: ${teacherName}</p>
+                                  <p class="card-text"> Course_ID: ${json.cid}</p>
+                                  
                                   <div class = "card text-end mb-3">   
-                                    <button onclick = "document.location='assignTeacher.html'" type="button" class="btn btn-outline-dark">Assign/Reassign a teacher to this course</button>
+                                    <button onclick = "document.location='assignTeacher.html'; localStorage.setItem('id',` +json.cid + `)" type="button" class="btn btn-outline-dark">Assign/Reassign a teacher to this course</button>
                                   </div>
                                   </div>
                               </div>
                             </div>`;
+                            
                         target.innerHTML += element
+                        count++;
+                     
                       })
+                      
                       .catch(error => console.log(error))
                 })
                 .catch(error => console.log(error))
               })
               .catch(error => console.log(error))
         })
+        localStorage.setItem('courses', JSON.stringify(courses));
       })
       .catch(error => console.log(error))
 
