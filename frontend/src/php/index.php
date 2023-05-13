@@ -44,10 +44,10 @@
                 $_SESSION['password'] = $_POST['password'];
                 $_SESSION['loggedin'] = true;
                 if ($type == 'admin') {
-                    header("Location: ../../src/html/admin-dashboard.html");
+                    header("Location: ../html/admin-dashboard.html");
                 }
                 if ($type == 'teacher') {
-                    header("Location: ../../src/html/TeacherDashBoard.html");
+                    header("Location: ../html/TeacherDashBoard.html");
                 }
             }
             else {
