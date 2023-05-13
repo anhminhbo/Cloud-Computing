@@ -9,7 +9,7 @@
     }
     // Verify UserName and Filter customer Category
     try {
-        $file = fopen("../../../backend/account.db", "r") or die("Unable to open file!");
+        $file = fopen("account.db", "r") or die("Unable to open file!");
         $integrity = true; 
         if ($file) {
             $type = $username = $password = '';
