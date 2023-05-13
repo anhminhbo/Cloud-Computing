@@ -378,7 +378,7 @@
         var courseID = localStorage.getItem("id");
        
 
-        fetch(`https://student-management.be.bug-fix-squad.com/teacher_course/update`, {
+        fetch(`https://student-management.be.bug-fix-squad.com/teacher_course/teacher/update`, {
             method: "PUT",
             body: JSON.stringify({
                id: localStorage.getItem("tcid"),
