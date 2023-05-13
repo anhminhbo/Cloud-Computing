@@ -1,8 +1,4 @@
 # Install dependencies only when needed - Dependencies installation stage
-FROM php:7.4-apache as webserver
-COPY ./src/php/  /var/www/html
-RUN chown -R www-data:www-data /var/www
-
 FROM node:16-alpine as frontend
 
 WORKDIR /app
