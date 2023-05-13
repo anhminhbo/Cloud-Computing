@@ -276,11 +276,16 @@
     <!-- Load Student Information -->
     <!-- https://student-management.be.bug-fix-squad.com  -->
     <script>
-        var searchForm = document.getElementById('search-form');
-          searchForm.addEventListener("submit", (event) => {
-            event.preventDefault();
-            //Redirect
-            })
+      var request = sessionStorage.getItem('search-student').toLowerCase();
+      sessionStorage.removeItem('search-student');
+
+      var searchForm = document.getElementById('search-form');
+      searchForm.addEventListener("submit", (event) => {
+          event.preventDefault();
+          sessionStorage.setItem('search-student', document.getElementById('search').value);
+          //Redirect
+          window.location.href = "search-result-student.html";
+      })
 
         {
           fetch('https://student-management.be.bug-fix-squad.com/student/all', {
@@ -309,7 +314,11 @@
                     console.log(json);
                     
                     students.push({tid:json.id, tfname: json.fname, tlname: json.lname});
-               
+                  
+                    if (json.fname.toLowerCase() != request && json.lname.toLowerCase() != request && (json.fname.toLowerCase() + ' ' + json.lname.toLowerCase()) != request && (json.fname.toLowerCase() + json.lname.toLowerCase()) != request) {
+                        return;
+                    }
+
                     count = json.id;
                     var str = `                      
                     <tr>              

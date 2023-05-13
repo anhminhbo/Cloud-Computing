@@ -323,7 +323,6 @@
       var searchForm = document.getElementById('search-form');
         searchForm.addEventListener("submit", (event) => {
             event.preventDefault();
-            console.log(document.getElementById('search').value);
             sessionStorage.setItem('search-course', document.getElementById('search').value);
             //Redirect
             window.location.href = "search-result-course.html";
