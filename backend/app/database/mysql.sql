@@ -93,6 +93,14 @@ INSERT INTO teacher_course (tid,cid) VALUES (6,1);
 INSERT INTO teacher_course (tid,cid) VALUES (6,3);
 INSERT INTO teacher_course (tid,cid) VALUES (7,7);
 INSERT INTO teacher_course (tid,cid) VALUES (8,2);
+INSERT INTO teacher_course (tid,cid) VALUES (9,6);
+INSERT INTO teacher_course (tid,cid) VALUES (10,3);
+INSERT INTO teacher_course (tid,cid) VALUES (8,1);
+INSERT INTO teacher_course (tid,cid) VALUES (7,3);
+INSERT INTO teacher_course (tid,cid) VALUES (1,6);
+INSERT INTO teacher_course (tid,cid) VALUES (3,4);
+INSERT INTO teacher_course (tid,cid) VALUES (4,1);
+INSERT INTO teacher_course (tid,cid) VALUES (5,7);
 
 -- Student Course Insertion 
 INSERT INTO student_course (sid,cid) VALUES (1,1);
