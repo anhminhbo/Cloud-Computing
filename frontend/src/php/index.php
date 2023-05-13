@@ -43,13 +43,12 @@
                 $_SESSION['username'] = $_POST['username'];
                 $_SESSION['password'] = $_POST['password'];
                 $_SESSION['loggedin'] = true;
-                echo "We are inside";
-                // if ($type == 'admin') {
-                //     header("Location: ../html/admin-dashboard.html");
-                // }
-                // if ($type == 'teacher') {
-                //     header("Location: ../html/TeacherDashBoard.html");
-                // }
+                if ($type == 'admin') {
+                    header("Location: ../html/admin-dashboard.html");
+                }
+                if ($type == 'teacher') {
+                    header("Location: ../html/TeacherDashBoard.html");
+                }
             }
             else {
                 echo "<script> 
