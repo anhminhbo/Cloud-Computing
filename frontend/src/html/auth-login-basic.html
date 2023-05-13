@@ -163,7 +163,7 @@
             console.log(formUsername);
             console.log(formPassword);
             event.preventDefault();
-            fetch('php/account.db')
+            fetch('../php/account.db')
             .then(response => response.text())
             .then(data => {
                 const lines = data.split('\n');
