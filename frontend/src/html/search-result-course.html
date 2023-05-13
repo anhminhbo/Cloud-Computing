@@ -7,7 +7,7 @@
   <meta name="viewport"
     content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0" />
 
-  <title>All Courses</title>
+  <title>Search Result for Courses</title>
 
   <meta name="description" content="" />
 
@@ -67,7 +67,7 @@
             <li class="menu-item">
               <a href="admin-dashboard.html" class="menu-link">
                 <i class="menu-icon tf-icons bx bx-home-circle"></i>
-                <div data-i18n="Analytics">Dashboard</div>
+                <div data-i18n="Analytics">Search Result </div>
               </a>
             </li>
 
@@ -92,14 +92,6 @@
                 <div data-i18n="Tables">All Students</div>
               </a>
             </li>
-            <li class="menu-item">
-              <a href="studentClass.html" class="menu-link">
-                <i class="menu-icon tf-icons bx bx-table"></i>
-                <div data-i18n="Basic">studentClass(Test)</div>
-              </a>
-            </li>
-           
-          
           </ul>
         </aside>
         <!-- / Menu -->
@@ -114,20 +106,16 @@
           >
               <!-- Search -->
               <div class="navbar-nav align-items-center navbar layout-navbar navbar-detached bg-navbar-theme">
-                <div class="nav-item d-flex align-items-center container">
+                <div class="nav-item d-flex align-items-center">
                   <i class="bx bx-search fs-4 lh-0"></i>
-                  <form action="" method="" id="search-form" class="d-flex w-100">
-                    <input
+                  <input
                     type="text"
-                    class="form-control border-0 shadow-none w-100"
-                    id="search"
-                    placeholder="Search in this dashboards..."
-                    />
-                    <button style="visibility: hidden; margin-left:50px;" class="form-control" type="submit">Search</button>
-                  </form>
+                    class="form-control border-0 shadow-none"
+                    placeholder="Search ..."
+                  />
                 </div>
               </div>
-               <!-- End of Search -->
+              <!-- /Search -->
               <ul class="navbar-nav flex-row align-items-center ms-auto">
                 <li class="nav-item">
                   <button  class="btn btn-icon btn-secondary"
@@ -186,22 +174,8 @@
             <!-- Content -->
 
             <div class="container-xxl flex-grow-1 container-p-y">
-              <h4 class="fw-bold py-3 mb-4"><span class="text-muted fw-light"> /</span> Courses  
-
-                <div class="pagination justify-content-center">
-                 <button  onclick = "document.location='addCourse.html'"type="button"  class="btn btn-danger">Add a course in  </button>
-                  </div>
-              </h4>
-          
-               
-      
-           
-              
-
-              <div class="row mb-5" id="target-div">
-               
-                </div>
-                
+              <h5 class="card-header">There are N results</h5>
+              <div class="row mb-5" id="target-div"></div>
               </div>
               <!-------------------------------START NEXT ROW HERE-------------------------->
 
@@ -319,14 +293,6 @@
       })
       .catch(error => console.log(error))
 
-
-      var searchForm = document.getElementById('search-form');
-        searchForm.addEventListener("submit", (event) => {
-            event.preventDefault();
-
-            //Redirect
-            window.location.href = "search-result-course.html";
-        })
   </script>
 </body>
 
