@@ -27,7 +27,7 @@
       content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0"
     />
 
-    <title>All Teacher</title>
+    <title>Search Result for Teacher</title>
 
     <meta name="description" content="" />
 
@@ -91,7 +91,6 @@
                   <div data-i18n="Analytics">Dashboard</div>
                 </a>
               </li>
-  
               <!-- Components -->
               <li class="menu-header small text-uppercase"><span class="menu-header-text">Components</span></li>
               <!-- Cards -->
@@ -112,14 +111,7 @@
                   <i class="menu-icon tf-icons bx bx-table"></i>
                   <div data-i18n="Tables">All Students</div>
                 </a>
-              </li>
-              <li class="menu-item">
-                <a href="studentClass.html" class="menu-link">
-                  <i class="menu-icon tf-icons bx bx-table"></i>
-                  <div data-i18n="Basic">studentClass(Test)</div>
-                </a>
-              </li>
-            
+              </li>         
           </ul>
         </aside>
         <!-- / Menu -->
@@ -141,13 +133,13 @@
                     type="text"
                     class="form-control border-0 shadow-none w-100"
                     id="search"
-                    placeholder="Search in this dashboards..."
+                    placeholder="Search ..."
                     />
                     <button style="visibility: hidden; margin-left:50px;" class="form-control" type="submit">Search</button>
                   </form>
                 </div>
               </div>
-               <!-- End of Search -->
+              <!-- /Search -->
               <!-- Bell Notification -->
               <ul class="navbar-nav flex-row align-items-center ms-auto">
                 <li class="nav-item">
@@ -218,7 +210,7 @@
               </div>
               <!-- Hoverable Table rows -->
               <div class="card">
-                <h5 class="card-header">All Teachers</h5>
+                <h5 class="card-header">There are N results</h5>
                 <div class="table-responsive text-nowrap" >
                   <table class="table table-hover" >
                     <thead>
@@ -226,17 +218,12 @@
                         <th>Teacher's ID</th>
                         <th>Teacher's First Name</th>
                         <th>Teacher's Last Name</th>
-                        <th>Action</th>
                       </tr>
                     </thead>
-                    <tbody class="table-border-bottom-0" id="target-div">
-                      
-                    </tbody>
-                    
+                    <tbody class="table-border-bottom-0" id="target-div"></tbody>
                   </table>
                   
                 </div>
-                <button onclick = "document.location='addTeacher.html'" type="button" class="btn btn-dark">Add a Teacher </button>
               </div>
               <!--/ Hoverable Table rows -->
 
@@ -279,6 +266,11 @@
     <!-- Page JS -->
 
     <script>
+            var searchForm = document.getElementById('search-form');
+              searchForm.addEventListener("submit", (event) => {
+                  event.preventDefault();
+                  //Redirect
+              })
           
             fetch('https://student-management.be.bug-fix-squad.com/teacher/all')
             .then(response => {
@@ -300,9 +292,10 @@
                     count = json.id;
                     var str = `                      
                     <tr>              
-                    <td>${json.id}</td>
                     <td>${json.fname}</td>
                     <td>${json.lname}</td>
+                    <td></td>
+                    <td></td>
                     <td>
                       <div class="dropdown">
                         <button type="button" class="btn p-0 dropdown-toggle hide-arrow" data-bs-toggle="dropdown">
@@ -310,10 +303,10 @@
                         </button>
                         <div class="dropdown-menu">
                           <a class="dropdown-item" href="EditTeacherInfo.html" onclick="localStorage.setItem('id',` +count + `)"
-                            ><i class="bx bx-edit-alt me-1"></i> Edit</a
+                            ><i class="bx bx-edit-alt me-1"></i>Edit</a
                           >
                           <a class="dropdown-item" onclick= "return deleteTeacher(${count});" 
-                            ><i class="bx bx-trash me-1"></i> Remove Teacher</a
+                            ><i class="bx bx-trash me-1"></i>Remove</a
                           >
                         </div>
                       </div>
@@ -337,14 +330,6 @@
                 window.location.href = "allTeacher.html";
             })
             }
-
-            var searchForm = document.getElementById('search-form');
-        searchForm.addEventListener("submit", (event) => {
-            event.preventDefault();
-
-            //Redirect
-            window.location.href = "search-result-teacher.html";
-        })
         
     </script>
   

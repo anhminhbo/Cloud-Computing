@@ -27,12 +27,12 @@
       content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0"
     />
 
-    <title>All Teacher</title>
+    <title>Search Result for Students</title>
 
     <meta name="description" content="" />
 
     <!-- Favicon -->
-    <link rel="icon" type="image/x-icon" href="../assets/img/favicon/favicon.ico" />
+    <link rel="shortcut icon" href="../assets/img/favicon/rmit-university-logo-png-transparent.ico">
 
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -72,8 +72,8 @@
 
         <aside id="layout-menu" class="layout-menu menu-vertical menu bg-menu-theme">
           <div class="app-brand demo">
-            <a href="TeacherDashboard.html" class="app-brand-link">
-              <img src="../assets/img/favicon/rmit-university-logo-png-transparent.ico" class="icon">
+            <a class="app-brand-link">
+                  <img src="../assets/img/favicon/rmit-university-logo-png-transparent.ico" class="icon">
             </a>
 
             <a href="javascript:void(0);" class="layout-menu-toggle menu-link text-large ms-auto d-block d-xl-none">
@@ -86,40 +86,33 @@
           <ul class="menu-inner py-1">
             <!-- Dashboard -->
             <li class="menu-item">
-                <a href="admin-dashboard.html" class="menu-link">
-                  <i class="menu-icon tf-icons bx bx-home-circle"></i>
-                  <div data-i18n="Analytics">Dashboard</div>
-                </a>
-              </li>
-  
-              <!-- Components -->
-              <li class="menu-header small text-uppercase"><span class="menu-header-text">Components</span></li>
-              <!-- Cards -->
-              <li class="menu-item">
-                <a href="allCourse.html" class="menu-link">
-                  <i class="menu-icon tf-icons bx bx-collection"></i>
-                  <div data-i18n="Basic">All Courses</div>
-                </a>
-              </li>
-              <li class="menu-item active">
-                <a href="allTeacher.html" class="menu-link">
-                  <i class="menu-icon tf-icons bx bx-table"></i>
-                  <div data-i18n="Tables">All Teachers</div>
-                </a>
-              </li>
-              <li class="menu-item">
-                <a href="allStudent.html" class="menu-link">
-                  <i class="menu-icon tf-icons bx bx-table"></i>
-                  <div data-i18n="Tables">All Students</div>
-                </a>
-              </li>
-              <li class="menu-item">
-                <a href="studentClass.html" class="menu-link">
-                  <i class="menu-icon tf-icons bx bx-table"></i>
-                  <div data-i18n="Basic">studentClass(Test)</div>
-                </a>
-              </li>
-            
+              <a href="admin-dashboard.html" class="menu-link">
+                <i class="menu-icon tf-icons bx bx-home-circle"></i>
+                <div data-i18n="Analytics">Dashboard</div>
+              </a>
+            </li>
+
+            <!-- Components -->
+            <li class="menu-header small text-uppercase"><span class="menu-header-text">Components</span></li>
+            <!-- Cards -->
+            <li class="menu-item">
+              <a href="allCourse.html" class="menu-link">
+                <i class="menu-icon tf-icons bx bx-collection"></i>
+                <div data-i18n="Basic">All Courses</div>
+              </a>
+            </li>
+            <li class="menu-item">
+              <a href="allTeacher.html" class="menu-link">
+                <i class="menu-icon tf-icons bx bx-table"></i>
+                <div data-i18n="Tables">All Teachers</div>
+              </a>
+            </li>
+            <li class="menu-item active">
+              <a href="allStudent.html" class="menu-link">
+                <i class="menu-icon tf-icons bx bx-table"></i>
+                <div data-i18n="Tables">All Students</div>
+              </a>
+            </li>
           </ul>
         </aside>
         <!-- / Menu -->
@@ -141,13 +134,13 @@
                     type="text"
                     class="form-control border-0 shadow-none w-100"
                     id="search"
-                    placeholder="Search in this dashboards..."
+                    placeholder="Search ..."
                     />
                     <button style="visibility: hidden; margin-left:50px;" class="form-control" type="submit">Search</button>
                   </form>
                 </div>
               </div>
-               <!-- End of Search -->
+              <!-- /Search -->
               <!-- Bell Notification -->
               <ul class="navbar-nav flex-row align-items-center ms-auto">
                 <li class="nav-item">
@@ -212,35 +205,37 @@
               
               
               <div class="mb-3 row">
-    
                 <div class="col-md-10">
+                  
                 </div>
               </div>
+
               <!-- Hoverable Table rows -->
               <div class="card">
-                <h5 class="card-header">All Teachers</h5>
-                <div class="table-responsive text-nowrap" >
+                <h5 class="card-header">There are N results</h5>
+                <div class="table-responsive text-nowrap">
                   <table class="table table-hover" >
                     <thead>
                       <tr>
-                        <th>Teacher's ID</th>
-                        <th>Teacher's First Name</th>
-                        <th>Teacher's Last Name</th>
-                        <th>Action</th>
+                        <th>Student's ID</th>
+                        <th>Student's First Name</th>
+                        <th>Student's Last Name</th>
                       </tr>
                     </thead>
+
                     <tbody class="table-border-bottom-0" id="target-div">
-                      
+                    
+
                     </tbody>
                     
                   </table>
                   
                 </div>
-                <button onclick = "document.location='addTeacher.html'" type="button" class="btn btn-dark">Add a Teacher </button>
               </div>
               <!--/ Hoverable Table rows -->
 
-            
+             
+              
             <!-- / Content -->
 
         
@@ -278,9 +273,27 @@
 
     <!-- Page JS -->
 
+    <!-- Load Student Information -->
+    <!-- https://student-management.be.bug-fix-squad.com  -->
     <script>
-          
-            fetch('https://student-management.be.bug-fix-squad.com/teacher/all')
+        var searchForm = document.getElementById('search-form');
+          searchForm.addEventListener("submit", (event) => {
+            event.preventDefault();
+            //Redirect
+            })
+
+        {
+          fetch('https://student-management.be.bug-fix-squad.com/student/all', {
+        method: 'GET',
+        // body: JSON.stringify({
+        //     lname : "Love",
+        //     fname : "Teacher",
+        //     cid : 3,
+        // }),
+        // headers: {
+        //     'Content-type':'application/json; charset=UTF-8',
+        // },
+      })
             .then(response => {
                 return response.json()
             })
@@ -290,12 +303,12 @@
                 data = data.result;
                 var target = document.getElementById('target-div');
                 target.innerHTML = '';
-                var teachers = [];
+                var students = [];
                 var count =0;
                 data.forEach((json) => {
                     console.log(json);
                     
-                    teachers.push({tid:json.id, tfname: json.fname, tlname: json.lname});
+                    students.push({tid:json.id, tfname: json.fname, tlname: json.lname});
                
                     count = json.id;
                     var str = `                      
@@ -309,11 +322,11 @@
                           <i class="bx bx-dots-vertical-rounded"></i>
                         </button>
                         <div class="dropdown-menu">
-                          <a class="dropdown-item" href="EditTeacherInfo.html" onclick="localStorage.setItem('id',` +count + `)"
+                          <a class="dropdown-item" href="EditStudentInfo.html" onclick="localStorage.setItem('id',` +count + `)"
                             ><i class="bx bx-edit-alt me-1"></i> Edit</a
                           >
-                          <a class="dropdown-item" onclick= "return deleteTeacher(${count});" 
-                            ><i class="bx bx-trash me-1"></i> Remove Teacher</a
+                          <a class="dropdown-item" onclick= "return deleteStudent(${count});" 
+                            ><i class="bx bx-trash me-1"></i> Remove Student</a
                           >
                         </div>
                       </div>
@@ -322,31 +335,21 @@
                     target.innerHTML += str;
                     
                 });
-                localStorage.setItem('teachers', JSON.stringify(teachers));
+                localStorage.setItem('students', JSON.stringify(students));
             })
             .catch(error => console.log(error))
+          }
 
-           
-          
-          function deleteTeacher(input){
-            fetch(`https://student-management.be.bug-fix-squad.com/teacher/delete/${input}`, {
+          function deleteStudent(input){
+            fetch(`https://student-management.be.bug-fix-squad.com/student/delete/${input}`, {
                method: 'DELETE'
                })
                .then(response => {
                 console.log(response.json())
-                window.location.href = "allTeacher.html";
+                window.location.href = "allStudent.html";
             })
             }
 
-            var searchForm = document.getElementById('search-form');
-        searchForm.addEventListener("submit", (event) => {
-            event.preventDefault();
-
-            //Redirect
-            window.location.href = "search-result-teacher.html";
-        })
-        
     </script>
-  
   </body>
 </html>
