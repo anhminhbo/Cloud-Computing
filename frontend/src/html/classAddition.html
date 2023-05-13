@@ -59,7 +59,7 @@
 
         <aside id="layout-menu" class="layout-menu menu-vertical menu bg-menu-theme">
           <div class="app-brand demo">
-            <a href="TeacherDashBoard.html" class="app-brand-link">
+            <a href="admin-dashboard.html" class="app-brand-link">
               <img src="../assets/img/favicon/rmit-university-logo-png-transparent.ico" class="icon">
             </a>
 
@@ -71,8 +71,8 @@
           <div class="menu-inner-shadow"></div>
 
           <ul class="menu-inner py-1">
-            <li class="menu-item">
-              <a href="TeacherDashBoard.html" class="menu-link">
+            <li class="menu-item active">
+              <a href="admin-dashboard.html" class="menu-link">
                 <i class="menu-icon tf-icons bx bx-home-circle"></i>
                 <div data-i18n="Analytics">Dashboard</div>
               </a>
@@ -81,18 +81,24 @@
             <!-- Components -->
             <li class="menu-header small text-uppercase"><span class="menu-header-text">Components</span></li>
             <!-- Cards -->
-            <li class="menu-item active">
-              <a href="CourseAtt.html" class="menu-link">
+            <li class="menu-item">
+              <a href="allCourse.html" class="menu-link">
                 <i class="menu-icon tf-icons bx bx-collection"></i>
-                <div data-i18n="Basic">Your Teaching Courses</div>
+                <div data-i18n="Basic">All Courses</div>
               </a>
             </li>
             <li class="menu-item">
-              <a href="AdminContact.html" class="menu-link">
-                <i class="menu-icon tf-icons bx bx-detail"></i>
-                <div data-i18n="Form Layouts">Contact with Admin</div>
+              <a href="allTeacher.html" class="menu-link">
+                <i class="menu-icon tf-icons bx bx-table"></i>
+                <div data-i18n="Tables">All Teachers</div>
               </a>
-              </li>
+            </li>
+            <li class="menu-item">
+              <a href="allStudent.html" class="menu-link">
+                <i class="menu-icon tf-icons bx bx-table"></i>
+                <div data-i18n="Tables">All Students</div>
+              </a>
+            </li>
           </ul>
         </aside>
         <!-- / Menu -->
@@ -185,10 +191,10 @@
                   <div class="card mb-4">
                     <div class="card-header d-flex justify-content-between align-items-center">
                       <h5 class="mb-0">Add a student in</h5>
-                      <small class="text-muted float-end">To be update</small>
+                     
                     </div>
                     <div class="card-body">
-                      <form>
+                      <form method="POST" action="" id="add-student-in-class-form">
                         <div class="mb-3">
                           <label class="form-label" for="basic-icon-default-fullname">ID</label>
                           <div class="input-group input-group-merge">
@@ -198,8 +204,24 @@
                             <input
                               type="text"
                               class="form-control"
-                              id="basic-icon-default-fullname"
+                              id="sid"
                               placeholder="S123"
+                             
+                            />
+                          </div>
+                        </div>
+                      
+                        <div class="mb-3">
+                          <label class="form-label" for="basic-icon-default-fullname">Course ID</label>
+                          <div class="input-group input-group-merge">
+                            <span id="basic-icon-default-bookmark-dash" class="input-group-text"
+                              ><i class="bx bx-buildings"></i
+                            ></span>
+                            <input
+                              type="text"
+                              class="form-control"
+                              id="cid"
+                              placeholder="C123"
                              
                             />
                           </div>
@@ -253,4 +275,27 @@
     <!-- Place this tag in your head or just before your close body tag. -->
 
   </body>
+  <script>
+    var target = document.getElementById('add-student-in-class-form');
+    target.addEventListener("submit", (event) => {
+        event.preventDefault();
+        var studentID = document.getElementById('sid').value;
+        var courseID = document.getElementById('cid').value;
+    
+        fetch(`https://student-management.be.bug-fix-squad.com/student_course/add`, {
+            method: "POST",
+            body: JSON.stringify({
+               sid : studentID,
+               cid : courseID,
+            }),
+            headers: {
+              'Content-type':'application/json; charset=UTF-8',
+            },
+        })
+        .then(response => {
+            window.location.href = 'admin-dashboard.html';
+        })
+        .catch(err => console.log(err))
+      });
+  </script>
 </html>
