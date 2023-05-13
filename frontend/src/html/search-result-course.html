@@ -106,13 +106,17 @@
           >
               <!-- Search -->
               <div class="navbar-nav align-items-center navbar layout-navbar navbar-detached bg-navbar-theme">
-                <div class="nav-item d-flex align-items-center">
+                <div class="nav-item d-flex align-items-center container">
                   <i class="bx bx-search fs-4 lh-0"></i>
-                  <input
+                  <form action="" method="" id="search-form" class="d-flex w-100">
+                    <input
                     type="text"
-                    class="form-control border-0 shadow-none"
+                    class="form-control border-0 shadow-none w-100"
+                    id="search"
                     placeholder="Search ..."
-                  />
+                    />
+                    <button style="visibility: hidden; margin-left:50px;" class="form-control" type="submit">Search</button>
+                  </form>
                 </div>
               </div>
               <!-- /Search -->
@@ -227,6 +231,17 @@
 
   <!-- https://student-management.be.bug-fix-squad.com -->
   <script>
+      var request = sessionStorage.getItem('search-course').toLowerCase();
+      sessionStorage.removeItem('search-course');
+
+      var searchForm = document.getElementById('search-form');
+      searchForm.addEventListener("submit", (event) => {
+          event.preventDefault();
+          sessionStorage.setItem('search-course', document.getElementById('search').value);
+          //Redirect
+          window.location.href = "search-result-course.html";
+      })
+
       fetch('https://student-management.be.bug-fix-squad.com/teacher_course/all', {
         method: 'GET',
       })
@@ -242,8 +257,6 @@
             var totalStudent = 0;
             var teacherName = '';
             var courseName = '';
-            console.log(json);
-            
               fetch(`https://student-management.be.bug-fix-squad.com/course/${json.cid}`)
               .then(res => {
                 return res.json();
@@ -252,6 +265,11 @@
                 course = course.result[0];
                 courseName = course.cname;
                 console.log(courseName);
+                console.log(request);
+                if (course.cname.toLowerCase() != request) {
+                   return;
+                }
+                console.log("Passed");
                 fetch(`https://student-management.be.bug-fix-squad.com/teacher/${json.tid}`)
                 .then(res => {
                   return res.json();

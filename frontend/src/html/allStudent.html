@@ -356,7 +356,7 @@
         var searchForm = document.getElementById('search-form');
         searchForm.addEventListener("submit", (event) => {
             event.preventDefault();
-
+            sessionStorage.setItem('search-student', document.getElementById('search').value);
             //Redirect
             window.location.href = "search-result-student.html";
         })
