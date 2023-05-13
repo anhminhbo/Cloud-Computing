@@ -35,6 +35,20 @@ Course.getCourseById = async function (id, result) {
     });
 }
 
+Course.getCourseByName = async function (data, result) {
+    await db.getConnection((err, connection) => {
+        if (err) {
+            console.log(err);
+        }
+        connection.release();
+    });
+    var query = `SELECT * FROM course WHERE course.cname = ${data.cname}`;
+    db.query(query, (err, data) => {
+        if (err) console.log(err);
+        else result(data);
+    });
+}
+
 Course.addCourse = async function (data, result) {
     await db.getConnection((err, connection) => {
         if (err) {

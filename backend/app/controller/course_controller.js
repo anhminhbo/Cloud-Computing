@@ -40,6 +40,12 @@ function getTotalStudent(req,res) {
     });
 }
 
+function getCourseByName(req,res) {
+    Course.getCourseByName(req.body, function (data) {
+        res.send({result: data});
+    });
+}
+
 module.exports = {
     getCourseById : getCourseById,
     addCourse : addCourse, 
@@ -47,4 +53,5 @@ module.exports = {
     getAllCourse : getAllCourse,
     updateCourse : updateCourse,
     getTotalStudent : getTotalStudent,
+    getCourseByName : getCourseByName,
 }
