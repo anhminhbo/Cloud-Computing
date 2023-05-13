@@ -624,7 +624,7 @@
         var today = year + '-' + month + '-' + day;
         var yesterday = year + '-' + month + '-' + ('0' + date.getDate() - 1);
         var dayBeforeYesterday = year + '-' + month + '-' + ('0' + date.getDate() - 2);
-        var teacherID = localStorage.getItem('teacherID') || 1; 
+        teacherID = localStorage.getItem('teacherID') || 1; 
         var presentRate = document.getElementById('attendance-rate');
         var absentRate = document.getElementById('absent-rate');
         var targetTable = document.getElementById('target-table');
@@ -741,12 +741,15 @@
         })
         .catch(err => console.log(err))
 
+
+        teacherID = localStorage.getItem('teacherID') || 1;
         // presentRate and absentRate
         fetch(`https://student-management.be.bug-fix-squad.com/teacher_course/teacher/${teacherID}`, {
             method : "GET"
         })
         .then(response => response.json()) 
         .then(data => {
+            console.log(data);
             data = data.result;
             var random = Math.floor(Math.random() * data.length);
             var date = "2023-04-01" || today;
