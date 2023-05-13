@@ -251,7 +251,7 @@
                       <small class="text-muted float-end">To be update</small>
                     </div>
                     <div class="card-body">
-                      <form action="" method="GET" id="student-form">
+                      <form action="" method="POST" id="student-form">
                         <div class="mb-3">
                           <label class="form-label" for="basic-icon-default-fullname">Student ID</label>
                           <div class="input-group input-group-merge">
@@ -349,9 +349,27 @@
         var target = document.getElementById('student-form');
         target.addEventListener("submit", (event) => {
             event.preventDefault();
-            var id = document.getElementById('id').value;
+            if(document.getElementById('id').value ==''){
+                var id =  document.getElementById("id").placeholder;
+          }
+          else{
+                 var id = document.getElementById('id').value;
+          }
+
+          if(document.getElementById('lname').value ==''){
+            var lastName = document.getElementById('lname').placeholder
+          }
+          else{
             var lastName = document.getElementById('lname').value;
+          }
+
+          if(document.getElementById('fname').value ==''){
+            var firstName = document.getElementById('fname').placeholder
+          }
+          else{
             var firstName = document.getElementById('fname').value;
+          }
+         
             console.log(lastName + ' ' + firstName + ' ' + id);
             fetch(`https://student-management.be.bug-fix-squad.com/student/update/${id}`, {
                 method: "PUT",
@@ -365,9 +383,26 @@
             })
             .then(response => {
                 console.log(response.json())
+                window.location.href = "allStudent.html";
             })
             .catch(err => console.log(err))
           });
+           
+        function getResult(arr,id){
+        
+        for(i = 0; i < arr.length;i++){
+              if(id == arr[i].tid){
+                document.getElementById("id").placeholder =  arr[i].tid;
+        document.getElementById("lname").placeholder = arr[i].tlname;
+        document.getElementById("fname").placeholder = arr[i].tfname;
+              }
+        }
+       
+      }
+    
+    let array = JSON.parse(localStorage.getItem("students"));
+
+        getResult(array,localStorage.getItem("id"))
     </script>
 
   </body>
