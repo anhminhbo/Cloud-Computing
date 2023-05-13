@@ -52,7 +52,7 @@
             }
             else {
                 echo "<script> 
-                location.href = '../html/auth-login-basic.html';
+                location.href = '../index';
                 alert('Wrong account/password! Please enter again!');
                 </script>";        
                 die("");        
