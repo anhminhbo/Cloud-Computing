@@ -226,7 +226,6 @@
                       </tr>
                     </thead>
                     <tbody class="table-border-bottom-0" id="target-div">
-                     
                   
                     </tbody>
                     
@@ -337,7 +336,6 @@
           let today = year + '-' + month + '-' + day;
           let target = document.getElementById('date-input');
           target.value = today;
-          console.log(target.value);
       }
       getCurrentDate();
 
@@ -355,12 +353,23 @@
                'Content-type':'application/json; charset=UTF-8',
              },
           })
-          .then(response => response.json())
+          .then(response => {
+            if (response.ok) {
+              return response.json();
+            }
+            else {
+              console.log("Some Errors");
+              return;
+            }  
+          })
           .then(data => {
               data = data.result[0];
-              console.log(data);
+              if (data === null || data === undefined) {
+                  target.innerHTML += '<h2 style="margin: auto; margin-bottom:10px; color:red; text-align:center; font-weight:bold;">No Student Checked In Today Yet</h2>';
+                  return;
+              }
               var sid = data.sid;
-              if (data.sid == undefined) {
+              if (data.sid === undefined) {
                   return;
               }
               var present = (data.present == 1) ? 'checked' : ''
@@ -369,8 +378,11 @@
               })
               .then(res => res.json())
               .then(json => {
+                if (json === null || json === undefined) {
+                  console.log("No data");
+                  return;
+                }
                 json = json.result[0];
-                console.log(json);
                 var element = `                      
                 <tr>
                   <td text-align: center; vertical-align: middle;><input class="form-check-input" type="checkbox" value="" id="defaultCheck1" ${present}/>
