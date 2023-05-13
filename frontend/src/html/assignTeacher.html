@@ -10,28 +10,7 @@
   data-template="vertical-menu-template-free"
 >
   <head>
-    <style>
-       .icon {
-      position: absolute;
-      width: 105px;
-      height:auto;
-      top: 5%;
-      left: 5%;
-      transform: translate(-15%, -45%);
-      -ms-transform: translate(-50%, -50%);
-      text-align: center;
-    }
-
-    th{
-      text-align: center;
-    }
-    td{
-  text-align: center;
-  /* center checkbox horizontally */
-  vertical-align: middle;
-  /* center checkbox vertically */
-}
-      </style>
+    
     <meta charset="utf-8" />
     <meta
       name="viewport"
@@ -236,12 +215,7 @@
                     <li>
                       <div class="dropdown-divider"></div>
                     </li>
-                    <li>
-                      <a class="dropdown-item" href="#">
-                        <i class="bx bx-user me-2"></i>
-                        <span class="align-middle">My Profile</span>
-                      </a>
-                    </li>
+      
               
                     <li>
                       <a class="dropdown-item" href="auth-login-basic.html">
@@ -270,108 +244,38 @@
               </div>
               <!-- Hoverable Table rows -->
               <div class="card">
-                <h5 class="card-header">Assign a teacher to the course (Finance Managing-C1)</h5>
-                <div class="table-responsive text-nowrap">
-                  <table class="table table-hover">
+                <h5 class="card-header">All Teachers</h5>
+                <div class="table-responsive text-nowrap" >
+                  <table class="table table-hover" name = "checkTable" >
                     <thead>
                       <tr>
                         <th>Assign?</th>
                         <th>Teacher's ID</th>
                         <th>Teacher's First Name</th>
                         <th>Teacher's Last Name</th>
+                      
                       </tr>
                     </thead>
-                    <tbody class="table-border-bottom-0">
-                      <tr>
-                        <td >  <div class="form-check">
-                          <input
-                            name="default-radio-1"
-                            class="form-check-input"
-                            type="radio"
-                            value=""
-                            id="defaultRadio2"
-                            checked
-                          /></td>
-                        <td>T123</td>
-                        <td>A</td>
-                        <td>B</td>
-                        
-                      </tr>
-                      <tr>
-                        <td><div class="form-check">
-                          <input
-                            name="default-radio-1"
-                            class="form-check-input"
-                            type="radio"
-                            value=""
-                            id="defaultRadio2"
-                            checked
-                          /> </td>
-                        <td>T456</td>
-                        <td>C</td>
-                        <td>D</td>
-                       
-                      </tr>
-                      <tr>
-                        <td>  <div class="form-check">
-                          <input
-                            name="default-radio-1"
-                            class="form-check-input"
-                            type="radio"
-                            value=""
-                            id="defaultRadio2"
-                            checked
-                          /></td>
-                        <td>T789</td>
-                        <td>F</td>
-                        <td>G</td>
-                        
-                      </tr>
-                      <tr>
-                        <td>  <div class="form-check">
-                          <input
-                            name="default-radio-1"
-                            class="form-check-input"
-                            type="radio"
-                            value=""
-                            id="defaultRadio2"
-                            checked
-                          /></td>
-                        <td>T111</td>
-                        <td>H</td>
-                        <td>I</td>
-                       
-                      </tr>
-                      <tr>
-                        <td >  <div class="form-check">
-                          <input
-                            name="default-radio-1"
-                            class="form-check-input"
-                            type="radio"
-                            value=""
-                            id="defaultRadio2"
-                            checked
-                          /></td>
-                        <td>T122</td>
-                        <td>G</td>
-                        <td>K</td>
-                       
-                      </tr>
+                    <tbody class="table-border-bottom-0" id="target-div">
+                      
                     </tbody>
                     
                   </table>
                   
                 </div>
-               
+                <button type="submit" onclick ="assign()" class="btn btn-primary" id = "submit-button">Assign</button>
+              </div>
+              <div id ="error"> </div>
               </div>
               <!--/ Hoverable Table rows -->
-
+              
              
             <!-- / Content -->
 
         
 
-            <div class="content-backdrop fade"></div>
+            <div class="content-backdrop fade" ></div>
+           
           </div>
         </div>
           <!-- Content wrapper -->
@@ -406,4 +310,117 @@
 
   
   </body>
+  <script>
+     function getResult(arr,id){
+        
+        for(i = 0; i < arr.length;i++){
+              if(id == arr[i].tid){
+                //document.getElementById("cid").value +=  arr[i].cid;//Side note: this one does work
+                   return arr[i].cid;
+              }
+        }
+       
+      }
+    
+    let array = JSON.parse(localStorage.getItem("courses"));
+    let count  =0;
+  // getResult(array,localStorage.getItem('id'))
+       /////////////////////////////////////////////////////
+     fetch('https://student-management.be.bug-fix-squad.com/teacher/all')
+            .then(response => {
+                return response.json()
+            })
+            .then(data => {
+                console.log(data);
+                console.log(window.URL);
+                data = data.result;
+                var target = document.getElementById('target-div');
+                target.innerHTML = '';
+              
+                data.forEach((json) => {
+                    console.log(json);
+          
+                    var str = `                      
+                    <tr>  
+                      <td>  <div class="form-check">
+                          <input
+                            name="booleanValue"
+                            class="form-check-input"
+                            type="radio"
+                            value="${json.id}"
+                            id="tid"
+                            checked
+                          /></td>
+                                
+                    <td>${json.id}</td>
+                    <td>${json.fname}</td>
+                    <td>${json.lname}</td>
+                  
+                  
+                   
+                    </tr>`;
+                 //   target.innerHTML +=array.;
+                 
+                   target.innerHTML += str;
+               
+                   // target.innerHTML += document.getElementById("tid").value;
+                   
+              //      target.innerHTML += document.getElementById('tid').value;
+              //${localStorage.getItem("id")} Course_ID
+                    
+                });
+                
+            })
+            .catch(error => console.log(error))
+            //////////////////////////////
+       validation();
+        function assign(){
+    var target = document.getElementById('submit-button');
+    target.addEventListener("submit", (event) => {
+        event.preventDefault();
+        var teacherID = validation();
+        var courseID = localStorage.getItem("id");
+    
+        fetch(`https://student-management.be.bug-fix-squad.com/teacher_course/add`, {
+            method: "POST",
+            body: JSON.stringify({
+               tid : teacherID,
+               cid : courseID,
+            }),
+            headers: {
+              'Content-type':'application/json; charset=UTF-8',
+            },
+        })
+        .then(response => {
+            window.location.href = 'allCourse.html';
+        })
+        .catch(err => console.log(err))
+      });
+      ///////////////////////////////////////////////////
+    }
+
+    function validation(){
+  //Reference the Table.
+  var radio = document.getElementById("checkTable");
+ 
+ //Reference the Group of RadioButtons.
+ var radio = table.getElementsByTagName("INPUT");
+
+ //Set the Valid Flag to False initially.
+ var isValid = false;
+
+ //Loop and verify whether at-least one RadioButton is checked.
+ for (var i = 0; i < radio.length; i++) {
+     if (radio[i].checked) {
+         isValid = true;
+         document.getElementById("error").innerHTML = radio.getElementById("tid").value;
+     }
+ }
+
+ //Display error message if no RadioButton is checked.
+ document.getElementById("spnError").style.display = isValid ? "none" : "block";
+ return isValid;
+ 
+}
+  </script>
 </html>
