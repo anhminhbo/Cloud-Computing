@@ -144,13 +144,17 @@
           >
               <!-- Search -->
               <div class="navbar-nav align-items-center navbar layout-navbar navbar-detached bg-navbar-theme">
-                <div class="nav-item d-flex align-items-center">
+                <div class="nav-item d-flex align-items-center container">
                   <i class="bx bx-search fs-4 lh-0"></i>
-                  <input
+                  <form action="" method="" id="search-form" class="d-flex w-100">
+                    <input
                     type="text"
-                    class="form-control border-0 shadow-none"
+                    class="form-control border-0 shadow-none w-100"
+                    id="search"
                     placeholder="Search in this dashboards..."
-                  />
+                    />
+                    <button style="visibility: hidden; margin-left:50px;" class="form-control" type="submit">Search</button>
+                  </form>
                 </div>
               </div>
               <!-- /Search -->
@@ -395,6 +399,14 @@
     <script src="../assets/js/dashboards-analytics.js"></script>
 
     <!-- Place this tag in your head or just before your close body tag. -->
+
+    <script>
+        var searchForm = document.getElementById('search-form');
+        searchForm.addEventListener("submit", (event) => {
+            event.preventDefault();
+            //Redirect
+        })
+    </script>
 
     <script>
         fetch(`https://student-management.be.bug-fix-squad.com/teacher_course/most/teacher`)
