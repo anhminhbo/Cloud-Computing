@@ -94,7 +94,7 @@
               <h4 class="mb-2">Welcome to Group Assignment of Group 5! 👋</h4>
              
 
-              <form id="formAuthentication" class="mb-3" action="../php/index.php" method="POST">
+              <form id="loginForm" class="mb-3" action="" method="">
                 <div class="mb-3">
                   <label for="email" class="form-label">Email or Username</label>
                   <input
@@ -153,6 +153,42 @@
     
 
     <!-- Place this tag in your head or just before your close body tag. -->
-  
+    <script>
+      
+      var form = document.getElementById('loginForm');
+      form.addEventListener("submit", (event) => {
+            var formUsername = document.getElementById('username').value;
+            var formPassword = document.getElementById('password').value;
+            console.log(formUsername);
+            console.log(formPassword);
+            event.preventDefault();
+            fetch('php/account.db')
+            .then(response => response.text())
+            .then(data => {
+                const lines = data.split('\n');
+                var validate = false;
+                lines.forEach(line => {
+                    if (line == null || line == '' || line == ' ') {
+                        return;
+                    }
+                    const[type,username,password] = line.split('|');
+                    if (username == formUsername && formPassword == password && type === 'admin') {
+                        window.location.href = 'html/admin-dashboard.html';
+                        validate = true;
+                    }
+                    if (username == formUsername && formPassword == password && type === 'teacher') {
+                        window.location.href = 'html/TeacherDashBoard.html';
+                        validate = true;
+                    }
+                  })
+                if (validate == false) {
+                    location.reload();
+                    window.alert("Wrong account/password. Please try again");
+                    
+                } 
+            })
+            .then(err => console.log(err))
+        })
+    </script>
   </body>
 </html>
