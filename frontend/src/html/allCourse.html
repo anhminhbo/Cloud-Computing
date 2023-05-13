@@ -114,16 +114,20 @@
           >
               <!-- Search -->
               <div class="navbar-nav align-items-center navbar layout-navbar navbar-detached bg-navbar-theme">
-                <div class="nav-item d-flex align-items-center">
+                <div class="nav-item d-flex align-items-center container">
                   <i class="bx bx-search fs-4 lh-0"></i>
-                  <input
+                  <form action="" method="" id="search-form" class="d-flex w-100">
+                    <input
                     type="text"
-                    class="form-control border-0 shadow-none"
-                    placeholder="Search ..."
-                  />
+                    class="form-control border-0 shadow-none w-100"
+                    id="search"
+                    placeholder="Search in this dashboards..."
+                    />
+                    <button style="visibility: hidden; margin-left:50px;" class="form-control" type="submit">Search</button>
+                  </form>
                 </div>
               </div>
-              <!-- /Search -->
+               <!-- End of Search -->
               <ul class="navbar-nav flex-row align-items-center ms-auto">
                 <li class="nav-item">
                   <button  class="btn btn-icon btn-secondary"
@@ -315,6 +319,14 @@
       })
       .catch(error => console.log(error))
 
+
+      var searchForm = document.getElementById('search-form');
+        searchForm.addEventListener("submit", (event) => {
+            event.preventDefault();
+
+            //Redirect
+            window.location.href = "search-result-course.html";
+        })
   </script>
 </body>
 
