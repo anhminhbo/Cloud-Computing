@@ -303,8 +303,8 @@
                             </div>
                           </div>
                           <span>Display Teacher who has the most amount of classes</span>
-                          <h3 class="card-title text-nowrap mb-1">Mr. A</h3>
-                          <small class="text fw-semibold">6 classes</small>
+                          <h3 class="card-title text-nowrap mb-1" id="most-student-teacher">Mr. A</h3>
+                          <small class="text fw-semibold" id="most-student-teacher-class">6 classes</small>
                         </div>
                       </div>
                     </div>
@@ -316,7 +316,7 @@
                       <div class="">
                         <h5 class="card-header">Display the courses, number of students and their teacher</h5>
                 <div class="table-responsive text-nowrap">
-                  <table class="table " >
+                  <table class="table " id="target-table">
                     <thead>
                       <tr class="text-nowrap ">
                         <th>#</th>
@@ -397,7 +397,69 @@
     <!-- Place this tag in your head or just before your close body tag. -->
 
     <script>
-        
+        fetch(`https://student-management.be.bug-fix-squad.com/teacher_course/most/teacher`)
+        .then(res => res.json())
+        .then(data => {
+            data = data.result[0];
+            console.log(data);
+            var target1 = document.getElementById('most-student-teacher');
+            var target2 = document.getElementById('most-student-teacher-class');
+            target1.innerHTML = data.fname + '<br>' + data.lname;
+            target2.innerHTML = "Classes: " + data.totalClasses;
+        })
+        .catch(err => console.log(err))
+
+
+        fetch(`https://student-management.be.bug-fix-squad.com/teacher_course/all`)
+        .then(res => res.json())
+        .then(data =>
+        {
+            var target = document.getElementById('target-table');
+            target.innerHTML = '';
+            target.innerHTML += `
+            <thead>
+              <tr class="text-nowrap ">
+                <th>Course Name</th>
+                <th>Teachers</th>
+                <th>Total Students</th>
+              </tr>
+            </thead> <tbody>`;
+            data = data.result;
+            data.forEach(child => {
+                var teacherID = child.tid;
+                var courseID = child.cid;
+                fetch(`https://student-management.be.bug-fix-squad.com/teacher/${teacherID}`)
+                .then(res => res.json())
+                .then(data => {
+                    data = data.result[0];
+                    var teacherName = data.fname + ' ' + data.lname;
+                    fetch(`https://student-management.be.bug-fix-squad.com/course/${courseID}`)
+                    .then(res => res.json())
+                    .then(data => {
+                        data = data.result[0];
+                        var courseName = data.cname;
+                        fetch(`https://student-management.be.bug-fix-squad.com/teacher_course/teacher/${teacherID}/course/${courseID}/count`)
+                        .then(res => res.json())
+                        .then(data => {
+                            data = data.result[0];
+                            var element = `
+                            <tr>
+                              <th scope="row">${courseName}</th>
+                              <td>${teacherName}</td>
+                              <td>${data.totalStudent}</td>
+                            </tr>
+                            `;
+                            target.innerHTML += element;
+                        })
+                        .catch(err => console.log(err))
+                    })
+                    .catch(err => console.log(err))
+                })
+                .catch(err => console.log(err))
+            })
+            target.innerHTML += '</tbody>';
+        })
+        .catch(err => console.log(err))
     </script>
   </body>
 </html>
