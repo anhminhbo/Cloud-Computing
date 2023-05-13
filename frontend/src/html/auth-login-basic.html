@@ -174,11 +174,11 @@
                     }
                     const[type,username,password] = line.split('|');
                     if (username == formUsername && formPassword == password && type === 'admin') {
-                        window.location.href = 'html/admin-dashboard.html';
+                        window.location.href = 'admin-dashboard.html';
                         validate = true;
                     }
                     if (username == formUsername && formPassword == password && type === 'teacher') {
-                        window.location.href = 'html/TeacherDashBoard.html';
+                        window.location.href = 'TeacherDashBoard.html';
                         validate = true;
                     }
                   })
