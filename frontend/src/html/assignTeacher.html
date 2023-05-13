@@ -263,9 +263,9 @@
                   </table>
                   
                 </div>
-                <button type="submit" onclick ="assign()" class="btn btn-primary" id = "submit-button">Assign</button>
+                <button type="submit"  class="btn btn-primary">Assign</button>
               </div>
-              <div id ="error"> </div>
+              <p id ="error">eds </p>
               </div>
               <!--/ Hoverable Table rows -->
               
@@ -311,16 +311,7 @@
   
   </body>
   <script>
-     function getResult(arr,id){
-        
-        for(i = 0; i < arr.length;i++){
-              if(id == arr[i].tid){
-                //document.getElementById("cid").value +=  arr[i].cid;//Side note: this one does work
-                   return arr[i].cid;
-              }
-        }
-       
-      }
+          var teacherID = "";
     
     let array = JSON.parse(localStorage.getItem("courses"));
     let count  =0;
@@ -344,12 +335,11 @@
                     <tr>  
                       <td>  <div class="form-check">
                           <input
-                            name="booleanValue"
+                            name="tname"
                             class="form-check-input"
                             type="radio"
                             value="${json.id}"
                             id="tid"
-                            checked
                           /></td>
                                 
                     <td>${json.id}</td>
@@ -359,9 +349,11 @@
                   
                    
                     </tr>`;
+               
                  //   target.innerHTML +=array.;
                  
                    target.innerHTML += str;
+            
                
                    // target.innerHTML += document.getElementById("tid").value;
                    
@@ -369,21 +361,27 @@
               //${localStorage.getItem("id")} Course_ID
                     
                 });
-                
+        
             })
             .catch(error => console.log(error))
             //////////////////////////////
-       validation();
-        function assign(){
-    var target = document.getElementById('submit-button');
-    target.addEventListener("submit", (event) => {
+          //  document.getElementById('error').innerHTML =  localStorage.getItem("tcid");
+      
+        
+
+       
+          
+    var result = document.getElementById('target-div');
+    result.addEventListener("submit", (event) => {
         event.preventDefault();
-        var teacherID = validation();
+        teacherID =  document.querySelector('input[name="tname"]:checked').value;
         var courseID = localStorage.getItem("id");
-    
-        fetch(`https://student-management.be.bug-fix-squad.com/teacher_course/add`, {
-            method: "POST",
+       
+
+        fetch(`https://student-management.be.bug-fix-squad.com/teacher_course/update`, {
+            method: "PUT",
             body: JSON.stringify({
+               id: localStorage.getItem("tcid"),
                tid : teacherID,
                cid : courseID,
             }),
@@ -391,36 +389,18 @@
               'Content-type':'application/json; charset=UTF-8',
             },
         })
+       
         .then(response => {
-            window.location.href = 'allCourse.html';
+          console.log(response.json());
+          window.location.href = "allCourse.html";
+         
         })
         .catch(err => console.log(err))
       });
       ///////////////////////////////////////////////////
-    }
+    
+    
 
-    function validation(){
-  //Reference the Table.
-  var radio = document.getElementById("checkTable");
- 
- //Reference the Group of RadioButtons.
- var radio = table.getElementsByTagName("INPUT");
-
- //Set the Valid Flag to False initially.
- var isValid = false;
-
- //Loop and verify whether at-least one RadioButton is checked.
- for (var i = 0; i < radio.length; i++) {
-     if (radio[i].checked) {
-         isValid = true;
-         document.getElementById("error").innerHTML = radio.getElementById("tid").value;
-     }
- }
-
- //Display error message if no RadioButton is checked.
- document.getElementById("spnError").style.display = isValid ? "none" : "block";
- return isValid;
- 
-}
+  
   </script>
 </html>
