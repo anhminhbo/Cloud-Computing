@@ -354,6 +354,7 @@
 
     <!-- First query that lists attendance rate of a random course -->
     <script>
+       var teacherID = localStorage.getItem('teacherID') || 3; 
       function leapYear(year){
         return ((year % 4 === 0 && year % 100 !== 0) || year % 400 === 0); 
       }
@@ -619,7 +620,8 @@
         var today = year + '-' + month + '-' + day;
         var yesterday = year + '-' + month + '-' + ('0' + date.getDate() - 1);
         var dayBeforeYesterday = year + '-' + month + '-' + ('0' + date.getDate() - 2);
-        teacherID = localStorage.getItem('teacherID') || 1; 
+        var teacherID = localStorage.getItem('teacherID') || 3; 
+
         var presentRate = document.getElementById('attendance-rate');
         var absentRate = document.getElementById('absent-rate');
         var targetTable = document.getElementById('target-table');
