@@ -9,7 +9,7 @@
     }
     // Verify UserName and Filter customer Category
     try {
-        $file = fopen("../../../backend/account.db", "r") or die("Unable to open file!");
+        $file = fopen("account.db", "r") or die("Unable to open file!");
         $integrity = true; 
         if ($file) {
             $type = $username = $password = '';
@@ -44,15 +44,15 @@
                 $_SESSION['password'] = $_POST['password'];
                 $_SESSION['loggedin'] = true;
                 if ($type == 'admin') {
-                    header("Location: ../../src/html/admin-dashboard.html");
+                    header("Location: /app/src/html/admin-dashboard.html");
                 }
                 if ($type == 'teacher') {
-                    header("Location: ../../src/html/TeacherDashBoard.html");
+                    header("Location: /app/src//html/TeacherDashBoard.html");
                 }
             }
             else {
                 echo "<script> 
-                location.href = '../../src/html/auth-login-basic.html';
+                location.href = '/app/src/index.html';
                 alert('Wrong account/password! Please enter again!');
                 </script>";        
                 die("");        
