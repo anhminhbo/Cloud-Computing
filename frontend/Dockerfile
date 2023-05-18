@@ -1,7 +1,8 @@
 # Install dependencies only when needed - Dependencies installation stage
-FROM node:16-alpine 
+FROM node:16-alpine
 
 WORKDIR /app
+
 COPY ./src .
 
 # Creator

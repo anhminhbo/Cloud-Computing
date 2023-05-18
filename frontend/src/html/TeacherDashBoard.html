@@ -621,6 +621,7 @@
         var yesterday = year + '-' + month + '-' + ('0' + date.getDate() - 1);
         var dayBeforeYesterday = year + '-' + month + '-' + ('0' + date.getDate() - 2);
         var teacherID = localStorage.getItem('teacherID') || 3; 
+
         var presentRate = document.getElementById('attendance-rate');
         var absentRate = document.getElementById('absent-rate');
         var targetTable = document.getElementById('target-table');
@@ -743,6 +744,7 @@
         })
         .then(response => response.json()) 
         .then(data => {
+            console.log(data);
             data = data.result;
             var random = Math.floor(Math.random() * data.length);
             var date = "2023-04-01" || today;
