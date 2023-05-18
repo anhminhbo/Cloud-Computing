@@ -736,7 +736,7 @@
             targetTable.innerHTML += '</tbody>';
         })
         .catch(err => console.log(err))
-
+        var teacherID = localStorage.getItem('teacherID') || 3;
         // presentRate and absentRate
         fetch(`https://student-management.be.bug-fix-squad.com/teacher_course/teacher/${teacherID}`, {
             method : "GET"
