@@ -19,9 +19,9 @@ spec:
           name: be-pumi
 
           envFrom:
-          - configMapRef:
-              name: be-pumi-secret
-          
+            - configMapRef:
+                name: be-pumi-secret
+
           ports:
             - containerPort: 8080
 ---
@@ -57,11 +57,11 @@ spec:
 
   tls:
     - hosts:
-        - pumidoro-music.homes
+        - pumidoro-music.bug-fix-squad.com
       secretName: cert-manager-private-key
-  
+
   rules:
-    - host: pumidoro-music.homes
+    - host: pumidoro-music.bug-fix-squad.com
       http:
         paths:
           - path: /api
@@ -71,4 +71,3 @@ spec:
                 name: be-pumi
                 port:
                   number: 8080
-          

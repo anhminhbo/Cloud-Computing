@@ -18,8 +18,8 @@ spec:
         - image: anhminhbo/bits-frontend:108
           name: fe-pumi
           envFrom:
-          - configMapRef:
-              name: fe-pumi-secret
+            - configMapRef:
+                name: fe-pumi-secret
           ports:
             - containerPort: 80
 ---
@@ -55,11 +55,11 @@ spec:
 
   tls:
     - hosts:
-        - pumidoro-music.homes
+        - pumidoro-music.bug-fix-squad.com
       secretName: cert-manager-private-key
-  
+
   rules:
-    - host: pumidoro-music.homes
+    - host: pumidoro-music.bug-fix-squad.com
       http:
         paths:
           - path: /
@@ -69,4 +69,3 @@ spec:
                 name: fe-pumi
                 port:
                   number: 80
-          
